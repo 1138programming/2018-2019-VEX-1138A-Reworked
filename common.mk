@@ -10,7 +10,7 @@ LIBRARIES=$(wildcard $(ROOT)/firmware/*.a) -lgcc -lm
 # Prefix for ARM tools (must be on the path)
 MCUPREFIX=arm-none-eabi-
 # Flags for the assembler
-MCUAFLAGS=-mthumb -mcpu=cortex-m3 -mlittle-endian
+MCUAFLAGS=-j4 -mthumb -mcpu=cortex-m3 -mlittle-endian
 # Flags for the compiler
 MCUCFLAGS=-mthumb -mcpu=cortex-m3 -mlittle-endian -mfloat-abi=soft
 # Flags for the linker
