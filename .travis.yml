@@ -1,6 +1,6 @@
 language: ruby
 before_install:
-    - sudo apt-get install -y gcc-arm-none-eabi clang python3
+    - sudo apt-get install -y clang
     - wget https://github.com/purduesigbots/pros/releases/download/2.12.1/pros-core-2.6.1-amd64.deb -O pros-core.deb
     - sudo dpkg -i pros-core.deb
 addons:
