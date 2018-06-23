@@ -1,1 +1,6 @@
 language: cpp
+before_install:
+	wget https://github.com/purduesigbots/pros-cli/releases/download/2.6.1/pros-core-2.6.1-amd64.deb -o pros-core.deb
+	sudo dpkg -i pros-core.deb
+script:
+	pros make
