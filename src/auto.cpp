@@ -26,5 +26,12 @@
  * The autonomous task may exit, unlike operatorControl() which should never exit. If it does
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
+
 void autonomous() {
+  // Get instances of subsystems
+  /*Base* base = Base::getInstance();
+  Intake* intake = Intake::getInstance();
+  Lift* lift = Lift::getInstance();
+  Puncher* puncher = Puncher::getInstance();
+  Turntable* turntable = Turntable::getInstance();*/
 }

@@ -30,7 +30,23 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
+
+	// Define joystick input variables
+	int leftBase, rightBase;
+
+	// Get instances of subsystems
+  Base* base = Base::getInstance();
+  Intake* intake = Intake::getInstance();
+  Lift* lift = Lift::getInstance();
+  Puncher* puncher = Puncher::getInstance();
+  Turntable* turntable = Turntable::getInstance();
+
 	while (1) {
-		delay(20);
+		leftBase = joystickGetAnalog(1, 3); // Left y-channel
+		rightBase = joystickGetAnalog(1, 2); // Right y-channel
+
+		base->move(leftBase, rightBase);
+
+		delay(DELAY_TIME);
 	}
 }

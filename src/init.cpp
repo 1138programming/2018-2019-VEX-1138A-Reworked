@@ -11,6 +11,7 @@
  */
 
 #include "main.h"
+int imeCount;
 
 /*
  * Runs pre-initialization code. This function will be started in kernel mode one time while the
@@ -21,6 +22,9 @@
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
 void initializeIO() {
+  printf("Initializing IO...");
+  // Initialize pins here
+  printf(" Done!\n");
 }
 
 /*
@@ -37,4 +41,9 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
+  imeCount = imeInitializeAll();
+  printf("%d IMEs Initialized.\n", imeCount);
+  setTeamName("1138B");
+
+  Motor::init();
 }

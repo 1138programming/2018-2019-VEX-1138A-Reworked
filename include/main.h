@@ -26,6 +26,16 @@
 #define MAIN_H_
 
 #include <API.h>
+#include <Constants.h>
+#include <common.h>
+#include <math.h>
+#include <abstractBaseClasses/Motor.h>
+#include <abstractBaseClasses/PIDController.h>
+#include <subsystems/Base.h>
+#include <subsystems/Intake.h>
+#include <subsystems/Puncher.h>
+#include <subsystems/Lift.h>
+#include <subsystems/Turntable.h>
 
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
