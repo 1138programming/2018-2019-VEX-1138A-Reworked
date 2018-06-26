@@ -34,6 +34,9 @@ Base::Base() {
   leftController = new PIDController(leftFrontBaseMotor, 0.6, 0.0, 0.0);
   rightController = new PIDController(rightFrontBaseMotor, 0.6, 0.0, 0.0);
 
+  leftController->setSensorEncoder(baseLeftEncoder);
+  rightController->setSensorEncoder(baseRightEncoder);
+
   leftController->setThreshold(35);
   rightController->setThreshold(35);
 
@@ -120,12 +123,10 @@ void Base::lockRight() {
 }
 
 void Base::loopLeft() {
-  leftController->sensorValue(this->getLeftEncoderValue());
   leftController->loop();
 }
 
 void Base::loopRight() {
-  rightController->sensorValue(getRightEncoderValue());
   rightController->loop();
 }
 

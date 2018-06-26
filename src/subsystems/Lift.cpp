@@ -12,6 +12,7 @@ Lift::Lift() {
   resetEncoder();
 
   controller = new PIDController(leftLiftMotor, 0.9, 0.01, 0.0);
+  controller->setSensorEncoder(liftEncoder);
   controller->setThreshold(20);
 }
 
@@ -32,7 +33,6 @@ int Lift::getSetpoint() {
 }
 
 void Lift::loop() {
-  controller->sensorValue(getEncoderValue());
   controller->loop();
 }
 

@@ -15,10 +15,13 @@ class PIDController {
     int previousError = 0;
     int output = 0;
     int setpoint = 0;
+    Encoder encoder = NULL;
     int currSensorValue = 0;
     int threshold = 15; // Default value
     float deltaTime = 0;
     int lastTime = 0;
+    static PIDController* instances[MAX_MOTORS]; // A static array to contain all PIDController instances
+    void addInstance();
   public:
     PIDController(Motor* motorChannel, float kP = 1, float kI = 0, float kD = 0);
     void setKp(float kP);
@@ -26,10 +29,13 @@ class PIDController {
     void setKd(float kD);
     void setSetpoint(int setpoint);
     int getSetpoint();
-    void sensorValue(int value);
+    void setSensorEncoder(Encoder encoder);
+    int getSensorValue();
     void setThreshold(int threshold);
     bool atSetpoint();
     void loop();
+    bool enabled = true;
+    static void loopAll();
 };
 
 #endif

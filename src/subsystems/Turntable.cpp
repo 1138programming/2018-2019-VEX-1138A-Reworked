@@ -9,6 +9,7 @@ Turntable::Turntable() {
   resetEncoder();
 
   controller = new PIDController(turntableMotor, 0.9, 0.01, 0.0);
+  controller->setSensorEncoder(turntableEncoder);
   controller->setThreshold(20);
 }
 
@@ -29,7 +30,6 @@ int Turntable::getSetpoint() {
 }
 
 void Turntable::loop() {
-  controller->sensorValue(getEncoderValue());
   controller->loop();
 }
 

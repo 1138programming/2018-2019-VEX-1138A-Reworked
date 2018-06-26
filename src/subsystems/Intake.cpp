@@ -9,6 +9,7 @@ Intake::Intake() {
   resetEncoder();
 
   controller = new PIDController(intakeMotor, 0.9, 0.01, 0.0);
+  controller->setSensorEncoder(intakeEncoder);
   controller->setThreshold(20);
 }
 
@@ -29,7 +30,6 @@ int Intake::getSetpoint() {
 }
 
 void Intake::loop() {
-  controller->sensorValue(getEncoderValue());
   controller->loop();
 }
 

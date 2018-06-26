@@ -12,6 +12,7 @@ Puncher::Puncher() {
   resetEncoder();
 
   controller = new PIDController(leftPuncherMotor, 0.9, 0.01, 0.0);
+  controller->setSensorEncoder(puncherEncoder);
   controller->setThreshold(20);
 }
 
@@ -32,7 +33,6 @@ int Puncher::getSetpoint() {
 }
 
 void Puncher::loop() {
-  controller->sensorValue(getEncoderValue());
   controller->loop();
 }
 
