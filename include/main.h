@@ -31,6 +31,7 @@
 #include <math.h>
 #include <abstractBaseClasses/Motor.h>
 #include <abstractBaseClasses/PIDController.h>
+#include <abstractBaseClasses/KalmanFilter.h>
 #include <subsystems/Base.h>
 #include <subsystems/Intake.h>
 #include <subsystems/Puncher.h>
