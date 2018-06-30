@@ -3,21 +3,18 @@
 Puncher* Puncher::instance = 0;
 
 Puncher::Puncher() {
-  leftPuncherMotor = Motor::getMotor(leftPuncherPort);
-  rightPuncherMotor = Motor::getMotor(rightPuncherPort);
-
-  leftPuncherMotor->addFollower(rightPuncherMotor);
+  puncherMotor = Motor::getMotor(puncherPort);
 
   puncherEncoder = encoderInit(puncherEncoderTopPort, puncherEncoderBottomPort, true);
   resetEncoder();
 
-  controller = new PIDController(leftPuncherMotor, 0.9, 0.01, 0.0);
+  controller = new PIDController(puncherMotor, 0.9, 0.01, 0.0);
   controller->setSensorEncoder(puncherEncoder);
   controller->setThreshold(20);
 }
 
 void Puncher::move(int speed) {
-  leftPuncherMotor->setSpeed(speed);
+  puncherMotor->setSpeed(speed);
 }
 
 void Puncher::setSetpoint(int setpoint) {

@@ -3,21 +3,18 @@
 Lift* Lift::instance = 0;
 
 Lift::Lift() {
-  leftLiftMotor = Motor::getMotor(leftLiftPort);
-  rightLiftMotor = Motor::getMotor(rightLiftPort);
-
-  leftLiftMotor->addFollower(rightLiftMotor);
+  liftMotor = Motor::getMotor(liftPort);
 
   liftEncoder = encoderInit(liftEncoderTopPort, liftEncoderBottomPort, true);
   resetEncoder();
 
-  controller = new PIDController(leftLiftMotor, 0.9, 0.01, 0.0);
+  controller = new PIDController(liftMotor, 0.9, 0.01, 0.0);
   controller->setSensorEncoder(liftEncoder);
   controller->setThreshold(20);
 }
 
 void Lift::move(int speed) {
-  leftLiftMotor->setSpeed(speed);
+  liftMotor->setSpeed(speed);
 }
 
 void Lift::setSetpoint(int setpoint) {

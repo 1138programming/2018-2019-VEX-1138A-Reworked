@@ -1,4 +1,4 @@
-// 2 motors
+// 2 motors, y-cabled
 
 #ifndef PUNCHER_H
 #define PUNCHER_H
@@ -10,8 +10,7 @@ class Puncher {
     static Puncher* instance;
     Encoder puncherEncoder;
     PIDController* controller;
-    Motor* leftPuncherMotor;
-    Motor* rightPuncherMotor;
+    Motor* puncherMotor;
     Puncher();
   public:
     void move(int speed);

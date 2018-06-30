@@ -1,4 +1,4 @@
-// 2 motors
+// 2 motors, y-cabled
 
 #ifndef LIFT_H
 #define LIFT_H
@@ -10,8 +10,7 @@ class Lift {
     static Lift* instance;
     Encoder liftEncoder;
     PIDController* controller;
-    Motor* leftLiftMotor;
-    Motor* rightLiftMotor;
+    Motor* liftMotor;
     Lift();
   public:
     void move(int speed);

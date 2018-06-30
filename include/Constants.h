@@ -19,28 +19,26 @@
 
 // Motor ports
 // Left base motor ports
-const int leftFrontBasePort = 6;
-const int leftMiddleBasePort = 3;
-const int leftRearBasePort = 8;
+const int leftFrontBasePort = 1;
+const int leftMiddleBasePort = 2;
+const int leftRearBasePort = 3;
 
 // Right base motor ports
-const int rightFrontBasePort = 1;
-const int rightMiddleBasePort = 7;
-const int rightRearBasePort = 2;
-
-// Intake motor port
-const int intakePort = 4;
-
-// Turntable motor ports
-const int turntablePort = 9;
+const int rightFrontBasePort = 10;
+const int rightMiddleBasePort = 9;
+const int rightRearBasePort = 8;
 
 // Collector motor port
-const int leftPuncherPort = 5;
-const int rightPuncherPort = 11;
+const int puncherPort = 4;
 
-// Lift motor ports
-const int leftLiftPort = 10;
-const int rightLiftPort = 12;
+// Intake motor port
+const int intakePort = 5;
+
+// Turntable motor ports // Capflip
+const int turntablePort = 6;
+
+// Lift motor ports (6 bar)
+const int liftPort = 7;
 
 
 // IME Addresses
