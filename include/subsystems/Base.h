@@ -5,7 +5,7 @@
 
 #include "main.h"
 
-class Base {
+class Base : public Subsystem {
   private:
     static Base* instance;
 

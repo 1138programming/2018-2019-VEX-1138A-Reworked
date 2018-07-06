@@ -5,7 +5,7 @@
 
 #include "main.h"
 
-class Puncher {
+class Puncher : public Subsystem {
   private:
     static Puncher* instance;
     Encoder puncherEncoder;

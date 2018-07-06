@@ -5,7 +5,7 @@
 
 #include "main.h"
 
-class Turntable {
+class Turntable : public Subsystem {
   private:
     static Turntable* instance;
     Encoder turntableEncoder;

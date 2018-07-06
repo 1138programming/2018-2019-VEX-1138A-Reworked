@@ -1,6 +1,6 @@
 #include "main.h"
 
-#ifndef KALMANFILtER_H
+#ifndef KALMANFILTER_H
 #define KALMANFILTER_H
 
 class KalmanFilter {

@@ -5,7 +5,7 @@
 
 #include "main.h"
 
-class Intake {
+class Intake : public Subsystem {
   private:
     static Intake* instance;
     Encoder intakeEncoder;

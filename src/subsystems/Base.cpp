@@ -1,4 +1,5 @@
 #include "main.h"
+#include "commands/DriveWithJoy.h"
 
 Base* Base::instance = 0;
 
@@ -44,6 +45,8 @@ Base::Base() {
   //ultrasonic = ultrasonicInit(ultrasonicEcho, ultrasonicPing);
 
   encoderReference = 0;
+
+  setDefaultCommand(new DriveWithJoy());
 }
 
 /**

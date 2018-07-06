@@ -1,33 +1,39 @@
 # Universal C Makefile for MCU targets
 
+# If you're here to know why this is called GNUmakefile, it's because
+# the default makefile needs to be overwritten somehow, and there is
+# no way other than having a makefile under a different name and removing
+# the original.
+
 # Path to project root (for top-level, so the project is in ./; first-level, ../; etc.)
 ROOT=.
 # Binary output directory
 BINDIR=$(ROOT)/bin
 # Subdirectories to include in the build
-SUBDIRS=src src/subsystems src/abstractBaseClasses
+SUBDIRS=src
 
 # Nothing below here needs to be modified by typical users
 
 # Include common aspects of this project
 -include $(ROOT)/common.mk
-
+-include $(ROOT)/template.mk # For creating the template files
 ASMSRC:=$(wildcard *.$(ASMEXT))
 ASMOBJ:=$(patsubst %.o,$(BINDIR)/%.o,$(ASMSRC:.$(ASMEXT)=.o))
 HEADERS:=$(wildcard *.$(HEXT))
-CSRC=$(wildcard *.$(CEXT))
+CSRC=$(wildcard *.$(CEXT)) $(wildcard **/*.$(CEXT))
 COBJ:=$(patsubst %.o,$(BINDIR)/%.o,$(CSRC:.$(CEXT)=.o))
-CPPSRC:=$(wildcard *.$(CPPEXT))
+CPPSRC:=$(wildcard *.$(CPPEXT)) $(wildcard **/*.$(CPPEXT))
 CPPOBJ:=$(patsubst %.o,$(BINDIR)/%.o,$(CPPSRC:.$(CPPEXT)=.o))
 OUT:=$(BINDIR)/$(OUTNAME)
 
 .PHONY: all clean flash upload upload-legacy _force_look
+.DEFAULT_GOAL := all
 
 # By default, compile program
 all: $(BINDIR) $(OUT)
 
 # Remove all intermediate object files (remove the binary directory)
-clean:
+clean::
 	-rm -f $(OUT)
 	-rm -rf $(BINDIR)
 
@@ -55,7 +61,7 @@ $(BINDIR):
 	-@mkdir -p $(BINDIR)
 
 # Compile program
-$(OUT): $(SUBDIRS) $(ASMOBJ) $(COBJ) $(CPPOBJ)
+$(OUT): $(SUBDIRS) #$(ASMOBJ) $(COBJ) $(CPPOBJ)
 	@echo LN $(BINDIR)/*.o $(LIBRARIES) to $@
 	@$(CC) $(LDFLAGS) $(BINDIR)/*.o $(LIBRARIES) -o $@
 	@$(MCUPREFIX)size $(SIZEFLAGS) $(OUT)

@@ -11,6 +11,7 @@
  */
 
 #include "main.h"
+#include "Robot.h"
 int imeCount;
 
 /*
@@ -46,4 +47,6 @@ void initialize() {
   setTeamName("1138B");
 
   Motor::init();
+
+  Robot::runRobot<Robot>();
 }

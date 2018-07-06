@@ -5,7 +5,7 @@
 
 #include "main.h"
 
-class Lift {
+class Lift : public Subsystem {
   private:
     static Lift* instance;
     Encoder liftEncoder;
