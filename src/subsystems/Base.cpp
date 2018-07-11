@@ -45,7 +45,9 @@ Base::Base() {
   //ultrasonic = ultrasonicInit(ultrasonicEcho, ultrasonicPing);
 
   encoderReference = 0;
+}
 
+void Base::initDefaultCommand() {
   setDefaultCommand(new DriveWithJoy());
 }
 
@@ -55,8 +57,8 @@ Base::Base() {
  * @param right - speed of the right side
  */
 void Base::move(int left, int right) {
-  left = (int)(left * this->multiplier);
-  right = (int)(right * this->multiplier);
+  left = threshold((int)left * this->multiplier);
+  right = threshold((int)right * this->multiplier);
 
   //Left motors
   leftFrontBaseMotor->setSpeed(left);

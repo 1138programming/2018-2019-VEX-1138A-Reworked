@@ -36,6 +36,7 @@ void Robot::autonInit() {
 void Robot::autonPeriodic() {
   //printf("Default autonPeriodic() function\n");
   EventScheduler::getInstance()->update();
+  Motor::periodicUpdate();
 }
 
 void Robot::teleopInit() {
@@ -45,6 +46,7 @@ void Robot::teleopInit() {
 void Robot::teleopPeriodic() {
   //printf("Default teleopPeriodic() function\n");
     EventScheduler::getInstance()->update();
+    Motor::periodicUpdate();
 }
 
 void Robot::disabledInit() {

@@ -4,6 +4,7 @@ Motor* Motor::motorInstances[MAX_MOTORS];
 
 Motor::Motor(int channel) {
   this->channel = channel;
+  this->speed = 0;
   this->multiplier = 1;
   this->following = false;
   this->master = NULL;
@@ -17,21 +18,19 @@ Motor::Motor(int channel) {
 void Motor::setSpeed(int speed) {
   if(this->following)
     return;
-  this->speed = (int)(confineToRange(speed) * this->multiplier);
+  this->targetSpeed = (int)(confineToRange(speed) * this->multiplier);
   //printf("Moving master on port %d with speed %d\n", this->channel, this->speed);
-  motorSet(this->channel, this->speed);
   for (unsigned int i = 0; i < this->numFollowers; i++) {
       //printf("%d\n", followers[i]->channel);
       if(followers[i] != NULL) {
         //printf("Moving slave on port %d with speed %d\n", followers[i]->channel, this->speed);
-        followers[i]->speed = this->speed;
-        motorSet(followers[i]->channel, followers[i]->multiplier * this->speed);
+        followers[i]->targetSpeed = this->targetSpeed;
       }
   }
 }
 
 int Motor::getSpeed() {
-  return this->following ? this->master->getSpeed() : this->speed;
+  return this->following ? this->master->getSpeed() : this->targetSpeed;
 }
 
 void Motor::reverse() {
@@ -49,7 +48,7 @@ void Motor::addFollower(Motor* motor) {
     return;
 
   for(unsigned int i = 0; i < motor->numFollowers; i++) {
-    if(motor->followers[i] != NULL)
+    if(motor->followers[i] != NULL) 
       return;
   }
 
@@ -69,6 +68,20 @@ void Motor::setMaster(Motor* motor) {
 
 int Motor::getChannel() {
   return this->channel;
+}
+
+void Motor::updateSlewRate() {
+  if (this->targetSpeed != this->speed) {
+    // A bit of motor slewing to make sure that we don't stall
+    this->speed += confineToRange(slewStep * sign(this->targetSpeed - this->speed), -this->targetSpeed, this->targetSpeed);
+    motorSet(this->channel, this->speed);
+  }
+}
+
+void Motor::periodicUpdate() {
+  for (int i = 0; i < MAX_MOTORS; i++) {
+    motorInstances[i]->updateSlewRate();
+  }
 }
 
 Motor* Motor::getMotor(int motorPort) {

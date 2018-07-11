@@ -29,12 +29,13 @@ class Base : public Subsystem {
     PIDController* leftController;
     PIDController* rightController;
 
-    float multiplier;
+    float multiplier = 1.0;
 
     int encoderReference;
 
     Base();
   public:
+    void initDefaultCommand();
     void move(int left, int right);
     bool moveTo(int target, int logValue = 750, int threshold = 10);
     bool turnTo(int target, int logValue = 180, int threshold = 10, int direction = 0);

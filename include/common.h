@@ -11,6 +11,8 @@ int confineToRange(int value, int min = -KMaxMotorSpeed, int max = KMaxMotorSpee
 
 bool inRange(int value, int min = -KMaxMotorSpeed, int max = KMaxMotorSpeed);
 
+int sign(int aNumber);
+
 //float fabs(float value);
 
 #endif

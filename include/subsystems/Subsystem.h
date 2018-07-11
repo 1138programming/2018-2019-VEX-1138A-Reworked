@@ -11,6 +11,7 @@ class Subsystem {
   protected:
     void setDefaultCommand(Command* aCommand);
   public:
+    virtual void initDefaultCommand();
     Command* getDefaultCommand();
     Command* currentCommand = NULL;
     Subsystem();

@@ -21,6 +21,7 @@ class EventScheduler {
     void addEventListener(EventListener* eventListener);
     void addCommand(Command* commandToRun);
     void trackSubsystem(Subsystem* aSubsystem);
+    bool commandInQueue(Command* aCommand);
 };
 
 #endif // _EVENTS_EVENTSCHEDULER_H_

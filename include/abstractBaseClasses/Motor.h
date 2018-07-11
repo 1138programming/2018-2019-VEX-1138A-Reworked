@@ -5,7 +5,10 @@
 
 class Motor {
   private:
+    const static int slewStep = 1;
+
     int channel;
+    int targetSpeed;
     int speed;
     float multiplier;
     Motor(int channel);
@@ -23,6 +26,8 @@ class Motor {
     void addFollower(Motor* motor);
     static void init();
     int getChannel();
+    void updateSlewRate();
+    static void periodicUpdate();
     static Motor* getMotor(int motorPort);
 };
 

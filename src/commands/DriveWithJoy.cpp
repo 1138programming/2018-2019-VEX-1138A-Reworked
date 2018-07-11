@@ -16,7 +16,7 @@ void DriveWithJoy::initialize() {
   rightJoystick = joystickGetAnalog(1, 2); // Right y-channel
 }
 
-void DriveWithJoy::run() {
+void DriveWithJoy::execute() {
   // Code that runs when this command is scheduled to run
   Robot::base->move(leftJoystick, rightJoystick);
 }
@@ -27,7 +27,7 @@ bool DriveWithJoy::isFinished() {
 
 void DriveWithJoy::end() {
   // Code that runs when isFinished() returns true.
-  Robot::base->move(0, 0);
+  //Robot::base->move(0, 0);
 }
 
 void DriveWithJoy::interrupted() {

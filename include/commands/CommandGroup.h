@@ -8,18 +8,16 @@
 class CommandGroup : public Command {
   private:
     std::vector<std::vector<Command*>> commands;
+    size_t commandIndex = 0;
   public:
     int priority = 50; // Commands can only be interrupted by commands with a higher priority
 
-    virtual bool canRun(); // Whether or not the command can run right now. If false, it is ignored
-    virtual void initialize(); // Set up the command for running
-    virtual void run(); // Run the command
-    virtual bool isFinished(); // Whether or not the command is finished. The run() command is run continuously until thie istrue
-    virtual void end(); // Run when command is finished
-    virtual void interrupted(); // Run when command was interrupted by one with a higher priority
-    void addCommand(Command* aCommand);
-    void addParallelCommand(Command* aCommand);
-    CommandGroup();
+    void initialize(); // Set up the command for running
+    void execute(); // Run the command
+    bool isFinished(); // Whether or not the command is finished. The run() command is run continuously until thie istrue
+    virtual void addSequentialCommand(Command* aCommand);
+    virtual void addParallelCommand(Command* aCommand);
+    CommandGroup(); // How about we only have them override the Constructor...
 };
 
 #endif // _COMMANDS_COMMANDGROUP_H_
