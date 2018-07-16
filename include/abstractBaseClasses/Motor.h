@@ -5,7 +5,7 @@
 
 class Motor {
   private:
-    const static int slewStep = 1;
+    const static int slewStep = 5;
 
     int channel;
     int targetSpeed;

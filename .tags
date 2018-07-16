@@ -1,0 +1,442 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+language	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\.travis.yml	/^language: c$/;"	function	line:1
+sudo	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\.travis.yml	/^sudo: true$/;"	function	line:2
+dist	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\.travis.yml	/^dist: trusty$/;"	function	line:3
+before_install	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\.travis.yml	/^before_install:$/;"	function	line:4
+script	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\.travis.yml	/^script: make$/;"	function	line:8
+MAKE_COMMAND	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^MAKE_COMMAND=make$/;"	macro	line:4
+DEVICE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^DEVICE=VexCortex$/;"	macro	line:7
+LIBRARIES	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^LIBRARIES=$(wildcard $(ROOT)\/firmware\/*.a) -lgcc -lm$/;"	macro	line:9
+MCUPREFIX	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^MCUPREFIX=arm-none-eabi-$/;"	macro	line:11
+MCUAFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^MCUAFLAGS=-j4 -mthumb -mcpu=cortex-m3 -mlittle-endian$/;"	macro	line:13
+MCUCFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^MCUCFLAGS=-mthumb -mcpu=cortex-m3 -mlittle-endian -mfloat-abi=soft$/;"	macro	line:15
+MCULFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^MCULFLAGS=-nostartfiles -Wl,-static -Bfirmware -Wl,-u,VectorTable -Wl,-T -Xlinker firmware\/cortex.ld$/;"	macro	line:17
+MCUPREPARE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^MCUPREPARE=$(OBJCOPY) $(OUT) -O binary $(BINDIR)\/$(OUTBIN)$/;"	macro	line:19
+SIZEFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^SIZEFLAGS=$/;"	macro	line:21
+UPLOAD	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^UPLOAD=@java -jar firmware\/uniflash.jar vex $(BINDIR)\/$(OUTBIN)$/;"	macro	line:23
+FLASH	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^FLASH=pros flash -f $(BINDIR)\/$(OUTBIN)$/;"	macro	line:25
+ASMEXT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^ASMEXT=s$/;"	macro	line:28
+CEXT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^CEXT=c$/;"	macro	line:29
+CPPEXT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^CPPEXT=cpp$/;"	macro	line:30
+HEXT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^HEXT=h$/;"	macro	line:31
+INCLUDE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^INCLUDE=-I$(ROOT)\/include -I$(ROOT)\/src$/;"	macro	line:32
+OUTBIN	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^OUTBIN=output.bin$/;"	macro	line:33
+OUTNAME	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^OUTNAME=output.elf$/;"	macro	line:34
+AFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^AFLAGS:=$(MCUAFLAGS)$/;"	macro	line:37
+ARFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^ARFLAGS:=$(MCUCFLAGS)$/;"	macro	line:38
+CCFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^CCFLAGS:=-c -Wall $(MCUCFLAGS) -Os -ffunction-sections -fsigned-char -fomit-frame-pointer -fsingle-precision-constant$/;"	macro	line:39
+CFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^CFLAGS:=$(CCFLAGS) -std=gnu99 -Werror=implicit-function-declaration$/;"	macro	line:40
+CPPFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^CPPFLAGS:=$(CCFLAGS) -fno-exceptions -fno-rtti -felide-constructors$/;"	macro	line:41
+LDFLAGS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^LDFLAGS:=-Wall $(MCUCFLAGS) $(MCULFLAGS) -Wl,--gc-sections$/;"	macro	line:42
+AR	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^AR:=$(MCUPREFIX)ar$/;"	macro	line:45
+AS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^AS:=$(MCUPREFIX)as$/;"	macro	line:46
+CC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^CC:=$(MCUPREFIX)gcc$/;"	macro	line:47
+CPPCC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^CPPCC:=$(MCUPREFIX)g++$/;"	macro	line:48
+OBJCOPY	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\common.mk	/^OBJCOPY:=$(MCUPREFIX)objcopy$/;"	macro	line:49
+ROOT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^ROOT=.$/;"	macro	line:9
+BINDIR	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^BINDIR=$(ROOT)\/bin$/;"	macro	line:11
+SUBDIRS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^SUBDIRS=src$/;"	macro	line:13
+ASMSRC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^ASMSRC:=$(wildcard *.$(ASMEXT))$/;"	macro	line:20
+ASMOBJ	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^ASMOBJ:=$(patsubst %.o,$(BINDIR)\/%.o,$(ASMSRC:.$(ASMEXT)=.o))$/;"	macro	line:21
+HEADERS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^HEADERS:=$(wildcard *.$(HEXT))$/;"	macro	line:22
+CSRC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^CSRC=$(wildcard *.$(CEXT)) $(wildcard **\/*.$(CEXT))$/;"	macro	line:23
+COBJ	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^COBJ:=$(patsubst %.o,$(BINDIR)\/%.o,$(CSRC:.$(CEXT)=.o))$/;"	macro	line:24
+CPPSRC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^CPPSRC:=$(wildcard *.$(CPPEXT)) $(wildcard **\/*.$(CPPEXT))$/;"	macro	line:25
+CPPOBJ	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^CPPOBJ:=$(patsubst %.o,$(BINDIR)\/%.o,$(CPPSRC:.$(CPPEXT)=.o))$/;"	macro	line:26
+OUT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^OUT:=$(BINDIR)\/$(OUTNAME)$/;"	macro	line:27
+.DEFAULT_GOAL	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\GNUmakefile	/^.DEFAULT_GOAL := all$/;"	macro	line:30
+KALMANFILTER_H	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\KalmanFilter.h	/^#define KALMANFILTER_H$/;"	macro	line:4	file:
+KalmanFilter	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\KalmanFilter.h	/^class KalmanFilter {$/;"	class	line:6	file:
+rightEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\KalmanFilter.h	/^    Encoder rightEncoder;$/;"	member	line:8	class:KalmanFilter	file:
+leftEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\KalmanFilter.h	/^    Encoder leftEncoder;$/;"	member	line:9	class:KalmanFilter	file:
+gyro	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\KalmanFilter.h	/^    Gyro gyro;$/;"	member	line:10	class:KalmanFilter	file:
+MOTOR_H	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^#define MOTOR_H$/;"	macro	line:2	file:
+Motor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^class Motor {$/;"	class	line:6	file:
+slewStep	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    const static int slewStep = 5;$/;"	member	line:8	class:Motor	file:
+channel	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    int channel;$/;"	member	line:10	class:Motor	file:
+targetSpeed	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    int targetSpeed;$/;"	member	line:11	class:Motor	file:
+speed	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    int speed;$/;"	member	line:12	class:Motor	file:
+multiplier	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    float multiplier;$/;"	member	line:13	class:Motor	file:
+followers	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    Motor* followers[MAX_FOLLOWERS];$/;"	member	line:15	class:Motor	file:
+numFollowers	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    unsigned int numFollowers;$/;"	member	line:16	class:Motor	file:
+master	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    Motor* master;$/;"	member	line:17	class:Motor	file:
+following	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    bool following;$/;"	member	line:18	class:Motor	file:
+motorInstances	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\Motor.h	/^    static Motor* motorInstances[MAX_MOTORS];$/;"	member	line:20	class:Motor	file:
+_SUBSYSTEMS_PIDCONTROLLER_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^#define _SUBSYSTEMS_PIDCONTROLLER_H_$/;"	macro	line:2	file:
+PIDController	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^class PIDController {$/;"	class	line:6	file:
+kP	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    float kP = 0;$/;"	member	line:8	class:PIDController	file:
+kI	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    float kI = 0;$/;"	member	line:9	class:PIDController	file:
+kD	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    float kD = 0;$/;"	member	line:10	class:PIDController	file:
+outputMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    Motor* outputMotor;$/;"	member	line:11	class:PIDController	file:
+integral	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    float integral = 0;$/;"	member	line:12	class:PIDController	file:
+derivative	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    float derivative = 0;$/;"	member	line:13	class:PIDController	file:
+error	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    int error = 0;$/;"	member	line:14	class:PIDController	file:
+previousError	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    int previousError = 0;$/;"	member	line:15	class:PIDController	file:
+output	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    int output = 0;$/;"	member	line:16	class:PIDController	file:
+setpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    int setpoint = 0;$/;"	member	line:17	class:PIDController	file:
+encoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    Encoder encoder = NULL;$/;"	member	line:18	class:PIDController	file:
+currSensorValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    int currSensorValue = 0;$/;"	member	line:19	class:PIDController	file:
+threshold	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    int threshold = 15; \/\/ Default value$/;"	member	line:20	class:PIDController	file:
+deltaTime	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    float deltaTime = 0;$/;"	member	line:21	class:PIDController	file:
+lastTime	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    int lastTime = 0;$/;"	member	line:22	class:PIDController	file:
+instances	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    static PIDController* instances[MAX_MOTORS]; \/\/ A static array to contain all PIDController instances$/;"	member	line:23	class:PIDController	file:
+enabled	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\abstractBaseClasses\PIDController.h	/^    bool enabled = true;$/;"	member	line:37	class:PIDController	file:
+API_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define API_H_$/;"	macro	line:22	file:
+JOY_DOWN	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define JOY_DOWN /;"	macro	line:40	file:
+JOY_LEFT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define JOY_LEFT /;"	macro	line:44	file:
+JOY_UP	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define JOY_UP /;"	macro	line:48	file:
+JOY_RIGHT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define JOY_RIGHT /;"	macro	line:52	file:
+ACCEL_X	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define ACCEL_X /;"	macro	line:56	file:
+ACCEL_Y	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define ACCEL_Y /;"	macro	line:60	file:
+BOARD_NR_ADC_PINS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define BOARD_NR_ADC_PINS /;"	macro	line:141	file:
+BOARD_NR_GPIO_PINS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define BOARD_NR_GPIO_PINS /;"	macro	line:151	file:
+HIGH	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define HIGH /;"	macro	line:157	file:
+LOW	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define LOW /;"	macro	line:163	file:
+INPUT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define INPUT /;"	macro	line:172	file:
+INPUT_ANALOG	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define INPUT_ANALOG /;"	macro	line:179	file:
+INPUT_FLOATING	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define INPUT_FLOATING /;"	macro	line:186	file:
+OUTPUT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define OUTPUT /;"	macro	line:193	file:
+OUTPUT_OD	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define OUTPUT_OD /;"	macro	line:200	file:
+INTERRUPT_EDGE_RISING	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define INTERRUPT_EDGE_RISING /;"	macro	line:318	file:
+INTERRUPT_EDGE_FALLING	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define INTERRUPT_EDGE_FALLING /;"	macro	line:322	file:
+INTERRUPT_EDGE_BOTH	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define INTERRUPT_EDGE_BOTH /;"	macro	line:327	file:
+InterruptHandler	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void (*InterruptHandler)(unsigned char pin);$/;"	typedef	line:332	file:
+IME_ADDR_MAX	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define IME_ADDR_MAX /;"	macro	line:458	file:
+Gyro	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void * Gyro;$/;"	typedef	line:548	file:
+Encoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void * Encoder;$/;"	typedef	line:605	file:
+ULTRA_BAD_RESPONSE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define ULTRA_BAD_RESPONSE /;"	macro	line:650	file:
+Ultrasonic	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void * Ultrasonic;$/;"	typedef	line:658	file:
+PROS_FILE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef int PROS_FILE;$/;"	typedef	line:750	file:
+FILE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define FILE /;"	macro	line:759	file:
+SERIAL_DATABITS_8	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_DATABITS_8 /;"	macro	line:765	file:
+SERIAL_DATABITS_9	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_DATABITS_9 /;"	macro	line:769	file:
+SERIAL_STOPBITS_1	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_STOPBITS_1 /;"	macro	line:773	file:
+SERIAL_STOPBITS_2	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_STOPBITS_2 /;"	macro	line:777	file:
+SERIAL_PARITY_NONE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_PARITY_NONE /;"	macro	line:781	file:
+SERIAL_PARITY_EVEN	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_PARITY_EVEN /;"	macro	line:785	file:
+SERIAL_PARITY_ODD	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_PARITY_ODD /;"	macro	line:789	file:
+SERIAL_8N1	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define SERIAL_8N1 /;"	macro	line:793	file:
+stdout	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define stdout /;"	macro	line:828	file:
+stdin	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define stdin /;"	macro	line:832	file:
+uart1	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define uart1 /;"	macro	line:836	file:
+uart2	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define uart2 /;"	macro	line:840	file:
+EOF	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define EOF /;"	macro	line:846	file:
+SEEK_SET	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define	SEEK_SET /;"	macro	line:854	file:
+SEEK_CUR	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define	SEEK_CUR /;"	macro	line:861	file:
+SEEK_END	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define	SEEK_END /;"	macro	line:868	file:
+LCD_BTN_LEFT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define LCD_BTN_LEFT /;"	macro	line:1140	file:
+LCD_BTN_CENTER	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define LCD_BTN_CENTER /;"	macro	line:1144	file:
+LCD_BTN_RIGHT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define LCD_BTN_RIGHT /;"	macro	line:1148	file:
+TASK_MAX	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_MAX /;"	macro	line:1232	file:
+TASK_MAX_PRIORITIES	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_MAX_PRIORITIES /;"	macro	line:1238	file:
+TASK_PRIORITY_LOWEST	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_PRIORITY_LOWEST /;"	macro	line:1243	file:
+TASK_PRIORITY_DEFAULT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_PRIORITY_DEFAULT /;"	macro	line:1249	file:
+TASK_PRIORITY_HIGHEST	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_PRIORITY_HIGHEST /;"	macro	line:1254	file:
+TASK_DEFAULT_STACK_SIZE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_DEFAULT_STACK_SIZE /;"	macro	line:1262	file:
+TASK_MINIMAL_STACK_SIZE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_MINIMAL_STACK_SIZE	/;"	macro	line:1270	file:
+TASK_DEAD	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_DEAD /;"	macro	line:1275	file:
+TASK_RUNNING	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_RUNNING /;"	macro	line:1279	file:
+TASK_RUNNABLE	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_RUNNABLE /;"	macro	line:1284	file:
+TASK_SLEEPING	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_SLEEPING /;"	macro	line:1289	file:
+TASK_SUSPENDED	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^#define TASK_SUSPENDED /;"	macro	line:1293	file:
+TaskHandle	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void * TaskHandle;$/;"	typedef	line:1300	file:
+Mutex	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void * Mutex;$/;"	typedef	line:1306	file:
+Semaphore	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void * Semaphore;$/;"	typedef	line:1312	file:
+TaskCode	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\API.h	/^typedef void (*TaskCode)(void *);$/;"	typedef	line:1323	file:
+_COMMANDS_COMMAND_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\Command.h	/^#define _COMMANDS_COMMAND_H_$/;"	macro	line:2	file:
+Command	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\Command.h	/^class Command {$/;"	class	line:9	file:
+subsystemRequirements	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\Command.h	/^    std::vector<Subsystem*> subsystemRequirements;$/;"	member	line:11	class:Command	file:
+priority	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\Command.h	/^    int priority = 50; \/\/ Commands can only be interrupted by commands with a higher priority$/;"	member	line:15	class:Command	file:
+initialized	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\Command.h	/^    bool initialized = false;$/;"	member	line:16	class:Command	file:
+_COMMANDS_COMMANDGROUP_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\CommandGroup.h	/^#define _COMMANDS_COMMANDGROUP_H_$/;"	macro	line:2	file:
+CommandGroup	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\CommandGroup.h	/^class CommandGroup : public Command {$/;"	class	line:8	file:
+commands	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\CommandGroup.h	/^    std::vector<std::vector<Command*>> commands;$/;"	member	line:10	class:CommandGroup	file:
+commandIndex	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\CommandGroup.h	/^    size_t commandIndex = 0;$/;"	member	line:11	class:CommandGroup	file:
+priority	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\CommandGroup.h	/^    int priority = 50; \/\/ Commands can only be interrupted by commands with a higher priority$/;"	member	line:13	class:CommandGroup	file:
+_COMMANDS_EXAMPLECOMMAND_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\DriveWithJoy.h	/^#define _COMMANDS_EXAMPLECOMMAND_H_$/;"	macro	line:2	file:
+DriveWithJoy	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\DriveWithJoy.h	/^class DriveWithJoy: public Command {$/;"	class	line:6	file:
+rightJoystick	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\DriveWithJoy.h	/^    int rightJoystick;$/;"	member	line:16	class:DriveWithJoy	file:
+leftJoystick	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\DriveWithJoy.h	/^    int leftJoystick;$/;"	member	line:17	class:DriveWithJoy	file:
+_COMMANDS_EXAMPLECOMMAND_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\ExampleCommand.h	/^#define _COMMANDS_EXAMPLECOMMAND_H_$/;"	macro	line:2	file:
+ExampleCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\ExampleCommand.h	/^class ExampleCommand : public Command {$/;"	class	line:6	file:
+_COMMANDS_EXAMPLECOMMANDGROUP_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\ExampleCommandGroup.h	/^#define _COMMANDS_EXAMPLECOMMANDGROUP_H_$/;"	macro	line:2	file:
+ExampleCommandGroup	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\ExampleCommandGroup.h	/^class ExampleCommandGroup : public CommandGroup {$/;"	class	line:6	file:
+_COMMANDS_EXAMPLEWAITCOMMAND_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\ExampleWaitCommand.h	/^#define _COMMANDS_EXAMPLEWAITCOMMAND_H_$/;"	macro	line:2	file:
+ExampleWaitCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\ExampleWaitCommand.h	/^class ExampleWaitCommand : public Command {$/;"	class	line:6	file:
+startTime	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\commands\ExampleWaitCommand.h	/^    unsigned int startTime = 0;$/;"	member	line:8	class:ExampleWaitCommand	file:
+_COMMON_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\common.h	/^#define _COMMON_H_$/;"	macro	line:4	file:
+CONSTANTS_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^#define CONSTANTS_H_$/;"	macro	line:7	file:
+DEFAULT_TASK_TIME	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^#define DEFAULT_TASK_TIME /;"	macro	line:15	file:
+DELAY_TIME	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^#define DELAY_TIME /;"	macro	line:16	file:
+MAX_MOTORS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^#define MAX_MOTORS /;"	macro	line:17	file:
+MAX_FOLLOWERS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^#define MAX_FOLLOWERS /;"	macro	line:18	file:
+leftFrontBasePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int leftFrontBasePort = 1;$/;"	variable	line:22
+leftMiddleBasePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int leftMiddleBasePort = 2;$/;"	variable	line:23
+leftRearBasePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int leftRearBasePort = 3;$/;"	variable	line:24
+rightFrontBasePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int rightFrontBasePort = 10;$/;"	variable	line:27
+rightMiddleBasePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int rightMiddleBasePort = 9;$/;"	variable	line:28
+rightRearBasePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int rightRearBasePort = 8;$/;"	variable	line:29
+puncherPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int puncherPort = 4;$/;"	variable	line:32
+intakePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int intakePort = 5;$/;"	variable	line:35
+turntablePort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int turntablePort = 6;$/;"	variable	line:38
+liftPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int liftPort = 7;$/;"	variable	line:41
+KMaxMotorSpeed	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int KMaxMotorSpeed = 127;$/;"	variable	line:48
+KMaxJoystickValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int KMaxJoystickValue = 127;$/;"	variable	line:49
+encoderTicks	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int encoderTicks = 360; \/\/ Encoder ticks in one revolution$/;"	variable	line:50
+rotationsPerInch	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const float rotationsPerInch = 31.400156410256; \/\/ TODO check if this is correct$/;"	variable	line:51
+gyroPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int gyroPort = 1;$/;"	variable	line:55
+baseRightEncoderTopPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int baseRightEncoderTopPort = 2;$/;"	variable	line:61
+baseRightEncoderBottomPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int baseRightEncoderBottomPort = 1;$/;"	variable	line:62
+baseLeftEncoderTopPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int baseLeftEncoderTopPort = 4;$/;"	variable	line:63
+baseLeftEncoderBottomPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int baseLeftEncoderBottomPort = 3;$/;"	variable	line:64
+intakeEncoderTopPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int intakeEncoderTopPort = 6;$/;"	variable	line:65
+intakeEncoderBottomPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int intakeEncoderBottomPort = 5;$/;"	variable	line:66
+liftEncoderTopPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int liftEncoderTopPort = 8;$/;"	variable	line:67
+liftEncoderBottomPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int liftEncoderBottomPort = 7;$/;"	variable	line:68
+turntableEncoderTopPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int turntableEncoderTopPort = 10;$/;"	variable	line:69
+turntableEncoderBottomPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int turntableEncoderBottomPort = 9;$/;"	variable	line:70
+puncherEncoderTopPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int puncherEncoderTopPort = 12;$/;"	variable	line:71
+puncherEncoderBottomPort	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Constants.h	/^const int puncherEncoderBottomPort = 11;$/;"	variable	line:72
+_EVENTS_EVENTLISTENER_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventListener.h	/^#define _EVENTS_EVENTLISTENER_H_$/;"	macro	line:2	file:
+EventListener	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventListener.h	/^class EventListener {$/;"	class	line:6	file:
+_EVENTS_EVENTSCHEDULER_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventScheduler.h	/^#define _EVENTS_EVENTSCHEDULER_H_$/;"	macro	line:2	file:
+EventScheduler	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventScheduler.h	/^class EventScheduler {$/;"	class	line:10	file:
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventScheduler.h	/^    static EventScheduler* instance;$/;"	member	line:12	class:EventScheduler	file:
+subsystems	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventScheduler.h	/^    std::vector<Subsystem*> subsystems;$/;"	member	line:14	class:EventScheduler	file:
+eventListeners	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventScheduler.h	/^    std::vector<EventListener*> eventListeners;$/;"	member	line:15	class:EventScheduler	file:
+commandQueue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventScheduler.h	/^    std::vector<Command*> commandQueue;$/;"	member	line:16	class:EventScheduler	file:
+millisecondTimeout	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\EventScheduler.h	/^    const static int millisecondTimeout = 25; \/\/ Maximum time to run event listeners$/;"	member	line:18	class:EventScheduler	file:
+_EVENTS_JOYSTICKBUTTON_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^#define _EVENTS_JOYSTICKBUTTON_H_$/;"	macro	line:2	file:
+Joysticks	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^enum Joysticks {$/;"	enum	line:8	file:
+MainJoystick	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  MainJoystick=1,$/;"	enumerator	line:9	enum:Joysticks	file:
+PartnerJoystick	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  PartnerJoystick,$/;"	enumerator	line:10	enum:Joysticks	file:
+Buttons	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^enum Buttons {$/;"	enum	line:12	file:
+Btn5U	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn5U,$/;"	enumerator	line:14	enum:Buttons	file:
+Btn5D	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn5D,$/;"	enumerator	line:15	enum:Buttons	file:
+Btn6U	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn6U,$/;"	enumerator	line:18	enum:Buttons	file:
+Btn6D	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn6D,$/;"	enumerator	line:19	enum:Buttons	file:
+Btn7U	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn7U,$/;"	enumerator	line:22	enum:Buttons	file:
+Btn7D	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn7D,$/;"	enumerator	line:23	enum:Buttons	file:
+Btn7L	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn7L,$/;"	enumerator	line:24	enum:Buttons	file:
+Btn7R	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn7R,$/;"	enumerator	line:25	enum:Buttons	file:
+Btn8U	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn8U,$/;"	enumerator	line:28	enum:Buttons	file:
+Btn8D	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn8D,$/;"	enumerator	line:29	enum:Buttons	file:
+Btn8L	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn8L,$/;"	enumerator	line:30	enum:Buttons	file:
+Btn8R	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^  Btn8R,$/;"	enumerator	line:31	enum:Buttons	file:
+JoystickButton	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^class JoystickButton : public EventListener {$/;"	class	line:35	file:
+joystickToCheck	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    char joystickToCheck;$/;"	member	line:37	class:JoystickButton	file:
+buttonGroup	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    char buttonGroup;$/;"	member	line:38	class:JoystickButton	file:
+button	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    char button;$/;"	member	line:39	class:JoystickButton	file:
+lastState	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    bool lastState = false;$/;"	member	line:40	class:JoystickButton	file:
+pressedCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    Command* pressedCommand = NULL;$/;"	member	line:41	class:JoystickButton	file:
+heldCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    Command* heldCommand = NULL;$/;"	member	line:42	class:JoystickButton	file:
+depressedCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    Command* depressedCommand = NULL;$/;"	member	line:43	class:JoystickButton	file:
+releasedCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\events\JoystickButton.h	/^    Command* releasedCommand = NULL;$/;"	member	line:44	class:JoystickButton	file:
+MAIN_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\main.h	/^#define MAIN_H_$/;"	macro	line:26	file:
+_ROBOT_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^#define _ROBOT_H_$/;"	macro	line:2	file:
+Robot	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^class Robot : public RobotBase {$/;"	class	line:7	file:
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^    static Robot* instance;$/;"	member	line:9	class:Robot	file:
+base	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^    static Base* base;$/;"	member	line:25	class:Robot	file:
+intake	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^    static Intake* intake;$/;"	member	line:26	class:Robot	file:
+lift	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^    static Lift* lift;$/;"	member	line:27	class:Robot	file:
+puncher	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^    static Puncher* puncher;$/;"	member	line:28	class:Robot	file:
+turntable	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\Robot.h	/^    static Turntable* turntable;$/;"	member	line:29	class:Robot	file:
+_ROBOTBASE_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^#define _ROBOTBASE_H_$/;"	macro	line:2	file:
+RobotBase	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^class RobotBase {$/;"	class	line:6	file:
+RobotState	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^    enum class RobotState {$/;"	class	line:8	class:RobotBase	file:
+None	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^      None,$/;"	member	line:9	class:RobotBase::RobotState	file:
+Auton	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^      Auton,$/;"	member	line:10	class:RobotBase::RobotState	file:
+Teleop	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^      Teleop,$/;"	member	line:11	class:RobotBase::RobotState	file:
+Disabled	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^      Disabled,$/;"	member	line:12	class:RobotBase::RobotState	file:
+lastState	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^    RobotState lastState = RobotState::None;$/;"	member	line:14	class:RobotBase	file:
+_privateRunRobot	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^    template<class RobotMain> static void _privateRunRobot() {$/;"	function	line:15	class:RobotBase	file:	signature:()
+runRobot	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\RobotBase.h	/^    template <class RobotMain> static void runRobot() {$/;"	function	line:33	class:RobotBase	signature:()
+BASE_H	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^#define BASE_H$/;"	macro	line:4	file:
+Base	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^class Base : public Subsystem {$/;"	class	line:8	file:
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    static Base* instance;$/;"	member	line:10	class:Base	file:
+gyro	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Gyro gyro;$/;"	member	line:13	class:Base	file:
+ultrasonic	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Ultrasonic ultrasonic;$/;"	member	line:14	class:Base	file:
+leftFrontBaseMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Motor* leftFrontBaseMotor;$/;"	member	line:17	class:Base	file:
+leftMiddleBaseMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Motor* leftMiddleBaseMotor;$/;"	member	line:18	class:Base	file:
+leftRearBaseMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Motor* leftRearBaseMotor;$/;"	member	line:19	class:Base	file:
+rightFrontBaseMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Motor* rightFrontBaseMotor;$/;"	member	line:22	class:Base	file:
+rightMiddleBaseMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Motor* rightMiddleBaseMotor;$/;"	member	line:23	class:Base	file:
+rightRearBaseMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Motor* rightRearBaseMotor;$/;"	member	line:24	class:Base	file:
+baseRightEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Encoder baseRightEncoder;$/;"	member	line:26	class:Base	file:
+baseLeftEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    Encoder baseLeftEncoder;$/;"	member	line:27	class:Base	file:
+leftController	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    PIDController* leftController;$/;"	member	line:29	class:Base	file:
+rightController	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    PIDController* rightController;$/;"	member	line:30	class:Base	file:
+multiplier	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    float multiplier = 1.0;$/;"	member	line:32	class:Base	file:
+encoderReference	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Base.h	/^    int encoderReference;$/;"	member	line:34	class:Base	file:
+_SUBSYSTEMS_EXAMPLESUBSYSTEM_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\ExampleSubsystem.h	/^#define _SUBSYSTEMS_EXAMPLESUBSYSTEM_H_$/;"	macro	line:2	file:
+ExampleSubsystem	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\ExampleSubsystem.h	/^class ExampleSubsystem : public Subsystem {$/;"	class	line:6	file:
+INTAKE_H	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Intake.h	/^#define INTAKE_H$/;"	macro	line:4	file:
+Intake	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Intake.h	/^class Intake : public Subsystem {$/;"	class	line:8	file:
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Intake.h	/^    static Intake* instance;$/;"	member	line:10	class:Intake	file:
+intakeEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Intake.h	/^    Encoder intakeEncoder;$/;"	member	line:11	class:Intake	file:
+controller	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Intake.h	/^    PIDController* controller;$/;"	member	line:12	class:Intake	file:
+intakeMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Intake.h	/^    Motor* intakeMotor;$/;"	member	line:13	class:Intake	file:
+LIFT_H	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Lift.h	/^#define LIFT_H$/;"	macro	line:4	file:
+Lift	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Lift.h	/^class Lift : public Subsystem {$/;"	class	line:8	file:
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Lift.h	/^    static Lift* instance;$/;"	member	line:10	class:Lift	file:
+liftEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Lift.h	/^    Encoder liftEncoder;$/;"	member	line:11	class:Lift	file:
+controller	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Lift.h	/^    PIDController* controller;$/;"	member	line:12	class:Lift	file:
+liftMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Lift.h	/^    Motor* liftMotor;$/;"	member	line:13	class:Lift	file:
+PUNCHER_H	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Puncher.h	/^#define PUNCHER_H$/;"	macro	line:4	file:
+Puncher	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Puncher.h	/^class Puncher : public Subsystem {$/;"	class	line:8	file:
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Puncher.h	/^    static Puncher* instance;$/;"	member	line:10	class:Puncher	file:
+puncherEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Puncher.h	/^    Encoder puncherEncoder;$/;"	member	line:11	class:Puncher	file:
+controller	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Puncher.h	/^    PIDController* controller;$/;"	member	line:12	class:Puncher	file:
+puncherMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Puncher.h	/^    Motor* puncherMotor;$/;"	member	line:13	class:Puncher	file:
+_SUBSYSTEMS_SUBSYSTEM_H_	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Subsystem.h	/^#define _SUBSYSTEMS_SUBSYSTEM_H_$/;"	macro	line:2	file:
+Subsystem	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Subsystem.h	/^class Subsystem {$/;"	class	line:8	file:
+defaultCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Subsystem.h	/^    Command* defaultCommand = NULL;$/;"	member	line:10	class:Subsystem	file:
+currentCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Subsystem.h	/^    Command* currentCommand = NULL;$/;"	member	line:16	class:Subsystem	file:
+TURNTABLE_H	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Turntable.h	/^#define TURNTABLE_H$/;"	macro	line:4	file:
+Turntable	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Turntable.h	/^class Turntable : public Subsystem {$/;"	class	line:8	file:
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Turntable.h	/^    static Turntable* instance;$/;"	member	line:10	class:Turntable	file:
+turntableEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Turntable.h	/^    Encoder turntableEncoder;$/;"	member	line:11	class:Turntable	file:
+controller	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Turntable.h	/^    PIDController* controller;$/;"	member	line:12	class:Turntable	file:
+turntableMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\include\subsystems\Turntable.h	/^    Motor* turntableMotor;$/;"	member	line:13	class:Turntable	file:
+1138A-VEX-Code-2018	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\README.md	/^# 1138A-VEX-Code-2018$/;"	function	line:1
+KalmanFilter	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\KalmanFilter.cpp	/^KalmanFilter::KalmanFilter(Encoder rightEncoder, Encoder leftEncoder, Gyro gyro) {$/;"	function	line:3	class:KalmanFilter	signature:(Encoder rightEncoder, Encoder leftEncoder, Gyro gyro)
+motorInstances	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^Motor* Motor::motorInstances[MAX_MOTORS];$/;"	member	line:3	class:Motor
+Motor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^Motor::Motor(int channel) {$/;"	function	line:5	class:Motor	signature:(int channel)
+setSpeed	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^void Motor::setSpeed(int speed) {$/;"	function	line:18	class:Motor	signature:(int speed)
+getSpeed	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^int Motor::getSpeed() {$/;"	function	line:32	class:Motor	signature:()
+reverse	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^void Motor::reverse() {$/;"	function	line:36	class:Motor	signature:()
+init	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^void Motor::init() {$/;"	function	line:40	class:Motor	signature:()
+addFollower	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^void Motor::addFollower(Motor* motor) {$/;"	function	line:46	class:Motor	signature:(Motor* motor)
+setMaster	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^void Motor::setMaster(Motor* motor) {$/;"	function	line:64	class:Motor	signature:(Motor* motor)
+getChannel	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^int Motor::getChannel() {$/;"	function	line:69	class:Motor	signature:()
+updateSlewRate	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^void Motor::updateSlewRate() {$/;"	function	line:73	class:Motor	signature:()
+periodicUpdate	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^void Motor::periodicUpdate() {$/;"	function	line:83	class:Motor	signature:()
+getMotor	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\Motor.cpp	/^Motor* Motor::getMotor(int motorPort) {$/;"	function	line:89	class:Motor	signature:(int motorPort)
+instances	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^PIDController* PIDController::instances[MAX_MOTORS] = {0}; \/\/  All values are initialized to 0$/;"	member	line:3	class:PIDController
+PIDController	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^PIDController::PIDController(Motor* outputMotor, float kP, float kI, float kD) {$/;"	function	line:5	class:PIDController	signature:(Motor* outputMotor, float kP, float kI, float kD)
+addInstance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::addInstance() {$/;"	function	line:14	class:PIDController	signature:()
+setKp	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::setKp(float kP) {$/;"	function	line:23	class:PIDController	signature:(float kP)
+setKi	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::setKi(float kI) {$/;"	function	line:27	class:PIDController	signature:(float kI)
+setKd	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::setKd(float kD) {$/;"	function	line:31	class:PIDController	signature:(float kD)
+setSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::setSetpoint(int setpoint) {$/;"	function	line:35	class:PIDController	signature:(int setpoint)
+getSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^int PIDController::getSetpoint() {$/;"	function	line:41	class:PIDController	signature:()
+setSensorEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::setSensorEncoder(Encoder encoder) {$/;"	function	line:45	class:PIDController	signature:(Encoder encoder)
+getSensorValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^int PIDController::getSensorValue() {$/;"	function	line:49	class:PIDController	signature:()
+setThreshold	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::setThreshold(int threshold) {$/;"	function	line:55	class:PIDController	signature:(int threshold)
+loop	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::loop() {$/;"	function	line:59	class:PIDController	signature:()
+atSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^bool PIDController::atSetpoint() {$/;"	function	line:77	class:PIDController	signature:()
+loopAll	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\abstractBaseClasses\PIDController.cpp	/^void PIDController::loopAll() {$/;"	function	line:82	class:PIDController	signature:()
+DriveWithJoy	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\commands\DriveWithJoy.cpp	/^DriveWithJoy::DriveWithJoy() {$/;"	function	line:4	class:DriveWithJoy	signature:()
+canRun	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\commands\DriveWithJoy.cpp	/^bool DriveWithJoy::canRun() {$/;"	function	line:8	class:DriveWithJoy	signature:()
+initialize	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\commands\DriveWithJoy.cpp	/^void DriveWithJoy::initialize() {$/;"	function	line:12	class:DriveWithJoy	signature:()
+execute	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\commands\DriveWithJoy.cpp	/^void DriveWithJoy::execute() {$/;"	function	line:19	class:DriveWithJoy	signature:()
+isFinished	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\commands\DriveWithJoy.cpp	/^bool DriveWithJoy::isFinished() {$/;"	function	line:24	class:DriveWithJoy	signature:()
+end	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\commands\DriveWithJoy.cpp	/^void DriveWithJoy::end() {$/;"	function	line:28	class:DriveWithJoy	signature:()
+interrupted	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\commands\DriveWithJoy.cpp	/^void DriveWithJoy::interrupted() {$/;"	function	line:33	class:DriveWithJoy	signature:()
+threshold	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\common.cpp	/^int threshold(int aNumber, int threshold) {$/;"	function	line:4	signature:(int aNumber, int threshold)
+getLimitSwitch	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\common.cpp	/^bool getLimitSwitch(unsigned char pin) {$/;"	function	line:8	signature:(unsigned char pin)
+confineToRange	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\common.cpp	/^int confineToRange(int value, int min, int max) {$/;"	function	line:12	signature:(int value, int min, int max)
+inRange	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\common.cpp	/^bool inRange(int value, int min, int max) {$/;"	function	line:21	signature:(int value, int min, int max)
+sign	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\common.cpp	/^int sign(int aNumber) {$/;"	function	line:25	signature:(int aNumber)
+ROOT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^ROOT=..$/;"	macro	line:4
+BINDIR	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^BINDIR=$(ROOT)\/bin$/;"	macro	line:6
+ASMSRC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^ASMSRC:=$(wildcard *.$(ASMEXT))$/;"	macro	line:13
+ASMOBJ	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^ASMOBJ:=$(patsubst %.o,$(BINDIR)\/%.o,$(ASMSRC:.$(ASMEXT)=.o))$/;"	macro	line:14
+HEADERS	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^HEADERS:=$(wildcard *.$(HEXT))$/;"	macro	line:15
+HEADERS_2	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^HEADERS_2:=$(wildcard ..\/include\/*.$(HEXT))$/;"	macro	line:17
+CSRC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^CSRC=$(wildcard *.$(CEXT)) $(wildcard **\/*.$(CEXT))$/;"	macro	line:19
+COBJ	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^COBJ:=$(patsubst %.o,$(BINDIR)\/%.o,$(CSRC:.$(CEXT)=.o))$/;"	macro	line:20
+CPPSRC	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^CPPSRC:=$(wildcard *.$(CPPEXT)) $(wildcard **\/*.$(CPPEXT))$/;"	macro	line:21
+CPPOBJ	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^CPPOBJ:=$(patsubst %.o,$(BINDIR)\/%.o,$(CPPSRC:.$(CPPEXT)=.o))$/;"	macro	line:22
+OUT	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\GNUmakefile	/^OUT:=$(BINDIR)\/$(OUTNAME)$/;"	macro	line:23
+imeCount	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\init.cpp	/^int imeCount;$/;"	variable	line:15
+initializeIO	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\init.cpp	/^void initializeIO() {$/;"	function	line:25	signature:()
+initialize	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\init.cpp	/^void initialize() {$/;"	function	line:44	signature:()
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Robot* Robot::instance = 0;$/;"	member	line:7	class:Robot
+base	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Base* Robot::base = 0;$/;"	member	line:8	class:Robot
+intake	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Intake* Robot::intake = 0;$/;"	member	line:9	class:Robot
+lift	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Lift* Robot::lift = 0;$/;"	member	line:10	class:Robot
+puncher	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Puncher* Robot::puncher = 0;$/;"	member	line:11	class:Robot
+turntable	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Turntable* Robot::turntable = 0;$/;"	member	line:12	class:Robot
+Robot	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Robot::Robot() {$/;"	function	line:14	class:Robot	signature:()
+robotInit	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^void Robot::robotInit() {$/;"	function	line:28	class:Robot	signature:()
+autonInit	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^void Robot::autonInit() {$/;"	function	line:32	class:Robot	signature:()
+autonPeriodic	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^void Robot::autonPeriodic() {$/;"	function	line:36	class:Robot	signature:()
+teleopInit	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^void Robot::teleopInit() {$/;"	function	line:42	class:Robot	signature:()
+teleopPeriodic	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^void Robot::teleopPeriodic() {$/;"	function	line:46	class:Robot	signature:()
+disabledInit	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^void Robot::disabledInit() {$/;"	function	line:52	class:Robot	signature:()
+disabledPeriodic	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^void Robot::disabledPeriodic() {$/;"	function	line:56	class:Robot	signature:()
+getInstance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\Robot.cpp	/^Robot* Robot::getInstance() {$/;"	function	line:60	class:Robot	signature:()
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^Base* Base::instance = 0;$/;"	member	line:4	class:Base
+Base	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^Base::Base() {$/;"	function	line:6	class:Base	signature:()
+initDefaultCommand	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::initDefaultCommand() {$/;"	function	line:50	class:Base	signature:()
+move	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::move(int left, int right) {$/;"	function	line:59	class:Base	signature:(int left, int right)
+moveTo	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^bool Base::moveTo(int target, int logValue, int threshold) {$/;"	function	line:74	class:Base	signature:(int target, int logValue, int threshold)
+turnTo	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^bool Base::turnTo(int target, int logValue, int threshold, int direction) {$/;"	function	line:88	class:Base	signature:(int target, int logValue, int threshold, int direction)
+setLeftSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::setLeftSetpoint(int setpoint) {$/;"	function	line:114	class:Base	signature:(int setpoint)
+setRightSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::setRightSetpoint(int setpoint) {$/;"	function	line:118	class:Base	signature:(int setpoint)
+lockLeft	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::lockLeft() {$/;"	function	line:122	class:Base	signature:()
+lockRight	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::lockRight() {$/;"	function	line:126	class:Base	signature:()
+loopLeft	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::loopLeft() {$/;"	function	line:130	class:Base	signature:()
+loopRight	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::loopRight() {$/;"	function	line:134	class:Base	signature:()
+getLeftSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^int Base::getLeftSetpoint() {$/;"	function	line:138	class:Base	signature:()
+getRightSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^int Base::getRightSetpoint() {$/;"	function	line:142	class:Base	signature:()
+leftAtSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^bool Base::leftAtSetpoint() {$/;"	function	line:146	class:Base	signature:()
+rightAtSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^bool Base::rightAtSetpoint() {$/;"	function	line:150	class:Base	signature:()
+resetGyro	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::resetGyro() {$/;"	function	line:154	class:Base	signature:()
+getGyro	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^int Base::getGyro() {$/;"	function	line:158	class:Base	signature:()
+resetEncoders	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::resetEncoders() {$/;"	function	line:162	class:Base	signature:()
+getLeftEncoderValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^int Base::getLeftEncoderValue() {$/;"	function	line:167	class:Base	signature:()
+getRightEncoderValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^int Base::getRightEncoderValue() {$/;"	function	line:171	class:Base	signature:()
+setMultiplier	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::setMultiplier(float multiplier) {$/;"	function	line:179	class:Base	signature:(float multiplier)
+setReference	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^void Base::setReference() {$/;"	function	line:183	class:Base	signature:()
+getInstance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Base.cpp	/^Base* Base::getInstance() {$/;"	function	line:187	class:Base	signature:()
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^Intake* Intake::instance = 0;$/;"	member	line:3	class:Intake
+Intake	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^Intake::Intake() {$/;"	function	line:5	class:Intake	signature:()
+move	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^void Intake::move(int speed) {$/;"	function	line:16	class:Intake	signature:(int speed)
+setSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^void Intake::setSetpoint(int setpoint) {$/;"	function	line:20	class:Intake	signature:(int setpoint)
+lock	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^void Intake::lock() {$/;"	function	line:24	class:Intake	signature:()
+getSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^int Intake::getSetpoint() {$/;"	function	line:28	class:Intake	signature:()
+loop	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^void Intake::loop() {$/;"	function	line:32	class:Intake	signature:()
+atSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^bool Intake::atSetpoint() {$/;"	function	line:36	class:Intake	signature:()
+getEncoderValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^int Intake::getEncoderValue() {$/;"	function	line:40	class:Intake	signature:()
+resetEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^void Intake::resetEncoder() {$/;"	function	line:44	class:Intake	signature:()
+getInstance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Intake.cpp	/^Intake* Intake::getInstance() {$/;"	function	line:48	class:Intake	signature:()
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^Lift* Lift::instance = 0;$/;"	member	line:3	class:Lift
+Lift	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^Lift::Lift() {$/;"	function	line:5	class:Lift	signature:()
+move	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^void Lift::move(int speed) {$/;"	function	line:16	class:Lift	signature:(int speed)
+setSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^void Lift::setSetpoint(int setpoint) {$/;"	function	line:20	class:Lift	signature:(int setpoint)
+lock	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^void Lift::lock() {$/;"	function	line:24	class:Lift	signature:()
+getSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^int Lift::getSetpoint() {$/;"	function	line:28	class:Lift	signature:()
+loop	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^void Lift::loop() {$/;"	function	line:32	class:Lift	signature:()
+atSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^bool Lift::atSetpoint() {$/;"	function	line:36	class:Lift	signature:()
+getEncoderValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^int Lift::getEncoderValue() {$/;"	function	line:40	class:Lift	signature:()
+resetEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^void Lift::resetEncoder() {$/;"	function	line:44	class:Lift	signature:()
+getInstance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Lift.cpp	/^Lift* Lift::getInstance() {$/;"	function	line:48	class:Lift	signature:()
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^Puncher* Puncher::instance = 0;$/;"	member	line:3	class:Puncher
+Puncher	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^Puncher::Puncher() {$/;"	function	line:5	class:Puncher	signature:()
+move	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^void Puncher::move(int speed) {$/;"	function	line:16	class:Puncher	signature:(int speed)
+setSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^void Puncher::setSetpoint(int setpoint) {$/;"	function	line:20	class:Puncher	signature:(int setpoint)
+lock	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^void Puncher::lock() {$/;"	function	line:24	class:Puncher	signature:()
+getSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^int Puncher::getSetpoint() {$/;"	function	line:28	class:Puncher	signature:()
+loop	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^void Puncher::loop() {$/;"	function	line:32	class:Puncher	signature:()
+atSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^bool Puncher::atSetpoint() {$/;"	function	line:36	class:Puncher	signature:()
+getEncoderValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^int Puncher::getEncoderValue() {$/;"	function	line:40	class:Puncher	signature:()
+resetEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^void Puncher::resetEncoder() {$/;"	function	line:44	class:Puncher	signature:()
+getInstance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Puncher.cpp	/^Puncher* Puncher::getInstance() {$/;"	function	line:48	class:Puncher	signature:()
+instance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^Turntable* Turntable::instance = 0;$/;"	member	line:3	class:Turntable
+Turntable	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^Turntable::Turntable() {$/;"	function	line:5	class:Turntable	signature:()
+move	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^void Turntable::move(int speed) {$/;"	function	line:16	class:Turntable	signature:(int speed)
+setSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^void Turntable::setSetpoint(int setpoint) {$/;"	function	line:20	class:Turntable	signature:(int setpoint)
+lock	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^void Turntable::lock() {$/;"	function	line:24	class:Turntable	signature:()
+getSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^int Turntable::getSetpoint() {$/;"	function	line:28	class:Turntable	signature:()
+loop	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^void Turntable::loop() {$/;"	function	line:32	class:Turntable	signature:()
+atSetpoint	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^bool Turntable::atSetpoint() {$/;"	function	line:36	class:Turntable	signature:()
+getEncoderValue	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^int Turntable::getEncoderValue() {$/;"	function	line:40	class:Turntable	signature:()
+resetEncoder	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^void Turntable::resetEncoder() {$/;"	function	line:44	class:Turntable	signature:()
+getInstance	C:\Users\Edward Pedemonte\1138A-VEX-Code-2018\src\subsystems\Turntable.cpp	/^Turntable* Turntable::getInstance() {$/;"	function	line:48	class:Turntable	signature:()
