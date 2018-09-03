@@ -12,6 +12,9 @@ bool DriveWithJoy::canRun() {
 void DriveWithJoy::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+
+  // Note: initialize() will be called before execute any time this command
+  // tries to run, since isFinished() returns true.
   leftJoystick = joystickGetAnalog(1, 3); // Left y-channel
   rightJoystick = joystickGetAnalog(1, 2); // Right y-channel
 }

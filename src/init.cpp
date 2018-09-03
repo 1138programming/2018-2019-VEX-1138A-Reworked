@@ -24,6 +24,7 @@ int imeCount;
  */
 void initializeIO() {
   printf("Initializing IO...");
+  watchdogInit(); // Prevents random issues from static on the I2C line
   // Initialize pins here
   printf(" Done!\n");
 }

@@ -36,7 +36,7 @@
 #include <subsystems/Base.h>
 #include <subsystems/Intake.h>
 #include <subsystems/Puncher.h>
-#include <subsystems/Lift.h>
+#include <subsystems/Cascade.h>
 #include <subsystems/Turntable.h>
 
 // Allow usage of this file in C++ programs

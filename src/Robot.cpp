@@ -7,7 +7,7 @@
 Robot* Robot::instance = 0;
 Base* Robot::base = 0;
 Intake* Robot::intake = 0;
-Lift* Robot::lift = 0;
+Cascade* Robot::cascade = 0;
 Puncher* Robot::puncher = 0;
 Turntable* Robot::turntable = 0;
 
@@ -16,7 +16,7 @@ Robot::Robot() {
   // Initialize any subsystems
   base = Base::getInstance();
   intake = Intake::getInstance();
-  lift = Lift::getInstance();
+  cascade = Cascade::getInstance();
   puncher = Puncher::getInstance();
   turntable = Turntable::getInstance();
 

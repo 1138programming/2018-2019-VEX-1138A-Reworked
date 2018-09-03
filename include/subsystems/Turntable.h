@@ -8,19 +8,11 @@
 class Turntable : public Subsystem {
   private:
     static Turntable* instance;
-    Encoder turntableEncoder;
-    PIDController* controller;
     Motor* turntableMotor;
     Turntable();
   public:
+    void initDefaultCommand();
     void move(int speed);
-    void setSetpoint(int setpoint);
-    void lock();
-    int getSetpoint();
-    void loop();
-    bool atSetpoint();
-    int getEncoderValue();
-    void resetEncoder();
     static Turntable* getInstance();
 };
 

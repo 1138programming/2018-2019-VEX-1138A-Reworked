@@ -71,13 +71,15 @@ int Motor::getChannel() {
 }
 
 void Motor::updateSlewRate() {
-  if (this->targetSpeed != this->speed) {
+  this->speed = this->targetSpeed;
+  motorSet(this->channel, this->speed);
+  /*if (this->targetSpeed != this->speed) {
     // A bit of motor slewing to make sure that we don't stall
     int currSlewStep = slewStep * sign(this->targetSpeed - this->speed);
     currSlewStep = confineToRange(slewStep, this->targetSpeed - this->speed, this->speed - this->targetSpeed); // This line may cause issues
     this->speed += currSlewStep;
     motorSet(this->channel, this->speed);
-  }
+  }*/
 }
 
 void Motor::periodicUpdate() {

@@ -24,7 +24,7 @@ class Robot : public RobotBase {
     // Pointers to every subsystem on the robot:
     static Base* base;
     static Intake* intake;
-    static Lift* lift;
+    static Cascade* cascade;
     static Puncher* puncher;
     static Turntable* turntable;
 };

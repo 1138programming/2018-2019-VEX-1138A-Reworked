@@ -3,8 +3,8 @@
 
 #include "main.h"
 #include <vector>
-
-class Subsystem;
+#include "subsystems/Subsystem.h"
+#include "events/EventScheduler.h"
 
 class Command {
   private:
@@ -12,6 +12,8 @@ class Command {
   protected:
     void requires(Subsystem* aSubsystem);
   public:
+    static const int DefaultCommandPriority = 0;
+
     int priority = 50; // Commands can only be interrupted by commands with a higher priority
     bool initialized = false;
 
@@ -23,10 +25,6 @@ class Command {
     virtual bool isFinished(); // Whether or not the command is finished. The run() command is run continuously until thie istrue
     virtual void end(); // Run when command is finished
     virtual void interrupted(); // Run when command was interrupted by one with a higher priority
-
-    // Slightly more advanced features... use at your own risk, as
-    // these may have unexpected consequences on the rest of the command system
-    virtual bool canBeInterruptedBy(Command* aCommand);
 
     void run(); // Run this command. May be called anywhere.
 
