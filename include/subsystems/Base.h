@@ -17,10 +17,14 @@ class Base : public Subsystem {
     Motor* rightFrontBaseMotor;
     Motor* rightRearBaseMotor;
 
+    bool isReversed;
+
     Base();
   public:
     void initDefaultCommand();
     void move(int left, int right);
+    void setBaseReversed(bool isReversed);
+    bool getReversed();
     static Base* getInstance();
 };
 

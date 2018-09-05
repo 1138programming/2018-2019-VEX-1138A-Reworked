@@ -19,8 +19,8 @@ void IntakeControl::initialize() {
 void IntakeControl::execute() {
   // Code that runs when this command is scheduled to run
   printf("Intake default command is running\n");
-  intakeUpButton = joystickGetDigital(1, 7, JOY_UP);
-  intakeDownButton = joystickGetDigital(1, 7, JOY_DOWN);
+  intakeUpButton = joystickGetDigital(1, 6, JOY_UP);
+  intakeDownButton = joystickGetDigital(1, 6, JOY_DOWN);
 
   if (intakeUpButton)
     Robot::intake->move(KMaxMotorSpeed);

@@ -4,6 +4,8 @@
 
 #include "commands/DriveWithJoy.h"
 
+#include "commands/ToggleBaseDirection.h"
+
 Robot* Robot::instance = 0;
 Base* Robot::base = 0;
 Intake* Robot::intake = 0;
@@ -23,6 +25,8 @@ Robot::Robot() {
   // Initialize any actions/commands needed
   //JoystickButton* test = new JoystickButton(MainJoystick, Btn5U);
   //test->whenPressed(new ExampleCommand());
+  JoystickButton* reverseButton = new JoystickButton(MainJoystick, Btn7L);
+  reverseButton->whenPressed(new ToggleBaseDirection());
 }
 
 void Robot::robotInit() {
