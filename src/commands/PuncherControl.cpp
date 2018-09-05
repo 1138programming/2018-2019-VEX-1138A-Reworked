@@ -19,8 +19,8 @@ void PuncherControl::initialize() {
 void PuncherControl::execute() {
   // Code that runs when this command is scheduled to run
   printf("Puncher default command is running\n");
-  puncherUpButton = joystickGetDigital(1, 8, JOY_DOWN);
-  puncherDownButton = joystickGetDigital(1, 8, JOY_RIGHT);
+  puncherUpButton = joystickGetDigital(2, 8, JOY_DOWN);
+  puncherDownButton = joystickGetDigital(2, 8, JOY_RIGHT);
 
   if (puncherUpButton)
     Robot::puncher->move(KMaxMotorSpeed);

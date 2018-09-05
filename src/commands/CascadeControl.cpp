@@ -19,8 +19,8 @@ void CascadeControl::initialize() {
 void CascadeControl::execute() {
   // Code that runs when this command is scheduled to run
   printf("Cascade default command is running\n");
-  cascadeUpButton = joystickGetDigital(1, 7, JOY_UP);
-  cascadeDownButton = joystickGetDigital(1, 7, JOY_DOWN);
+  cascadeUpButton = joystickGetDigital(2, 7, JOY_UP);
+  cascadeDownButton = joystickGetDigital(2, 7, JOY_DOWN);
 
   if (cascadeUpButton)
     Robot::cascade->move(KMaxMotorSpeed);
