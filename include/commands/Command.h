@@ -4,7 +4,15 @@
 #include "main.h"
 #include <vector>
 #include "subsystems/Subsystem.h"
-#include "events/EventScheduler.h"
+//#include "events/EventScheduler.h"
+//#include "commands/CommandGroup.h"
+
+enum Status {
+  Idle = 0,
+  Running,
+  Finished,
+  Interrupted
+};
 
 class Command {
   private:
@@ -16,8 +24,11 @@ class Command {
 
     int priority = 50; // Commands can only be interrupted by commands with a higher priority
     bool initialized = false;
+    Status status = Idle;
 
     std::vector<Subsystem*>& getRequirements();
+
+    //void run();
 
     virtual bool canRun(); // Whether or not the command can run right now. If false, it is ignored
     virtual void initialize(); // Set up the command for running
@@ -26,7 +37,13 @@ class Command {
     virtual void end(); // Run when command is finished
     virtual void interrupted(); // Run when command was interrupted by one with a higher priority
 
+    // Slightly more advanced features... use at your own risk, as
+    // these may have unexpected consequences on the rest of the command system
+    // See comment in cpp file, may be re-added later
+    //virtual bool canBeInterruptedBy(Command* aCommand);
+
     void run(); // Run this command. May be called anywhere.
+    void stop(); // Stop this command while it is running. May be called anywhere.
 
     // ...and finally, the constructor!
     Command();

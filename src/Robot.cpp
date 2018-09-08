@@ -2,7 +2,8 @@
 #include "events/EventScheduler.h"
 #include "events/JoystickButton.h"
 
-#include "commands/DriveWithJoy.h"
+//#include "commands/DriveWithJoy.h"
+#include "commands/PunchBall.h"
 
 #include "commands/ToggleBaseDirection.h"
 
@@ -35,6 +36,8 @@ void Robot::robotInit() {
 
 void Robot::autonInit() {
   //printf("Default autonInit() function\n");
+  PunchBall* punchBall = new PunchBall();
+  punchBall->run();
 }
 
 void Robot::autonPeriodic() {
