@@ -19,7 +19,7 @@ void PunchBall::initialize() {
 
 void PunchBall::execute() {
   // Code that runs when this command is scheduled to run
-  Robot::puncher->move(-KMaxMotorSpeed);
+  Robot::puncher->move(KMaxMotorSpeed);
 }
 
 bool PunchBall::isFinished() {

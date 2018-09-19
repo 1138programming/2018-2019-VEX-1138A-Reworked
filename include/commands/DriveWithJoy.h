@@ -1,5 +1,5 @@
-#ifndef _COMMANDS_EXAMPLECOMMAND_H_
-#define _COMMANDS_EXAMPLECOMMAND_H_
+#ifndef _COMMANDS_DRIVEWITHJOY_H_
+#define _COMMANDS_DRIVEWITHJOY_H_
 
 #include "commands/Command.h"
 

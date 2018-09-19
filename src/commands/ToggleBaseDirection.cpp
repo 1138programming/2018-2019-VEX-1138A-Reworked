@@ -14,7 +14,7 @@ bool ToggleBaseDirection::canRun() {
 void ToggleBaseDirection::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  baseToggleButton = joystickGetDigital(1, 5, JOY_UP);
+  //baseToggleButton = joystickGetDigital(1, 5, JOY_UP);
 }
 
 void ToggleBaseDirection::execute() {

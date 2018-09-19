@@ -42,8 +42,10 @@ class Command {
     // See comment in cpp file, may be re-added later
     //virtual bool canBeInterruptedBy(Command* aCommand);
 
-    void run(); // Run this command. May be called anywhere.
-    void stop(); // Stop this command while it is running. May be called anywhere.
+    virtual void run(); // Run this command. May be called anywhere.
+    virtual void stop(); // Stop this command while it is running. May be called anywhere.
+
+    virtual void printSomething();
 
     // ...and finally, the constructor!
     Command();

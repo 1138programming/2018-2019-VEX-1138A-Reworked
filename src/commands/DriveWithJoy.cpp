@@ -3,6 +3,7 @@
 
 DriveWithJoy::DriveWithJoy() {
   requires(Robot::base);
+  this->priority = DefaultCommandPriority; // Lowest priority
 }
 
 bool DriveWithJoy::canRun() {

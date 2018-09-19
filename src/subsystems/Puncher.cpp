@@ -5,6 +5,7 @@ Puncher* Puncher::instance = 0;
 
 Puncher::Puncher() {
   puncherMotor = Motor::getMotor(puncherPort);
+  puncherMotor->reverse();
 }
 
 void Puncher::initDefaultCommand() {

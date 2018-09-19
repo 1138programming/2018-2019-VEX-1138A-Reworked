@@ -27,11 +27,11 @@ const int backLeftBasePort = 8;
 const int frontRightBasePort = 9; // Reversed
 
 // Cascade motors
-const int CascadeMotorOnePort = 4; // Reversed
+const int CascadeMotorOnePort = 5; // Reversed
 const int CascadeMotorTwoPort = 7; // Reversed
 
 // Puncher motor
-const int puncherPort = 5; // Reversed
+const int puncherPort = 4; // Reversed
 
 // Claw motor
 const int clawPort = 10;

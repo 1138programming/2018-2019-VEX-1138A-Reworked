@@ -19,8 +19,8 @@ void TurntableControl::initialize() {
 void TurntableControl::execute() {
   // Code that runs when this command is scheduled to run
   printf("Turntable default command is running\n");
-  turntableUpButton = joystickGetDigital(1, 5, JOY_UP);
-  turntableDownButton = joystickGetDigital(1, 5, JOY_DOWN);
+  turntableUpButton = joystickGetDigital(2, 5, JOY_UP);
+  turntableDownButton = joystickGetDigital(2, 5, JOY_DOWN);
 
   if (turntableUpButton)
     Robot::turntable->move(KMaxMotorSpeed);
