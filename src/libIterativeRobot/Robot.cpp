@@ -3,12 +3,10 @@
 //#include "events/JoystickButton.h"
 
 Robot* Robot::instance = 0;
-ExampleSubsystem* Robot::exampleSubsystem = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
   // Initialize any subsystems
-  Robot::exampleSubsystem = new ExampleSubsystem();
 }
 
 void Robot::robotInit() {

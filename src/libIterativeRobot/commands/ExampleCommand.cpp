@@ -2,7 +2,7 @@
 #include "../Robot.h"
 
 ExampleCommand::ExampleCommand() {
-  requires(Robot::exampleSubsystem);
+  //requires(Robot::exampleSubsystem);
 }
 
 bool ExampleCommand::canRun() {

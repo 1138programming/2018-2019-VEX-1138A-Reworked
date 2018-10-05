@@ -3,7 +3,7 @@
 
 #include "main.h"
 #include "RobotBase.h"
-#include "subsystems/ExampleSubsystem.h"
+#include "subsystems/Base.h"
 
 class Robot : public libIterativeRobot::RobotBase {
   private:
@@ -20,7 +20,7 @@ class Robot : public libIterativeRobot::RobotBase {
     Robot();
     static Robot* getInstance();
 
-    static ExampleSubsystem* exampleSubsystem;
+    static Base* robotBase;
 };
 
 
