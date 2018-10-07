@@ -42,28 +42,20 @@ int PIDController::getSetpoint() {
   return this->setpoint;
 }
 
-void PIDController::setSensorEncoder(Encoder encoder) {
+/*void PIDController::setSensorEncoder(pros::ADIEncoder* encoder) {
   this->encoder = encoder;
   this->IMEaddress = 0;
   this->IMEset = false;
-}
+}*/
 
-void PIDController::setSensorIME(unsigned char IMEaddress) {
+/*void PIDController::setSensorIME(unsigned char IMEaddress) {
   this->IMEaddress = IMEaddress;
   this->IMEset = true;
   this->encoder = NULL;
-}
+}*/
 
 int PIDController::getSensorValue() {
-  if (encoder != NULL)
-    return encoderGet(encoder);
-  else if (IMEset) {
-      int value;
-      imeGet(IMEaddress, &value);
-      return value;
-  }
-
-  return 0;
+  return outputMotor->getEncoderValue();
 }
 
 void PIDController::setThreshold(int threshold) {
@@ -73,8 +65,8 @@ void PIDController::setThreshold(int threshold) {
 void PIDController::loop() {
   //printf("PID is looping\n");
   currSensorValue = getSensorValue();
-  deltaTime = millis() - lastTime;
-  lastTime = millis();
+  deltaTime = pros::millis() - lastTime;
+  lastTime = pros::millis();
   error = setpoint - currSensorValue;
   integral += error * (deltaTime / 1000);
   derivative  = (error - previousError) / (deltaTime / 1000);

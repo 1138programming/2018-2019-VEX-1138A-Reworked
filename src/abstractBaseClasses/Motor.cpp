@@ -1,9 +1,20 @@
 #include "main.h"
 
 Motor* Motor::motorInstances[MAX_MOTORS];
+pros::motor_gearset_e_t defaultGearset = pros::E_MOTOR_GEARSET_18;
+pros::motor_encoder_units_e_t defaultEncoderUnits = pros::E_MOTOR_ENCODER_COUNTS;
 
-Motor::Motor(int channel) {
-  this->channel = channel;
+Motor::Motor(std::uint8_t channel, MotorType motorType) {
+  this->motorType = motorType;
+  if (motorType == v4) {
+    this->v4Motor = new pros::ADIMotor(this->channel);
+  } else {
+    this->channel = channel;
+    this->gearset = defaultGearset;
+    this->encoderUnits = defaultEncoderUnits;
+    this->v5Motor = new pros::Motor(this->channel, this->gearset, false, this->encoderUnits);
+  }
+
   this->speed = 0;
   this->multiplier = 1;
   this->following = false;
@@ -15,14 +26,18 @@ Motor::Motor(int channel) {
   //this->numFollowers = sizeof(followers) / sizeof(followers[0])
 }
 
+MotorType Motor::getMotorType() {
+  return this->motorType;
+}
+
 void Motor::setSpeed(int speed) {
-  if(this->following)
+  if (this->following)
     return;
   this->targetSpeed = (int)(confineToRange(speed) * this->multiplier);
   //printf("Moving master on port %d with speed %d\n", this->channel, this->speed);
   for (unsigned int i = 0; i < this->numFollowers; i++) {
       //printf("%d\n", followers[i]->channel);
-      if(followers[i] != NULL) {
+      if (followers[i] != NULL) {
         //printf("Moving slave on port %d with speed %d\n", followers[i]->channel, this->speed);
         followers[i]->targetSpeed = this->targetSpeed;
       }
@@ -38,17 +53,20 @@ void Motor::reverse() {
 }
 
 void Motor::init() {
-  for (int i = 0; i < MAX_MOTORS; i++) {
-    motorInstances[i] = new Motor(i + 1);
+  for (std::uint8_t i = 0; i < MAX_MOTORS; i++) {
+    if (i <= 29)
+      motorInstances[i] = new Motor(i + 1, v5);
+    else
+      motorInstances[i] = new Motor(i + 1, v4);
   }
 }
 
 void Motor::addFollower(Motor* motor) {
-  if(this->following)
+  if (this->following)
     return;
 
   for(unsigned int i = 0; i < motor->numFollowers; i++) {
-    if(motor->followers[i] != NULL)
+    if (motor->followers[i] != NULL)
       return;
   }
 
@@ -75,15 +93,41 @@ void Motor::updateSlewRate() {
   int currSlewStep = this->targetSpeed - this->speed;
   currSlewStep = confineToRange(currSlewStep, -slewStep, slewStep); // This line may cause issues
   this->speed += currSlewStep;
-  motorSet(this->channel, this->speed);
+}
+
+void Motor::move() {
+  if (this->motorType == v4)
+    this->v4Motor->set_value(this->speed);
+  else
+    this->v5Motor->move(this->speed);
+}
+
+void Motor::setEncoder(pros::ADIEncoder* encoder) {
+  this->encoder = encoder;
+}
+
+std::int32_t Motor::getEncoderValue() {
+  if (this->motorType == v4) {
+    if (this->encoder != NULL)
+      return this->encoder->get_value();
+  } else {
+    std::uint32_t time = pros::millis();
+    return this->v5Motor->get_raw_position(&time);
+  }
+  return 0;
 }
 
 void Motor::periodicUpdate() {
   for (int i = 0; i < MAX_MOTORS; i++) {
-    motorInstances[i]->updateSlewRate();
+    //motorInstances[i]->updateSlewRate();
+    motorInstances[i]->move();
   }
 }
 
 Motor* Motor::getMotor(int motorPort) {
+  return motorInstances[motorPort - 1];
+}
+
+Motor* Motor::getMotor(Ports motorPort) {
   return motorInstances[motorPort - 1];
 }

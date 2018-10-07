@@ -35,6 +35,12 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
+#include <math.h>
+#include "Constants.h"
+#include "common.h"
+#include "abstractBaseClasses/Motor.h"
+#include "abstractBaseClasses/PIDController.h"
+#include "libIterativeRobot/subsystems/Subsystem.h"
 
 /**
  * You should add more #includes here
