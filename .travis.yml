@@ -1,0 +1,8 @@
+language: cpp
+sudo: true
+dist: trusty
+before_install:
+    - sudo add-apt-repository --yes ppa:team-gcc-arm-embedded/ppa
+    - sudo apt-get update
+    - sudo apt-get install --force-yes gcc-arm-embedded
+script: make
