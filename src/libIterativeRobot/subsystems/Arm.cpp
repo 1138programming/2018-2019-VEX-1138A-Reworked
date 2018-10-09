@@ -1,8 +1,6 @@
 #include "main.h"
 //#include "commands/StopArm.h"
 
-Arm* Arm::instance = 0;
-
 Arm::Arm() {
   // Get arm motors
   armMotor = Motor::getMotor(armPort);
@@ -47,12 +45,4 @@ void Arm::disablePID() {
 
 void Arm::enablePID() {
   armController->enabled = true;
-}
-
-Arm* Arm::getInstance() {
-    if (instance == 0) {
-      instance = new Arm();
-    }
-
-    return instance;
 }

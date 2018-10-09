@@ -16,7 +16,7 @@ class RobotBase {
     };
     RobotState lastState = RobotState::None;
     template<class RobotMain> static void _privateRunRobot() {
-      RobotMain* robotInstance = RobotMain::getInstance();
+      RobotMain* robotInstance = new RobotMain();
       while (true) {
         robotInstance->doOneCycle();
       }

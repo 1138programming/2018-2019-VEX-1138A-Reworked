@@ -7,7 +7,6 @@
 
 class Robot : public libIterativeRobot::RobotBase {
   private:
-    static Robot* instance;
   protected:
     void robotInit();
     void autonInit();
@@ -18,9 +17,15 @@ class Robot : public libIterativeRobot::RobotBase {
     void disabledPeriodic();
   public:
     Robot();
-    static Robot* getInstance();
 
-    static Base* robotBase;
+    // Pointers to every subsystem on the robot:
+    static Base* base;
+    static Arm*  arm;
+    static Claw* claw;
+
+    // Pointers to controllers
+    static pros::Controller* mainController;
+    static pros::Controller* partnerController;
 };
 
 

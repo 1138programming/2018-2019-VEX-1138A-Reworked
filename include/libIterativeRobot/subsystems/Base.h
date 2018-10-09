@@ -6,17 +6,14 @@
 
 class Base : public libIterativeRobot::Subsystem {
   private:
-    static Base* instance;
-
     // Base motors
     Motor* leftMotor;
     Motor* rightMotor;
 
-    Base();
   public:
     void initDefaultCommand();
     void move(int left, int right);
-    static Base* getInstance();
+    Base();
 };
 
 #endif // _SUBSYSTEMS_BASE_H_

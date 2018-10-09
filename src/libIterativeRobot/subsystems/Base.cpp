@@ -1,7 +1,5 @@
 #include "main.h"
 
-Base* Base::instance = 0;
-
 Base::Base() {
   // Set up motors
   leftMotor = Motor::getMotor(leftBasePort);
@@ -21,12 +19,4 @@ void Base::initDefaultCommand() {
 void Base::move(int left, int right) {
   leftMotor->setSpeed(left);
   rightMotor->setSpeed(right);
-}
-
-Base* Base::getInstance() {
-  if (instance == 0) {
-    instance = new Base();
-  }
-
-  return instance;
 }

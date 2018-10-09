@@ -6,14 +6,11 @@
 
 class Arm : public libIterativeRobot::Subsystem {
   private:
-    static Arm* instance;
-
     // Arm motors
     Motor* armMotor;
 
     PIDController* armController;
 
-    Arm();
   public:
     void initDefaultCommand();
     void move(int speed);
@@ -23,7 +20,7 @@ class Arm : public libIterativeRobot::Subsystem {
     void lock();
     void disablePID();
     void enablePID();
-    static Arm* getInstance();
+    Arm();
 };
 
 #endif // _SUBSYSTEMS_ARM_H_
