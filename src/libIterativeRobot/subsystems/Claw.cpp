@@ -1,12 +1,30 @@
-#include "libIterativeRobot/subsystems/Claw.h"
-#include "libIterativeRobot/commands/ExampleCommand.h"
+#include "main.h"
+//#include "commands/StopClaw.h"
+
+Claw* Claw::instance = 0;
 
 Claw::Claw() {
-  // If you want to set a default command to run when this subsystem
-  // is idle, uncomment and modify the following line of code:
-  // setDefaultCommand(new ExampleCommand());
+  // Get claw motors
+  clawMotor = Motor::getMotor(clawPort);
 }
 
 void Claw::initDefaultCommand() {
-  // Setup up a default command here
+  //setDefaultCommand(new StopClaw());
+}
+
+/**
+ * Move the claw
+ * @param speed - speed of the speed side
+ * @param right - speed of the right side
+ */
+void Claw::move(int speed) {
+  clawMotor->setSpeed(speed);
+}
+
+Claw* Claw::getInstance() {
+    if (instance == 0) {
+      instance = new Claw();
+    }
+
+    return instance;
 }

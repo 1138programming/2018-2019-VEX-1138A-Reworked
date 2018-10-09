@@ -6,10 +6,24 @@
 
 class Arm : public libIterativeRobot::Subsystem {
   private:
+    static Arm* instance;
 
+    // Arm motors
+    Motor* armMotor;
+
+    PIDController* armController;
+
+    Arm();
   public:
     void initDefaultCommand();
-    Arm();
+    void move(int speed);
+    void setSetpoint(int setpoint);
+    bool atSetpoint();
+    void loop();
+    void lock();
+    void disablePID();
+    void enablePID();
+    static Arm* getInstance();
 };
 
 #endif // _SUBSYSTEMS_ARM_H_

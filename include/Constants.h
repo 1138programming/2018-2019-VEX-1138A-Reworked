@@ -3,6 +3,8 @@
  * @brief Provides constants used throughout the entire code. Contains user-readable motor names
  */
 
+ #include "abstractBaseClasses/Motor.h"
+
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
@@ -12,14 +14,11 @@
 #define MAX_FOLLOWERS 3
 
 // Motor ports
-const int rightFrontBaseMotorPort = 1;
-const int rightBackBaseMotorPort = 2;
-const int leftFrontBaseMotorPort = 9;
-const int leftBackBaseMotorPort = 10;
+const int leftBasePort = 1;
+const int rightBasePort = 10;
 
-const int flywheelMotorPort = 7;
-const int frontCollectorMotorPort = 8;
-const int middleCollectorMotorPort = 6;
+const int armPort = 5;
+const int clawPort = 6;
 
 //Motor and encoder constants
 const int KMaxMotorSpeed = 127;

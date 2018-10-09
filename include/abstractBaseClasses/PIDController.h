@@ -8,7 +8,7 @@ class PIDController {
     float kP = 0;
     float kI = 0;
     float kD = 0;
-    Motor* outputMotor;
+    Motor* outputMotor; //
     float integral = 0;
     float derivative = 0;
     int error = 0;

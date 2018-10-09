@@ -1,13 +1,32 @@
-#include "libIterativeRobot/subsystems/Base.h"
-#include "libIterativeRobot/commands/ExampleCommand.h"
+#include "main.h"
+
+Base* Base::instance = 0;
 
 Base::Base() {
-  // If you want to set a default command to run when this subsystem
-  // is idle, uncomment and modify the following line of code:
-  // setDefaultCommand(new ExampleCommand());
+  // Set up motors
+  leftMotor = Motor::getMotor(leftBasePort);
+  rightMotor = Motor::getMotor(rightBasePort);
 }
 
 void Base::initDefaultCommand() {
   // Setup up a default command here
-  setDefaultCommand(new ExampleCommand());
+  //setDefaultCommand(new StopBase());
+}
+
+/**
+ * Move the base
+ * @param left - speed of the left side
+ * @param right - speed of the right side
+ */
+void Base::move(int left, int right) {
+  leftMotor->setSpeed(left);
+  rightMotor->setSpeed(right);
+}
+
+Base* Base::getInstance() {
+  if (instance == 0) {
+    instance = new Base();
+  }
+
+  return instance;
 }

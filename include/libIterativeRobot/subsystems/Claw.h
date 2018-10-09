@@ -6,10 +6,16 @@
 
 class Claw : public libIterativeRobot::Subsystem {
   private:
+    static Claw* instance;
 
+    // Claw motors
+    Motor* clawMotor;
+
+    Claw();
   public:
     void initDefaultCommand();
-    Claw();
+    void move(int speed);
+    static Claw* getInstance();
 };
 
 #endif // _SUBSYSTEMS_CLAW_H_
