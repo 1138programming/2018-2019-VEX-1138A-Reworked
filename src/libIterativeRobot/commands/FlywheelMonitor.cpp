@@ -19,8 +19,6 @@ void FlywheelMonitor::execute() {
   Robot::mainController->set_text(0, 0, "Flywheel");
   Robot::mainController->print(1, 0, "RPM: %f", Robot::flywheel->getFlywheelVelocity());
   Robot::mainController->print(2, 0, "Temp: %f", Robot::flywheel->getFlywheelTemperature());
-
-  Robot::flywheel->setFlywheel(0);
 }
 
 bool FlywheelMonitor::isFinished() {

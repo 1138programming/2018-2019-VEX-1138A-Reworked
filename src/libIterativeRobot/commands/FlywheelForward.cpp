@@ -16,11 +16,11 @@ void FlywheelForward::initialize() {
 
 void FlywheelForward::execute() {
   // Code that runs when this command is scheduled to run
-  Robot::mainController->set_text(0, 0, "Flywheel");
-  Robot::mainController->print(1, 0, "RPM: %f", Robot::flywheel->getFlywheelVelocity());
-  Robot::mainController->print(2, 0, "Temp: %f", Robot::flywheel->getFlywheelTemperature());
-
-  Robot::flywheel->setFlywheel(200);
+  if (Robot::flywheel->getFlywheelVelocity() > 0) {
+    Robot::flywheel->setFlywheel(0);
+  } else {
+    Robot::flywheel->setFlywheel(200);
+  }
 }
 
 bool FlywheelForward::isFinished() {

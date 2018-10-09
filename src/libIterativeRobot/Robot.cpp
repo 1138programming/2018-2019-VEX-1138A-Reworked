@@ -24,9 +24,9 @@ Robot::Robot() {
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
 
   libIterativeRobot::JoystickButton* flywheelForwardButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
-  flywheelForwardButton->whileHeld(new FlywheelForward());
+  flywheelForwardButton->whenPressed(new FlywheelForward());
   libIterativeRobot::JoystickButton* flywheelBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
-  flywheelBackwardsButton->whileHeld(new FlywheelBackwards());
+  flywheelBackwardsButton->whenPressed(new FlywheelBackwards());
 
   libIterativeRobot::JoystickButton* collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   collectorForwardsButton->whileHeld(new CollectorForward());
