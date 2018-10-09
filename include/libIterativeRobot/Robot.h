@@ -1,13 +1,17 @@
 #ifndef _ROBOT_H_
 #define _ROBOT_H_
 
+#include "api.h"
 #include "main.h"
 #include "RobotBase.h"
 #include "subsystems/Base.h"
+#include "subsystems/Collector.h"
+#include "subsystems/Flywheel.h"
 
 class Robot : public libIterativeRobot::RobotBase {
   private:
     static Robot* instance;
+
   protected:
     void robotInit();
     void autonInit();
@@ -20,7 +24,13 @@ class Robot : public libIterativeRobot::RobotBase {
     Robot();
     static Robot* getInstance();
 
+    // Robot subsystems
+
     static Base* robotBase;
+    static Collector* collector;
+    static Flywheel* flywheel;
+
+    static pros::Controller* mainController;
 };
 
 

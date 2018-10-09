@@ -30,6 +30,8 @@ MotorType Motor::getMotorType() {
   return this->motorType;
 }
 
+
+
 void Motor::setSpeed(int speed) {
   if (this->following)
     return;
@@ -93,6 +95,10 @@ void Motor::updateSlewRate() {
   int currSlewStep = this->targetSpeed - this->speed;
   currSlewStep = confineToRange(currSlewStep, -slewStep, slewStep); // This line may cause issues
   this->speed += currSlewStep;
+}
+
+pros::Motor* Motor::getMotorObject() {
+  return this->v5Motor;
 }
 
 void Motor::move() {

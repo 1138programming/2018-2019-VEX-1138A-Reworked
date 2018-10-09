@@ -52,6 +52,7 @@ class Motor {
     static void init();
     int getChannel();
     void updateSlewRate();
+    pros::Motor* getMotorObject();
     void move();
     void setEncoder(pros::ADIEncoder* encoder);
     std::int32_t getEncoderValue();

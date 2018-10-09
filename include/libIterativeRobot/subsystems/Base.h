@@ -4,11 +4,17 @@
 #include "./Subsystem.h"
 #include "api.h"
 
+#include "abstractBaseClasses/Motor.h"
+
 class Base : public libIterativeRobot::Subsystem {
   private:
-
+    Motor* leftFrontBaseMotor;
+    Motor* leftBackBaseMotor;
+    Motor* rightFrontBaseMotor;
+    Motor* rightBackBaseMotor;
   public:
     void initDefaultCommand();
+    void moveBase(int left, int right);
     Base();
 };
 
