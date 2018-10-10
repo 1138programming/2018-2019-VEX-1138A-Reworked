@@ -14,6 +14,8 @@ Base::Base() {
 }
 
 void Base::moveBase(int left, int right) {
+  left *= 2;
+  right *= 2;
   leftFrontBaseMotor->getMotorObject()->move_velocity(-left);
   leftBackBaseMotor->getMotorObject()->move_velocity(-left);
 

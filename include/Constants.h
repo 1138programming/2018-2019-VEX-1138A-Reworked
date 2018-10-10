@@ -17,6 +17,8 @@ const int rightBackBaseMotorPort = 2;
 const int leftFrontBaseMotorPort = 9;
 const int leftBackBaseMotorPort = 10;
 
+const int beaterPort = 5;
+
 const int flywheelMotorPort = 7;
 const int frontCollectorMotorPort = 8;
 const int middleCollectorMotorPort = 6;

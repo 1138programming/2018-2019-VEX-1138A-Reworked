@@ -1,37 +1,34 @@
-#include "libIterativeRobot/commands/FlywheelForward.h"
+#include "libIterativeRobot/commands/BeaterBackwards.h"
 #include "libIterativeRobot/Robot.h"
 
-FlywheelForward::FlywheelForward() {
-  requires(Robot::flywheel);
+BeaterBackwards::BeaterBackwards() {
+  requires(Robot::beater);
 }
 
-bool FlywheelForward::canRun() {
+bool BeaterBackwards::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void FlywheelForward::initialize() {
+void BeaterBackwards::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
 }
 
-void FlywheelForward::execute() {
+void BeaterBackwards::execute() {
   // Code that runs when this command is scheduled to run
-  if (Robot::flywheel->getFlywheelVelocity() > 0) {
-    Robot::flywheel->setFlywheel(0);
-  } else {
-    Robot::flywheel->setFlywheel(-200);
-  }
+
+  Robot::beater->runBeater(-200);
 }
 
-bool FlywheelForward::isFinished() {
+bool BeaterBackwards::isFinished() {
   return true; // This is the default va  lue anyways, so this method can be removed
 }
 
-void FlywheelForward::end() {
+void BeaterBackwards::end() {
   // Code that runs when isFinished() returns true.
 }
 
-void FlywheelForward::interrupted() {
+void BeaterBackwards::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

@@ -7,7 +7,6 @@
 
 class Collector : public libIterativeRobot::Subsystem {
   private:
-    Motor* middleCollectorMotor;
     Motor* frontCollectorMotor;
   public:
     void initDefaultCommand();

@@ -6,10 +6,16 @@
 #include "libIterativeRobot/commands/FlywheelBackwards.h"
 #include "libIterativeRobot/commands/CollectorForward.h"
 #include "libIterativeRobot/commands/CollectorBackwards.h"
+#include "libIterativeRobot/commands/MiddleCollectorForward.h"
+#include "libIterativeRobot/commands/MiddleCollectorBackwards.h"
+#include "libIterativeRobot/commands/BeaterForward.h"
+#include "libIterativeRobot/commands/BeaterBackwards.h"
 
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
 Collector* Robot::collector = 0;
+MiddleCollector* Robot::middleCollector = 0;
+Beater*    Robot::beater = 0;
 Flywheel*  Robot::flywheel  = 0;
 
 pros::Controller* Robot::mainController = 0;
@@ -19,6 +25,8 @@ Robot::Robot() {
   // Initialize any subsystems
   robotBase = new Base();
   collector = new Collector();
+  middleCollector = new MiddleCollector();
+  beater = new Beater();
   flywheel  = new Flywheel();
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
@@ -32,6 +40,16 @@ Robot::Robot() {
   collectorForwardsButton->whileHeld(new CollectorForward());
   libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
+
+  libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
+  middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
+  libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+  middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
+
+  libIterativeRobot::JoystickButton* beaterForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
+  beaterForwardsButton->whileHeld(new BeaterForward());
+  libIterativeRobot::JoystickButton* beaterBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
+  beaterBackwardsButton->whileHeld(new BeaterBackwards());
 }
 
 void Robot::robotInit() {

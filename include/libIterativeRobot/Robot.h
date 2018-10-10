@@ -6,6 +6,8 @@
 #include "RobotBase.h"
 #include "subsystems/Base.h"
 #include "subsystems/Collector.h"
+#include "subsystems/MiddleCollector.h"
+#include "subsystems/Beater.h"
 #include "subsystems/Flywheel.h"
 
 class Robot : public libIterativeRobot::RobotBase {
@@ -28,6 +30,8 @@ class Robot : public libIterativeRobot::RobotBase {
 
     static Base* robotBase;
     static Collector* collector;
+    static MiddleCollector* middleCollector;
+    static Beater* beater;
     static Flywheel* flywheel;
 
     static pros::Controller* mainController;

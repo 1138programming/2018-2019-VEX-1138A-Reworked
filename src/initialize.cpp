@@ -18,6 +18,7 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
+  Motor::init();
   libIterativeRobot::RobotBase::runRobot<Robot>();
 }
 

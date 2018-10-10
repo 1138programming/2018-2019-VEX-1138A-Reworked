@@ -1,8 +1,8 @@
 #include "main.h"
 
 Motor* Motor::motorInstances[MAX_MOTORS];
-pros::motor_gearset_e_t defaultGearset = pros::E_MOTOR_GEARSET_18;
-pros::motor_encoder_units_e_t defaultEncoderUnits = pros::E_MOTOR_ENCODER_COUNTS;
+const pros::motor_gearset_e_t Motor::defaultGearset = pros::E_MOTOR_GEARSET_18;
+const pros::motor_encoder_units_e_t Motor::defaultEncoderUnits = pros::E_MOTOR_ENCODER_COUNTS;
 
 Motor::Motor(std::uint8_t channel, MotorType motorType) {
   this->motorType = motorType;
