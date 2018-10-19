@@ -13,9 +13,35 @@ Base::Base() {
   rightBackBaseMotor = Motor::getMotor(rightBackBaseMotorPort);
 }
 
-void Base::moveBase(int left, int right) {
+void Base::toggleBase() {
+  baseReversed = !baseReversed;
+}
+
+void Base::toggleBaseSpeed() {
+  baseSlow = !baseSlow;
+}
+
+void Base::moveBase(int leftSpeed, int rightSpeed) {
+  double left = leftSpeed;
+  double right = rightSpeed;
   left *= 2;
   right *= 2;
+
+  if (baseReversed) {
+    int tmp;
+    tmp = left;
+    left = -right;
+    right = -tmp;
+  }
+
+  if (baseSlow) {
+    left = slowSpeedMultiplier * left;
+    right = slowSpeedMultiplier * right;
+  }
+
+  left = (int) left;
+  right = (int) right;
+
   leftFrontBaseMotor->getMotorObject()->move_velocity(-left);
   leftBackBaseMotor->getMotorObject()->move_velocity(-left);
 

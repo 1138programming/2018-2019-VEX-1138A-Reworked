@@ -18,9 +18,6 @@ void FlywheelRevUp::initialize() {
 
 void FlywheelRevUp::execute() {
   // Code that runs when this command is scheduled to run
-  Robot::mainController->set_text(0, 0, "Flywheel");
-  Robot::mainController->print(1, 0, "RPM: %f", Robot::flywheel->getFlywheelVelocity());
-  Robot::mainController->print(2, 0, "Temp: %f", Robot::flywheel->getFlywheelTemperature());
 }
 
 bool FlywheelRevUp::isFinished() {

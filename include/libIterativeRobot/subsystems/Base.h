@@ -12,8 +12,13 @@ class Base : public libIterativeRobot::Subsystem {
     Motor* leftBackBaseMotor;
     Motor* rightFrontBaseMotor;
     Motor* rightBackBaseMotor;
+
+    bool baseReversed = false;
+    bool baseSlow = false;
   public:
     void initDefaultCommand();
+    void toggleBase();
+    void toggleBaseSpeed();
     void moveBase(int left, int right);
     void moveBaseTo(int leftTarget, int rightTarget);
     bool baseAtTarget();

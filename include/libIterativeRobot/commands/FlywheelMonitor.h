@@ -4,6 +4,8 @@
 #include "libIterativeRobot/commands/Command.h"
 
 class FlywheelMonitor : public libIterativeRobot::Command {
+  private:
+    int lastTime;
   public:
     bool canRun();
     void initialize();

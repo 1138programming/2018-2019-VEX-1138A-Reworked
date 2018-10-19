@@ -36,6 +36,8 @@ const unsigned char exampleIMEAddress = 0;
 const int exampleEncoderTopPort = 0;
 const int exampleEncoderBottomPort = 1;
 
+const double slowSpeedMultiplier = 0.65;
+
 // Global things that we need
 
 #endif
