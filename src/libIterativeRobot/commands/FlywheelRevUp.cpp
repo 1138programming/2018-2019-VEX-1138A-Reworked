@@ -13,7 +13,7 @@ bool FlywheelRevUp::canRun() {
 void FlywheelRevUp::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  Robot::flywheel->setFlywheel(200);
+  Robot::flywheel->setFlywheel(-200);
 }
 
 void FlywheelRevUp::execute() {
@@ -21,7 +21,7 @@ void FlywheelRevUp::execute() {
 }
 
 bool FlywheelRevUp::isFinished() {
-  return false; // This is the default va  lue anyways, so this method can be removed
+  return abs(Robot::flywheel->getFlywheelVelocity()) > 170; // This is the default va  lue anyways, so this method can be removed
 }
 
 void FlywheelRevUp::end() {

@@ -13,6 +13,8 @@
 #include "libIterativeRobot/commands/BaseToggle.h"
 #include "libIterativeRobot/commands/BaseSpeedToggle.h"
 
+#include "libIterativeRobot/commands/AutonGroup1.h"
+
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
 Collector* Robot::collector = 0;
@@ -66,6 +68,11 @@ void Robot::robotInit() {
 
 void Robot::autonInit() {
   printf("Default autonInit() function\n");
+  if (autonGroup != NULL) {
+    delete autonGroup;
+  }
+  autonGroup = new AutonGroup1();
+  autonGroup->run();
 }
 
 void Robot::autonPeriodic() {

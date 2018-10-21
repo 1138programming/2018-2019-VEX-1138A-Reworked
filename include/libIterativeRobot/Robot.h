@@ -4,6 +4,7 @@
 #include "api.h"
 #include "main.h"
 #include "RobotBase.h"
+#include "commands/CommandGroup.h"
 #include "subsystems/Base.h"
 #include "subsystems/Collector.h"
 #include "subsystems/MiddleCollector.h"
@@ -33,6 +34,9 @@ class Robot : public libIterativeRobot::RobotBase {
     static MiddleCollector* middleCollector;
     static Beater* beater;
     static Flywheel* flywheel;
+
+    // So that we don't leak memory
+    libIterativeRobot::CommandGroup* autonGroup = NULL;
 
     static pros::Controller* mainController;
 };
