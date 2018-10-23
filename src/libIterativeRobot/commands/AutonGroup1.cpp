@@ -13,11 +13,14 @@ AutonGroup1::AutonGroup1() {
   addSequentialCommand(new FlywheelRevUp());
   addSequentialCommand(new CollectorMiddleForwardTimed(500));
 
+  addSequentialCommand(new DriveToPosition(2500, -2500));
+  addSequentialCommand(new DriveToPosition(-2500, 2500));
+
   addSequentialCommand(new DriveToPosition(-650, -650));
   addSequentialCommand(new DriveToPosition(2500, -2500));
   addParallelCommand(new CollectorForwardTimed(2500));
-  //addSequentialCommand(new CollectorMiddleForwardTimed(1250));
-  //addParallelCommand(new CollectorForwardTimed(500));
+  addSequentialCommand(new CollectorMiddleForwardTimed(1250));
+  addParallelCommand(new CollectorForwardTimed(500));
 
   //addSequentialCommand(new DriveToPosition(1000, 1000));
   //addParallelCommand(new FlywheelRevUp());

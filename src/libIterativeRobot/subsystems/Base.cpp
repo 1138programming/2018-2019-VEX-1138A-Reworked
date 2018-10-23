@@ -11,6 +11,11 @@ Base::Base() {
 
   rightFrontBaseMotor = Motor::getMotor(rightFrontBaseMotorPort);
   rightBackBaseMotor = Motor::getMotor(rightBackBaseMotorPort);
+
+  leftFrontBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  rightFrontBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  leftBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  rightBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
 void Base::toggleBase() {
@@ -22,8 +27,8 @@ void Base::toggleBaseSpeed() {
 }
 
 void Base::moveBase(int leftSpeed, int rightSpeed) {
-  double left = leftSpeed;
-  double right = rightSpeed;
+  double left = threshold(leftSpeed);
+  double right = threshold(rightSpeed);
   left *= 2;
   right *= 2;
 
