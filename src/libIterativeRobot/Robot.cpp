@@ -26,6 +26,7 @@ pros::Controller* Robot::mainController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
+  autonGroup = NULL;
   // Initialize any subsystems
   robotBase = new Base();
   collector = new Collector();
