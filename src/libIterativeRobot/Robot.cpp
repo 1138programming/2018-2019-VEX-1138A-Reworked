@@ -12,6 +12,8 @@
 #include "libIterativeRobot/commands/MoveArmFor.h"
 #include "libIterativeRobot/commands/MoveArmTo.h"
 
+#include "libIterativeRobot/commands/AutonGroup1.h"
+
 Base*  Robot::base = 0;
 Arm*   Robot::arm = 0;
 Claw*  Robot::claw = 0;
@@ -21,6 +23,7 @@ pros::Controller* Robot::partnerController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
+  autonGroup = NULL;
   // Initialize any subsystems
   base = new Base();
   arm  = new Arm();
@@ -64,13 +67,18 @@ void Robot::robotInit() {
 
 void Robot::autonInit() {
   printf("Default autonInit() function\n");
+  if (autonGroup != NULL) {
+    delete autonGroup;
+  }
+  autonGroup = new AutonGroup1();
+  autonGroup->run();
 }
 
 void Robot::autonPeriodic() {
-  // printf("Default autonPeriodic() function\n");
+  //printf("Default autonPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
-  Motor::periodicUpdate();
-  PIDController::loopAll();
+  //Motor::periodicUpdate();
+  //PIDController::loopAll();
 }
 
 void Robot::teleopInit() {

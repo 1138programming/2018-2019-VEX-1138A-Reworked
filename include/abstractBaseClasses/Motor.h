@@ -29,7 +29,7 @@ class Motor {
     pros::motor_gearset_e_t gearset; // v5 motor gearset
     pros::motor_encoder_units_e_t encoderUnits; // v5 motor encoder units
 
-    int targetSpeed; // Used by updateSlew Rate
+    int currSpeed; // Used by updateSlew Rate
     int speed; // Speed of the motor
     float multiplier; // Applied to speed
     int threshold = 5;
@@ -72,7 +72,7 @@ class Motor {
     MotorType getMotorType(); // Gets the type of motor
 
     // These functions are called repeatedly, updating the motor object
-    void updateSlewRate(); // Doesn't work
+    int updateSlewRate(int targetSpeed); // Doesn't work
     void move(); // Applies the current speed to the motor
     static void periodicUpdate(); // Updates all motors. Calls the move function on all motors
 };

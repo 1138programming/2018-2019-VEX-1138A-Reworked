@@ -4,6 +4,7 @@
 #include "main.h"
 #include "RobotBase.h"
 #include "subsystems/Base.h"
+#include "commands/CommandGroup.h"
 
 class Robot : public libIterativeRobot::RobotBase {
   private:
@@ -22,6 +23,8 @@ class Robot : public libIterativeRobot::RobotBase {
     static Base* base;
     static Arm*  arm;
     static Claw* claw;
+
+    libIterativeRobot::CommandGroup* autonGroup = NULL;
 
     // Pointers to controllers
     static pros::Controller* mainController;

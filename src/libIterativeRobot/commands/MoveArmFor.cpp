@@ -17,6 +17,8 @@ bool MoveArmFor::canRun() {
 void MoveArmFor::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  printf("Initiating move arm\n");
+  pros::delay(1000);
   startTime = pros::millis();
 }
 

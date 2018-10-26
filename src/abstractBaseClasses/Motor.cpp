@@ -136,18 +136,15 @@ MotorType Motor::getMotorType() {
 }
 
 // doesn't work
-void Motor::updateSlewRate() {
+int Motor::updateSlewRate(int targetSpeed) {
   // A bit of motor slewing to make sure that we don't stall
-  int currSlewStep = this->targetSpeed - this->speed;
-  currSlewStep = confineToRange(currSlewStep, -slewStep, slewStep); // This line may cause issues
-  this->speed += currSlewStep;
 }
 
 void Motor::move() {
-  if (this->motorType == v4)
-    this->v4Motor->set_value(this->speed);
+  if (motorType == v4)
+    v4Motor->set_value(updateSlewRate(speed));
   else
-    this->v5Motor->move(this->speed);
+    v5Motor->move(speed);
 }
 
 void Motor::periodicUpdate() {
