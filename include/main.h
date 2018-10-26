@@ -42,13 +42,6 @@
 #include "abstractBaseClasses/Motor.h"
 #include "abstractBaseClasses/PIDController.h"
 
-// Subsystems
-#include "libIterativeRobot/subsystems/Subsystem.h"
-#include "libIterativeRobot/subsystems/Arm.h"
-#include "libIterativeRobot/subsystems/Base.h"
-#include "libIterativeRobot/subsystems/Claw.h"
-#include "libIterativeRobot/subsystems/ExampleSubsystem.h"
-
 /**
  * You should add more #includes here
  */

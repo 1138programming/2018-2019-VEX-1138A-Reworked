@@ -3,62 +3,104 @@
 #include "libIterativeRobot/events/JoystickButton.h"
 #include "libIterativeRobot/events/JoystickChannel.h"
 
-#include "libIterativeRobot/commands/StopBase.h"
-#include "libIterativeRobot/commands/StopArm.h"
-#include "libIterativeRobot/commands/StopClaw.h"
-#include "libIterativeRobot/commands/DriveWithJoy.h"
-#include "libIterativeRobot/commands/ArmControl.h"
-#include "libIterativeRobot/commands/ClawControl.h"
-#include "libIterativeRobot/commands/MoveArmFor.h"
-#include "libIterativeRobot/commands/MoveArmTo.h"
+#include "libIterativeRobot/commands/FlywheelForward.h"
+#include "libIterativeRobot/commands/FlywheelBackwards.h"
+#include "libIterativeRobot/commands/CollectorForward.h"
+#include "libIterativeRobot/commands/CollectorBackwards.h"
+#include "libIterativeRobot/commands/MiddleCollectorForward.h"
+#include "libIterativeRobot/commands/MiddleCollectorBackwards.h"
+#include "libIterativeRobot/commands/BeaterForward.h"
+#include "libIterativeRobot/commands/BeaterBackwards.h"
+#include "libIterativeRobot/commands/BaseToggle.h"
+#include "libIterativeRobot/commands/BaseSpeedToggle.h"
 
 #include "libIterativeRobot/commands/AutonGroup1.h"
 
-Base*  Robot::base = 0;
-Arm*   Robot::arm = 0;
-Claw*  Robot::claw = 0;
+Robot*     Robot::instance  = 0;
+Base*      Robot::robotBase = 0;
+Collector* Robot::collector = 0;
+MiddleCollector* Robot::middleCollector = 0;
+Beater*    Robot::beater = 0;
+Flywheel*  Robot::flywheel  = 0;
 
 pros::Controller* Robot::mainController = 0;
-pros::Controller* Robot::partnerController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
-  autonGroup = NULL;
   // Initialize any subsystems
-  base = new Base();
-  arm  = new Arm();
-  claw = new Claw();
+  robotBase = new Base();
+  collector = new Collector();
+  middleCollector = new MiddleCollector();
+  beater = new Beater();
+  flywheel  = new Flywheel();
+#ifndef _ROBOT_H_
+#define _ROBOT_H_
+
+#include "main.h"
+#include "RobotBase.h"
+#include "commands/CommandGroup.h"
+#include "subsystems/Base.h"
+#include "subsystems/Collector.h"
+#include "subsystems/MiddleCollector.h"
+#include "subsystems/Beater.h"
+#include "subsystems/Flywheel.h"
+
+class Robot : public libIterativeRobot::RobotBase {
+  private:
+  protected:
+    void robotInit();
+    void autonInit();
+    void autonPeriodic();
+    void teleopInit();
+    void teleopPeriodic();
+    void disabledInit();
+    void disabledPeriodic();
+  public:
+    Robot();
+
+    // Robot subsystems
+    static Base* robotBase;
+    static Collector* collector;
+    static MiddleCollector* middleCollector;
+    static Beater* beater;
+    static Flywheel* flywheel;
+
+    // So that we don't leak memory
+    libIterativeRobot::CommandGroup* autonGroup = NULL;
+
+    static pros::Controller* mainController;
+};
+
+
+#endif // _ROBOT_H_
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
-  partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
 
-  // Define buttons and channels
-  libIterativeRobot::JoystickChannel* RightY = new libIterativeRobot::JoystickChannel(mainController, pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-  libIterativeRobot::JoystickChannel* LeftY = new libIterativeRobot::JoystickChannel(mainController, pros::E_CONTROLLER_ANALOG_LEFT_Y);
-  libIterativeRobot::JoystickButton* ArmUp = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
-  libIterativeRobot::JoystickButton* ArmDown = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  libIterativeRobot::JoystickButton* ClawOpen = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
-  libIterativeRobot::JoystickButton* ClawClose = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
-  libIterativeRobot::JoystickButton* ArmToStart = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
-  libIterativeRobot::JoystickButton* ArmToHorizontal = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_RIGHT);
-  libIterativeRobot::JoystickButton* ArmToTop = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
-  libIterativeRobot::JoystickButton* ArmToBack = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_LEFT);
+  libIterativeRobot::JoystickButton* flywheelForwardButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
+  flywheelForwardButton->whenPressed(new FlywheelForward());
+  libIterativeRobot::JoystickButton* flywheelBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
+  flywheelBackwardsButton->whenPressed(new FlywheelBackwards());
 
-  // Add commands to be run to buttons
-  DriveWithJoy* driveCommand = new DriveWithJoy();
-  RightY->whilePastThreshold(driveCommand);
-  LeftY->whilePastThreshold(driveCommand);
+  libIterativeRobot::JoystickButton* collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
+  collectorForwardsButton->whileHeld(new CollectorForward());
+  libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+  collectorBackwardsButton->whileHeld(new CollectorBackwards());
 
-  ArmUp->whileHeld(new ArmControl(true));
-  ArmDown->whileHeld(new ArmControl(false));
+  libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
+  middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
+  libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
+  middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
 
-  ClawOpen->whileHeld(new ClawControl(true));
-  ClawClose->whileHeld(new ClawControl(false));
+  libIterativeRobot::JoystickButton* beaterForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
+  beaterForwardsButton->whileHeld(new BeaterForward());
+  libIterativeRobot::JoystickButton* beaterBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
+  beaterBackwardsButton->whileHeld(new BeaterBackwards());
 
-  ArmToStart->whenPressed(new MoveArmTo(0));
-  ArmToHorizontal->whenPressed(new MoveArmTo(680));
-  ArmToTop->whenPressed(new MoveArmTo(1520));
-  ArmToBack->whenPressed(new MoveArmTo(2360));
+  libIterativeRobot::JoystickButton* toggleButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);
+  toggleButton->whenPressed(new BaseToggle());
+
+  libIterativeRobot::JoystickButton* speedToggleButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_A);
+  speedToggleButton->whenPressed(new BaseSpeedToggle());
 }
 
 void Robot::robotInit() {
@@ -75,7 +117,7 @@ void Robot::autonInit() {
 }
 
 void Robot::autonPeriodic() {
-  //printf("Default autonPeriodic() function\n");
+  printf("Default autonPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
   //Motor::periodicUpdate();
   //PIDController::loopAll();

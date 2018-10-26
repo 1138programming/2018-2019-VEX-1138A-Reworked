@@ -135,6 +135,10 @@ MotorType Motor::getMotorType() {
   return motorType;
 }
 
+pros::Motor* Motor::getMotorObject() {
+  return this->v5Motor;
+}
+
 // doesn't work
 int Motor::updateSlewRate(int targetSpeed) {
   // A bit of motor slewing to make sure that we don't stall

@@ -71,6 +71,8 @@ class Motor {
     std::int32_t getEncoderValue(); // Gets the encoder value of the motor
     MotorType getMotorType(); // Gets the type of motor
 
+    pros::Motor* getMotorObject();
+
     // These functions are called repeatedly, updating the motor object
     int updateSlewRate(int targetSpeed); // Doesn't work
     void move(); // Applies the current speed to the motor
