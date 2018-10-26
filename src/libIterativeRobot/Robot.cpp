@@ -88,8 +88,8 @@ void Robot::teleopInit() {
 void Robot::teleopPeriodic() {
   //printf("Default teleopPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
-  Motor::periodicUpdate();
-  PIDController::loopAll();
+  //Motor::periodicUpdate();
+  //PIDController::loopAll();
 }
 
 void Robot::disabledInit() {
