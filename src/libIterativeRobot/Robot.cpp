@@ -77,7 +77,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new AutonGroup1();
+  autonGroup = new AutonGroup2();
   autonGroup->run();
 }
 
