@@ -30,6 +30,7 @@ bool CollectorForwardTimed::isFinished() {
 
 void CollectorForwardTimed::end() {
   // Code that runs when isFinished() returns true.
+  Robot::collector->runCollector(0);
 }
 
 void CollectorForwardTimed::interrupted() {

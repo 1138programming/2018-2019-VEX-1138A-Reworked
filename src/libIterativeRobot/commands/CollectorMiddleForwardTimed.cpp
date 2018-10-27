@@ -31,6 +31,7 @@ bool CollectorMiddleForwardTimed::isFinished() {
 
 void CollectorMiddleForwardTimed::end() {
   // Code that runs when isFinished() returns true.
+  Robot::middleCollector->runMiddleCollector(0);
 }
 
 void CollectorMiddleForwardTimed::interrupted() {

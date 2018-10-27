@@ -20,7 +20,7 @@ class Base : public libIterativeRobot::Subsystem {
     void toggleBase();
     void toggleBaseSpeed();
     void moveBase(int left, int right);
-    void moveBaseTo(int leftTarget, int rightTarget);
+    void moveBaseTo(int leftTarget, int rightTarget, int motorSpeed = 0);
     bool baseAtTarget();
     Base();
 };

@@ -21,7 +21,7 @@ void FlywheelRevUp::execute() {
 }
 
 bool FlywheelRevUp::isFinished() {
-  return abs(Robot::flywheel->getFlywheelVelocity()) > 170; // This is the default va  lue anyways, so this method can be removed
+  return abs(Robot::flywheel->getFlywheelVelocity()) > 180; // This is the default va  lue anyways, so this method can be removed
 }
 
 void FlywheelRevUp::end() {

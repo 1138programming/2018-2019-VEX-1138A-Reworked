@@ -12,18 +12,47 @@ AutonGroup1::AutonGroup1() {
 
   addSequentialCommand(new FlywheelRevUp());
   addSequentialCommand(new CollectorMiddleForwardTimed(500));
+  addSequentialCommand(new DelayCommand(150));
 
-  addSequentialCommand(new DriveToPosition(2750, -2750));
+  addSequentialCommand(new DriveToPosition(3050, -3050));
   //addSequentialCommand(new DelayCommand(500));
-  addSequentialCommand(new DriveToPosition(-2750, 2750));
+  addSequentialCommand(new DelayCommand(150));
 
-  //addSequentialCommand(new DriveToPosition(-650, -650));
-  //addSequentialCommand(new DriveToPosition(2500, -2500));
-  //addParallelCommand(new CollectorForwardTimed(2500));
-  //addSequentialCommand(new CollectorMiddleForwardTimed(1250));
-  //addParallelCommand(new CollectorForwardTimed(500));
+  if (false) {
+    addSequentialCommand(new DriveToPosition(-3400, 3400));
+    addSequentialCommand(new DelayCommand(250));
 
-  //addSequentialCommand(new DriveToPosition(1000, 1000));
-  //addParallelCommand(new FlywheelRevUp());
-  //addSequentialCommand(new CollectorMiddleForwardTimed(1000));
+    // Turn and move forward
+    addSequentialCommand(new DriveToPosition(-590, -590));
+    addSequentialCommand(new DelayCommand(150));
+    addSequentialCommand(new DriveToPosition(2700, -2700));
+    addParallelCommand(new CollectorForwardTimed(1800));
+    addSequentialCommand(new DelayCommand(150));
+
+    if (false) {
+      // Now we move forward
+      addSequentialCommand(new CollectorMiddleForwardTimed(500));
+      addParallelCommand(new CollectorForwardTimed(500));
+
+      addSequentialCommand(new DriveToPosition(-400, 400));
+
+      addSequentialCommand(new DriveToPosition(700, 700));
+      addSequentialCommand(new DriveToPosition(-1250, 1250, 200));
+    } else {
+      addSequentialCommand(new DriveToPosition(-700, 700));
+      addSequentialCommand(new DelayCommand(150));
+      addSequentialCommand(new DriveToPosition(850, 850));
+      addSequentialCommand(new DelayCommand(150));
+      addSequentialCommand(new DriveToPosition(600, -600));
+      addSequentialCommand(new FlywheelRevUp());
+      addSequentialCommand(new DelayCommand(250));
+      addSequentialCommand(new CollectorMiddleForwardTimed(1500));
+      addParallelCommand(new CollectorForwardTimed(500));
+    }
+  } else {
+    addSequentialCommand(new DriveToPosition(-4850, 4850));
+    addSequentialCommand(new DriveToPosition(-950, -950));
+    addSequentialCommand(new DriveToPosition(3700, -3700, 200));
+  }
+
 }

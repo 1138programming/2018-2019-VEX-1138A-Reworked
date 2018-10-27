@@ -36,7 +36,7 @@ class Robot : public libIterativeRobot::RobotBase {
     static Flywheel* flywheel;
 
     // So that we don't leak memory
-    libIterativeRobot::CommandGroup* autonGroup = NULL;
+    libIterativeRobot::CommandGroup* autonGroup;
 
     static pros::Controller* mainController;
 };

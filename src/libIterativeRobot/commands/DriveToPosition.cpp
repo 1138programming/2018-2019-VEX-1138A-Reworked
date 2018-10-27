@@ -5,6 +5,14 @@ DriveToPosition::DriveToPosition(int leftTarget, int rightTarget) {
   requires(Robot::robotBase);
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
+  this->motorSpeed = 0;
+}
+
+DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed) {
+  requires(Robot::robotBase);
+  this->leftTarget = leftTarget;
+  this->rightTarget = rightTarget;
+  this->motorSpeed = motorSpeed;
 }
 
 bool DriveToPosition::canRun() {
@@ -15,7 +23,7 @@ bool DriveToPosition::canRun() {
 void DriveToPosition::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  Robot::robotBase->moveBaseTo(leftTarget, rightTarget);
+  Robot::robotBase->moveBaseTo(leftTarget, rightTarget, motorSpeed);
 }
 
 void DriveToPosition::execute() {

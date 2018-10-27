@@ -33,46 +33,6 @@ Robot::Robot() {
   middleCollector = new MiddleCollector();
   beater = new Beater();
   flywheel  = new Flywheel();
-#ifndef _ROBOT_H_
-#define _ROBOT_H_
-
-#include "main.h"
-#include "RobotBase.h"
-#include "commands/CommandGroup.h"
-#include "subsystems/Base.h"
-#include "subsystems/Collector.h"
-#include "subsystems/MiddleCollector.h"
-#include "subsystems/Beater.h"
-#include "subsystems/Flywheel.h"
-
-class Robot : public libIterativeRobot::RobotBase {
-  private:
-  protected:
-    void robotInit();
-    void autonInit();
-    void autonPeriodic();
-    void teleopInit();
-    void teleopPeriodic();
-    void disabledInit();
-    void disabledPeriodic();
-  public:
-    Robot();
-
-    // Robot subsystems
-    static Base* robotBase;
-    static Collector* collector;
-    static MiddleCollector* middleCollector;
-    static Beater* beater;
-    static Flywheel* flywheel;
-
-    // So that we don't leak memory
-    libIterativeRobot::CommandGroup* autonGroup = NULL;
-
-    static pros::Controller* mainController;
-};
-
-
-#endif // _ROBOT_H_
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
 
@@ -101,6 +61,8 @@ class Robot : public libIterativeRobot::RobotBase {
 
   libIterativeRobot::JoystickButton* speedToggleButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_A);
   speedToggleButton->whenPressed(new BaseSpeedToggle());
+
+  autonGroup = NULL;
 }
 
 void Robot::robotInit() {
@@ -108,33 +70,45 @@ void Robot::robotInit() {
 }
 
 void Robot::autonInit() {
-  printf("Default autonInit() function\n");
+  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
+  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
   if (autonGroup != NULL) {
     delete autonGroup;
+    autonGroup = NULL;
   }
   autonGroup = new AutonGroup1();
   autonGroup->run();
 }
 
 void Robot::autonPeriodic() {
-  printf("Default autonPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
   //Motor::periodicUpdate();
   //PIDController::loopAll();
 }
 
 void Robot::teleopInit() {
+  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
+  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
+
+  robotBase->initDefaultCommand();
+  collector->initDefaultCommand();
+  middleCollector->initDefaultCommand();
+  beater->initDefaultCommand();
+  flywheel->initDefaultCommand();
+
   printf("Default teleopInit() function\n");
 }
 
 void Robot::teleopPeriodic() {
-  //printf("Default teleopPeriodic() function\n");
+  printf("Default teleopPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
   //Motor::periodicUpdate();
   //PIDController::loopAll();
 }
 
 void Robot::disabledInit() {
+  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
+  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
   printf("Default disabledInit() function\n");
 }
 
