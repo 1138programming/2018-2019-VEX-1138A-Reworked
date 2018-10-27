@@ -52,7 +52,7 @@ AutonGroup1::AutonGroup1() {
   } else {
     addSequentialCommand(new DriveToPosition(-4850, 4850));
     addSequentialCommand(new DriveToPosition(-950, -950));
-    addSequentialCommand(new DriveToPosition(3700, -3700, 200));
+    addSequentialCommand(new DriveToPosition(4000, -4000, 200));
   }
 
 }
