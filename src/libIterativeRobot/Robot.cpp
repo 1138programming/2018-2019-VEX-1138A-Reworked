@@ -15,6 +15,7 @@
 #include "libIterativeRobot/commands/BaseSpeedToggle.h"
 
 #include "libIterativeRobot/commands/AutonGroup1.h"
+#include "libIterativeRobot/commands/AutonGroup2.h"
 
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
@@ -76,7 +77,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new AutonGroup1();
+  autonGroup = new AutonGroup2();
   autonGroup->run();
 }
 
