@@ -18,7 +18,7 @@ AutonGroup1::AutonGroup1() {
   //addSequentialCommand(new DelayCommand(500));
   addSequentialCommand(new DelayCommand(150));
 
-  if (false) {
+  if (true) { // Two falses for both
     addSequentialCommand(new DriveToPosition(-3400, 3400));
     addSequentialCommand(new DelayCommand(250));
 
@@ -29,7 +29,7 @@ AutonGroup1::AutonGroup1() {
     addParallelCommand(new CollectorForwardTimed(1800));
     addSequentialCommand(new DelayCommand(150));
 
-    if (false) {
+    if (true) {
       // Now we move forward
       addSequentialCommand(new CollectorMiddleForwardTimed(500));
       addParallelCommand(new CollectorForwardTimed(500));

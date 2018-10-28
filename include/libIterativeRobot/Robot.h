@@ -39,6 +39,7 @@ class Robot : public libIterativeRobot::RobotBase {
     libIterativeRobot::CommandGroup* autonGroup;
 
     static pros::Controller* mainController;
+    static pros::Controller* partnerController;
 };
 
 

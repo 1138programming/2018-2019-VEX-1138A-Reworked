@@ -14,8 +14,7 @@
 #include "libIterativeRobot/commands/BaseToggle.h"
 #include "libIterativeRobot/commands/BaseSpeedToggle.h"
 
-#include "libIterativeRobot/commands/AutonGroup1.h"
-#include "libIterativeRobot/commands/AutonGroup2.h"
+#include "libIterativeRobot/commands/AutonGroup4.h"
 
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
@@ -25,6 +24,7 @@ Beater*    Robot::beater = 0;
 Flywheel*  Robot::flywheel  = 0;
 
 pros::Controller* Robot::mainController = 0;
+pros::Controller* Robot::partnerController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
@@ -36,20 +36,21 @@ Robot::Robot() {
   flywheel  = new Flywheel();
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
+  partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
 
-  libIterativeRobot::JoystickButton* flywheelForwardButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
+  libIterativeRobot::JoystickButton* flywheelForwardButton = new libIterativeRobot::JoystickButton(partnerController, pros::E_CONTROLLER_DIGITAL_UP);
   flywheelForwardButton->whenPressed(new FlywheelForward());
-  libIterativeRobot::JoystickButton* flywheelBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
+  libIterativeRobot::JoystickButton* flywheelBackwardsButton = new libIterativeRobot::JoystickButton(partnerController, pros::E_CONTROLLER_DIGITAL_DOWN);
   flywheelBackwardsButton->whenPressed(new FlywheelBackwards());
 
-  libIterativeRobot::JoystickButton* collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
+  libIterativeRobot::JoystickButton* collectorForwardsButton = new libIterativeRobot::JoystickButton(partnerController, pros::E_CONTROLLER_DIGITAL_L2);
   collectorForwardsButton->whileHeld(new CollectorForward());
-  libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+  libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(partnerController, pros::E_CONTROLLER_DIGITAL_L1);
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
 
-  libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
+  libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(partnerController, pros::E_CONTROLLER_DIGITAL_R2);
   middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
-  libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
+  libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(partnerController, pros::E_CONTROLLER_DIGITAL_R1);
   middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
 
   libIterativeRobot::JoystickButton* beaterForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
@@ -77,7 +78,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new AutonGroup2();
+  autonGroup = new AutonGroup4();
   autonGroup->run();
 }
 
