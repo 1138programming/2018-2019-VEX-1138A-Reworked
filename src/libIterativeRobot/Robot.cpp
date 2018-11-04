@@ -78,7 +78,22 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new AutonGroup4();
+
+  autonChooser->uninit();
+  switch (autonChooser->getAutonChoice()) {
+    case 0:
+      autonGroup = new AutonGroup1();
+      break;
+    case 1:
+      autonGroup = new AutonGroup2();
+      break;
+    case 2:
+      autonGroup = new AutonGroup3();
+      break;
+    case 3:
+      autonGroup = new AutonGroup4();
+      break;
+  }
   autonGroup->run();
 }
 
@@ -98,6 +113,7 @@ void Robot::teleopInit() {
   beater->initDefaultCommand();
   flywheel->initDefaultCommand();
 
+  autonChooser->init();
   printf("Default teleopInit() function\n");
 }
 
@@ -111,6 +127,7 @@ void Robot::teleopPeriodic() {
 void Robot::disabledInit() {
   libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
   libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
+  autonChooser->uninit();
   printf("Default disabledInit() function\n");
 }
 
