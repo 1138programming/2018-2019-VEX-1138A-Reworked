@@ -13,6 +13,12 @@ class Base : public libIterativeRobot::Subsystem {
     Motor* rightFrontBaseMotor;
     Motor* rightBackBaseMotor;
 
+    pros::ADIGyro* baseGyro;
+
+    pros::ADIAccelerometer* baseAccelerometerX;
+    pros::ADIAccelerometer* baseAccelerometerY;
+    pros::ADIAccelerometer* baseAccelerometerZ;
+
     bool baseSlow = false;
   public:
     void initDefaultCommand();

@@ -55,6 +55,7 @@ class Motor {
   public:
     // These functions change something about the motor object
     void setSpeed(int speed); // Sets the speed of the motor
+    void moveTo(int target, int motorSpeed = 150);
     void setThreshold(int threshold); // Sets a threshold for the motor's speed
     void reverse(); // Reverses the motor
     void setMultiplier(float multiplier); // Sets a multiplier to apply to the motor's speed

@@ -72,6 +72,14 @@ void Motor::setSpeed(int speed) {
   }
 }
 
+void Motor::moveTo(int target, int motorSpeed) {
+  if (following) {
+    return;
+  }
+
+  v5Motor->move_relative(target * (abs(multiplier) / multiplier), motorSpeed);
+}
+
 void Motor::setThreshold(int threshold) {
   this->threshold = threshold;
 }
@@ -125,10 +133,10 @@ std::int32_t Motor::getEncoderValue() {
   // encoder value if it exists.
   if (this->motorType == v4) {
     if (this->encoder != NULL) {
-      return this->encoder->get_value();
+      return this->encoder->get_value() * abs(multiplier) / multiplier;
     }
   } else {
-    return this->v5Motor->get_position();
+    return this->v5Motor->get_position() * abs(multiplier) / multiplier;
   }
   return 0;
 }
