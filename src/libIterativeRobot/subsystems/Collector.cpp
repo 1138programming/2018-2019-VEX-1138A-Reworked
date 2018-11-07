@@ -3,11 +3,12 @@
 
 Collector::Collector() {
   frontCollectorMotor = Motor::getMotor(frontCollectorMotorPort);
+  frontCollectorMotor->reverse();
   // Slaving will be tested after initial test
 }
 
 void Collector::runCollector(int velocity) {
-  frontCollectorMotor->getMotorObject()->move_velocity(-velocity);
+  frontCollectorMotor->setSpeed(-velocity);
 }
 
 void Collector::initDefaultCommand() {

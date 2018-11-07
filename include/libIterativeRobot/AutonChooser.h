@@ -1,5 +1,5 @@
-#ifndef AUTONCHOOSER_H
-#define AUTONCHOOSER_H
+#ifndef _AUTONCHOOSER_H_
+#define _AUTONCHOOSER_H_
 
 #include "main.h"
 #include "display/lvgl.h"
@@ -24,8 +24,9 @@ class AutonChooser {
     static void init();
     static void uninit();
     static size_t getAutonChoice();
+    const static char*  getAutonChoiceString();
 
     static AutonChooser* getInstance();
 };
 
-#endif
+#endif // _AUTONCHOOSER_H_

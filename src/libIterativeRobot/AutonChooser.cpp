@@ -76,6 +76,10 @@ size_t AutonChooser::getAutonChoice() {
   return auton;
 }
 
+const char* AutonChooser::getAutonChoiceString() {
+  return autonNames[auton];
+}
+
 AutonChooser* AutonChooser::getInstance() {
   if (instance == 0) {
     instance = new AutonChooser();

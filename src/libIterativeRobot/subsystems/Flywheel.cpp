@@ -1,13 +1,13 @@
 #include "libIterativeRobot/subsystems/Flywheel.h"
 #include "libIterativeRobot/commands/FlywheelMonitor.h"
-// TODO: Make a flywheel monitoring command
 
 Flywheel::Flywheel() {
   flywheelMotor = Motor::getMotor(flywheelMotorPort);
+  flywheelMotor->reverse();
 }
 
 void Flywheel::setFlywheel(int velocity) {
-  flywheelMotor->getMotorObject()->move_velocity(velocity);
+  flywheelMotor->setSpeed(velocity);
 }
 
 double Flywheel::getFlywheelTemperature() {

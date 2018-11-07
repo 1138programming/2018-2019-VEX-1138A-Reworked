@@ -14,6 +14,9 @@
 #include "libIterativeRobot/commands/BaseToggle.h"
 #include "libIterativeRobot/commands/BaseSpeedToggle.h"
 
+#include "libIterativeRobot/commands/AutonGroup1.h"
+#include "libIterativeRobot/commands/AutonGroup2.h"
+#include "libIterativeRobot/commands/AutonGroup3.h"
 #include "libIterativeRobot/commands/AutonGroup4.h"
 
 Robot*     Robot::instance  = 0;
@@ -22,6 +25,8 @@ Collector* Robot::collector = 0;
 MiddleCollector* Robot::middleCollector = 0;
 Beater*    Robot::beater = 0;
 Flywheel*  Robot::flywheel  = 0;
+
+AutonChooser* Robot::autonChooser = 0;
 
 pros::Controller* Robot::mainController = 0;
 pros::Controller* Robot::partnerController = 0;
@@ -34,6 +39,8 @@ Robot::Robot() {
   middleCollector = new MiddleCollector();
   beater = new Beater();
   flywheel  = new Flywheel();
+
+  autonChooser = AutonChooser::getInstance();
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
   partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
@@ -72,15 +79,18 @@ void Robot::robotInit() {
 }
 
 void Robot::autonInit() {
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
+
+  // Make the auton command group
+
+  // Delete the old one, if it exists
   if (autonGroup != NULL) {
     delete autonGroup;
     autonGroup = NULL;
   }
 
-  autonChooser->uninit();
-  switch (autonChooser->getAutonChoice()) {
+  autonChooser->uninit(); // Remove the auton chooser before starting auton
+  switch (autonChooser->getAutonChoice()) { // ?
     case 0:
       autonGroup = new AutonGroup1();
       break;
@@ -104,14 +114,7 @@ void Robot::autonPeriodic() {
 }
 
 void Robot::teleopInit() {
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
-
-  robotBase->initDefaultCommand();
-  collector->initDefaultCommand();
-  middleCollector->initDefaultCommand();
-  beater->initDefaultCommand();
-  flywheel->initDefaultCommand();
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
 
   autonChooser->init();
   printf("Default teleopInit() function\n");
@@ -125,9 +128,7 @@ void Robot::teleopPeriodic() {
 }
 
 void Robot::disabledInit() {
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
-  autonChooser->uninit();
+  autonChooser->uninit(); // Can't update display during disabled
   printf("Default disabledInit() function\n");
 }
 

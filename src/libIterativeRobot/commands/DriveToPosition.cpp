@@ -16,7 +16,7 @@ DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed
 }
 
 bool DriveToPosition::canRun() {
-  printf("DriveToPosition(%d, %d)\n", leftTarget, rightTarget);
+  printf("DriveToPosition(%d, %d, %d)\n", leftTarget, rightTarget, motorSpeed);
   return true; // This is the default value anyways, so this method can be removed
 }
 

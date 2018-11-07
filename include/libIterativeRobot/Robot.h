@@ -11,6 +11,8 @@
 #include "subsystems/Beater.h"
 #include "subsystems/Flywheel.h"
 
+#include "AutonChooser.h"
+
 class Robot : public libIterativeRobot::RobotBase {
   private:
     static Robot* instance;
@@ -34,6 +36,8 @@ class Robot : public libIterativeRobot::RobotBase {
     static MiddleCollector* middleCollector;
     static Beater* beater;
     static Flywheel* flywheel;
+
+    static AutonChooser* autonChooser;
 
     // So that we don't leak memory
     libIterativeRobot::CommandGroup* autonGroup;

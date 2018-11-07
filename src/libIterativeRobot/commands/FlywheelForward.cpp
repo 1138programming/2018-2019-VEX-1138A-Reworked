@@ -16,10 +16,10 @@ void FlywheelForward::initialize() {
 
 void FlywheelForward::execute() {
   // Code that runs when this command is scheduled to run
-  if (Robot::flywheel->getFlywheelVelocity() > 0) {
+  if (Robot::flywheel->getFlywheelVelocity() < 0) {
     Robot::flywheel->setFlywheel(0);
   } else {
-    Robot::flywheel->setFlywheel(-200);
+    Robot::flywheel->setFlywheel(200);
   }
 }
 

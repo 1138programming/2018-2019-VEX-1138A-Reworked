@@ -1,11 +1,9 @@
-#include "Constants.h"
-
 #ifndef _COMMON_H_
 #define _COMMON_H_
 
-int threshold(int aNumber, int threshold = 20);
+#include "Constants.h"
 
-bool getLimitSwitch(unsigned char pin);
+int threshold(int aNumber, int threshold = 20);
 
 int confineToRange(int value, int min = -KMaxMotorSpeed, int max = KMaxMotorSpeed);
 
@@ -13,6 +11,4 @@ bool inRange(int value, int min = -KMaxMotorSpeed, int max = KMaxMotorSpeed);
 
 int sign(int aNumber);
 
-//float fabs(float value);
-
-#endif
+#endif // _COMMON_H_

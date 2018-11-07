@@ -13,7 +13,6 @@ class Base : public libIterativeRobot::Subsystem {
     Motor* rightFrontBaseMotor;
     Motor* rightBackBaseMotor;
 
-    bool baseReversed = false;
     bool baseSlow = false;
   public:
     void initDefaultCommand();

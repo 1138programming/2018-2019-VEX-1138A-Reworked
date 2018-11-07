@@ -3,10 +3,8 @@
  * @brief Provides constants used throughout the entire code. Contains user-readable motor names
  */
 
- #include "abstractBaseClasses/Motor.h"
-
-#ifndef CONSTANTS_H_
-#define CONSTANTS_H_
+#ifndef _CONSTANTS_H_
+#define _CONSTANTS_H_
 
 #define DEFAULT_TASK_TIME 10000
 #define DELAY_TIME 10
@@ -42,4 +40,4 @@ const double slowSpeedMultiplier = 0.65;
 
 // Global things that we need
 
-#endif
+#endif // _CONSTANTS_H_

@@ -38,3 +38,5 @@
 # Binaries + Libraries
 bin/*
 libIterativeRobot@*.zip
+
+compile_commands.json

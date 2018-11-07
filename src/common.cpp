@@ -5,12 +5,6 @@ int threshold(int aNumber, int threshold) {
 	return (abs(aNumber) >= threshold) ? aNumber : 0;
 }
 
-// DO NOT USE! Create pin objects in subsystems
-bool getLimitSwitch(unsigned char pin) {
-	pros::ADIDigitalIn* limitSwitch = new pros::ADIDigitalIn(pin);
-	return limitSwitch->get_value();
-}
-
 int confineToRange(int value, int min, int max) {
 	if (min > max) return confineToRange(value, max, min);
 	if (value < min)

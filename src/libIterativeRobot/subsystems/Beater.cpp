@@ -3,11 +3,12 @@
 
 Beater::Beater() {
   beaterMotor = Motor::getMotor(beaterPort);
+  beaterMotor->reverse();
   // Slaving will be tested after initial test
 }
 
 void Beater::runBeater(int velocity) {
-  beaterMotor->getMotorObject()->move_velocity(-velocity);
+  beaterMotor->setSpeed(-velocity);
 }
 
 void Beater::initDefaultCommand() {

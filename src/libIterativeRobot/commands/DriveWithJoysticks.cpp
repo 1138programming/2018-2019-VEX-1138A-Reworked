@@ -17,8 +17,8 @@ void DriveWithJoysticks::initialize() {
 void DriveWithJoysticks::execute() {
   // Code that runs when this command is scheduled to run
   Robot::robotBase->moveBase(
-    -Robot::mainController->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
-    -Robot::mainController->get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)
+    Robot::mainController->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y),
+    Robot::mainController->get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)
   );
 }
 

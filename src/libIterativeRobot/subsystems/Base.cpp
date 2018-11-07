@@ -4,22 +4,26 @@
 #include "libIterativeRobot/commands/DriveWithJoysticks.h"
 
 Base::Base() {
+  // Left side
+
   leftFrontBaseMotor = Motor::getMotor(leftFrontBaseMotorPort);
   leftBackBaseMotor = Motor::getMotor(leftBackBaseMotorPort);
 
-  // TODO: Use our motor's reverse() methods after initial testing
+  leftFrontBaseMotor->addFollower(leftBackBaseMotor);
+
+  // Right side
 
   rightFrontBaseMotor = Motor::getMotor(rightFrontBaseMotorPort);
   rightBackBaseMotor = Motor::getMotor(rightBackBaseMotorPort);
 
-  leftFrontBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-  rightFrontBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-  leftBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-  rightBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  rightFrontBaseMotor->addFollower(rightBackBaseMotor);
 }
 
 void Base::toggleBase() {
-  baseReversed = !baseReversed;
+  leftFrontBaseMotor->reverse();
+  leftBackBaseMotor->reverse();
+  rightFrontBaseMotor->reverse();
+  rightBackBaseMotor->reverse();
 }
 
 void Base::toggleBaseSpeed() {
@@ -29,29 +33,16 @@ void Base::toggleBaseSpeed() {
 void Base::moveBase(int leftSpeed, int rightSpeed) {
   double left = threshold(leftSpeed);
   double right = threshold(rightSpeed);
-  left *= 2;
+  left *= 2; // Change 100% from joystick to 200 rpm
   right *= 2;
 
-  if (baseReversed) {
-    int tmp;
-    tmp = left;
-    left = -right;
-    right = -tmp;
-  }
-
   if (baseSlow) {
-    left = slowSpeedMultiplier * left;
-    right = slowSpeedMultiplier * right;
+    left = (int)(slowSpeedMultiplier * left);
+    right = (int)(slowSpeedMultiplier * right);
   }
 
-  left = (int) left;
-  right = (int) right;
-
-  leftFrontBaseMotor->getMotorObject()->move_velocity(-left);
-  leftBackBaseMotor->getMotorObject()->move_velocity(-left);
-
-  rightFrontBaseMotor->getMotorObject()->move_velocity(right);
-  rightBackBaseMotor->getMotorObject()->move_velocity(right);
+  leftFrontBaseMotor->setSpeed(left);
+  rightFrontBaseMotor->setSpeed(right);
 }
 
 void Base::moveBaseTo(int leftTarget, int rightTarget, int motorSpeed) {
