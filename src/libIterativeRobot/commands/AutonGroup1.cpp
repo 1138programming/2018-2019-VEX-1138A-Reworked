@@ -11,18 +11,20 @@ AutonGroup1::AutonGroup1() {
   //addSequentialCommand(new DriveToPosition(-30, -30)); // Rotate x degrees
 
   addSequentialCommand(new FlywheelRevUp());
+  addParallelCommand(new DriveToPosition(250, -250, 50));
   addSequentialCommand(new CollectorMiddleForwardTimed(500));
   addSequentialCommand(new DelayCommand(150));
 
-  addSequentialCommand(new DriveToPosition(3050, -3050));
+  addSequentialCommand(new DriveToPosition(2700, -2700));
   //addSequentialCommand(new DelayCommand(500));
   addSequentialCommand(new DelayCommand(150));
 
   if (true) { // Two falses for both
+    // For going to turn clockwise
     addSequentialCommand(new DriveToPosition(-3400, 3400));
     addSequentialCommand(new DelayCommand(250));
 
-    // Turn and move forward
+    // Turn and move forwardaz
     addSequentialCommand(new DriveToPosition(-590, -590));
     addSequentialCommand(new DelayCommand(150));
     addSequentialCommand(new DriveToPosition(2700, -2700));
