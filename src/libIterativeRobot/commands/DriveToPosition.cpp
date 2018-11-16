@@ -6,8 +6,6 @@ DriveToPosition::DriveToPosition(int leftTarget, int rightTarget) {
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
   this->motorSpeed = 0;
-
-  this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / 150) * 150);
 }
 
 DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed) {
@@ -15,8 +13,6 @@ DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
   this->motorSpeed = motorSpeed;
-
-  this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / motorSpeed) * 150);
 }
 
 bool DriveToPosition::canRun() {
@@ -27,6 +23,7 @@ bool DriveToPosition::canRun() {
 void DriveToPosition::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / motorSpeed) * 150);
   Robot::robotBase->moveBaseTo(leftTarget, rightTarget, motorSpeed);
 }
 

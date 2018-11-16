@@ -16,6 +16,7 @@
 
 #include "libIterativeRobot/commands/AutonGroup3.h"
 #include "libIterativeRobot/commands/ThreeFlag.h"
+#include "libIterativeRobot/commands/AutonGroup4.h"
 
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
@@ -79,7 +80,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new ThreeFlag();
+  autonGroup = new AutonGroup3();
   autonGroup->run();
 }
 

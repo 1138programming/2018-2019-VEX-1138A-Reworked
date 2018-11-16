@@ -26,7 +26,12 @@ void TurnWithGyro::initialize() {
 
 void TurnWithGyro::execute() {
   // Code that runs when this command is scheduled to run
-  int motorSpeed = this->motorSpeed ? this->motorSpeed : 10;
+  int motorSpeed = this->motorSpeed ? this->motorSpeed : 25;
+  //if (abs(degrees - Robot::robotBase->getGyroValue()) < 900) {
+  //  motorSpeed = motorSpeed * log(-abs(degrees - Robot::robotBase->getGyroValue()) + 900);
+  //}
+  printf("Gyro value\n");
+  pros::delay(10);
   if (degrees > Robot::robotBase->getGyroValue()) {
     Robot::robotBase->moveBase(-motorSpeed, motorSpeed);
   } else if (degrees < Robot::robotBase->getGyroValue()) {
@@ -35,11 +40,12 @@ void TurnWithGyro::execute() {
 }
 
 bool TurnWithGyro::isFinished() {
-  return abs(degrees - Robot::robotBase->getGyroValue()) < 10; // This is the default va  lue anyways, so this method can be removed
+  return abs(degrees - Robot::robotBase->getGyroValue()) < 50; // This is the default va  lue anyways, so this method can be removed
 }
 
 void TurnWithGyro::end() {
   // Code that runs when isFinished() returns true.
+  Robot::robotBase->moveBase(0, 0);
 }
 
 void TurnWithGyro::interrupted() {

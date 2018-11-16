@@ -8,18 +8,15 @@
 AutonGroup4::AutonGroup4() {
   // Bottom and middle flag
     addSequentialCommand(new FlywheelRevUp());
-    addSequentialCommand(new DriveToPosition(1800, -1800));
+    addSequentialCommand(new DriveToPosition(1100, -1100));
     addSequentialCommand(new DelayCommand(150));
     addSequentialCommand(new CollectorMiddleForwardTimed(500));
     addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new DriveToPosition(3050, -3050));
-    //addSequentialCommand(new DelayCommand(500));
+    addSequentialCommand(new DriveToPosition(2800, -2800));
     addSequentialCommand(new DelayCommand(150));
 
 
-    addSequentialCommand(new DriveToPosition(-3050, 3050));
-    //addSequentialCommand(new DriveToPosition(950, 950));
-    //addSequentialCommand(new DriveToPosition(3500, -3500, 200));
+    addSequentialCommand(new DriveToPosition(-3150, 3150));
 
 }

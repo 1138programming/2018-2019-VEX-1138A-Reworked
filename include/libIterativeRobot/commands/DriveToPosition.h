@@ -5,9 +5,9 @@
 
 class DriveToPosition : public libIterativeRobot::Command {
   private:
-    int leftTarget;
-    int rightTarget;
-    int motorSpeed;
+    double leftTarget;
+    double rightTarget;
+    double motorSpeed;
 
     int endTime;
   public:

@@ -7,18 +7,18 @@
 #include "libIterativeRobot/commands/TurnWithGyro.h"
 
 AutonGroup3::AutonGroup3() {
-    addSequentialCommand(new FlywheelRevUp());
-    addSequentialCommand(new CollectorMiddleForwardTimed(500));
-    addSequentialCommand(new DelayCommand(150));
-
-    addSequentialCommand(new DriveToPosition(3050, -3050));
-    //addSequentialCommand(new DelayCommand(500));
-    addSequentialCommand(new DelayCommand(150));
-
-    addSequentialCommand(new DriveToPosition(-5050, 5050)); // 5050 for BLUE, 4850 for RED
+    // addSequentialCommand(new FlywheelRevUp());
+    // addSequentialCommand(new CollectorMiddleForwardTimed(500));
+    // addSequentialCommand(new DelayCommand(150));
+    //
+    // addSequentialCommand(new DriveToPosition(3050, -3050));
+    // //addSequentialCommand(new DelayCommand(500));
+    // addSequentialCommand(new DelayCommand(150));
+    //
+    // addSequentialCommand(new DriveToPosition(-5050, 5050)); // 5050 for BLUE, 4850 for RED
 
 #ifdef USE_GYRO
-    addSequentialCommand(new TurnWithGyro(-900)); // - for BLUE
+    addSequentialCommand(new TurnWithGyro(900)); // - for BLUE
 #else
     addSequentialCommand(new DriveToPosition(-760, -760)); // Both negative for BLUE
 #endif
