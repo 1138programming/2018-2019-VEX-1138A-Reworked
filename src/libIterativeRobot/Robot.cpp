@@ -81,6 +81,15 @@ void Robot::autonInit() {
     autonGroup = NULL;
   }
   autonGroup = new AutonGroup3();
+  // AutonGroup3 is for top, bototm, and platform. You need to modify the file for both red and blue, though the comments in there should
+  // guide you. Lmk if you need any help with that.
+
+  // AutonGroup4 is already already on the robot on slot 3, so there's no need to modify it.
+  // It shoots the middle and bottom flags, and then parks.
+
+  // To upload to a specific slot on the v5 brain, just run the following command:
+  // `prosv5 make` and then `prosv5 upload --name NAME --slot SLOTNUMBER`
+  // Upload Blue to slot 1 and Red to slot 2
   autonGroup->run();
 }
 

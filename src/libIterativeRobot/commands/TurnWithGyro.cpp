@@ -30,8 +30,8 @@ void TurnWithGyro::execute() {
   //if (abs(degrees - Robot::robotBase->getGyroValue()) < 900) {
   //  motorSpeed = motorSpeed * log(-abs(degrees - Robot::robotBase->getGyroValue()) + 900);
   //}
-  printf("Gyro value\n");
-  pros::delay(10);
+  // printf("Gyro value\n");
+  // pros::delay(10);
   if (degrees > Robot::robotBase->getGyroValue()) {
     Robot::robotBase->moveBase(-motorSpeed, motorSpeed);
   } else if (degrees < Robot::robotBase->getGyroValue()) {
