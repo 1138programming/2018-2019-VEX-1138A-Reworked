@@ -8,6 +8,8 @@ class DriveToPosition : public libIterativeRobot::Command {
     int leftTarget;
     int rightTarget;
     int motorSpeed;
+
+    int endTime;
   public:
     bool canRun();
     void initialize();

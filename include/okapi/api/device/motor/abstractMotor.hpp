@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_ABSTRACTMOTOR_HPP_
-#define _OKAPI_ABSTRACTMOTOR_HPP_
+#pragma once
 
 #include "okapi/api/control/controllerOutput.hpp"
 #include "okapi/api/device/rotarysensor/continuousRotarySensor.hpp"
@@ -205,8 +204,8 @@ class AbstractMotor : public ControllerOutput<double> {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @return The motor's actual velocity in motor_encoder_units_e_t per second or PROS_ERR_F if the
-   * operation failed, setting errno.
+   * @return The motor's actual velocity in RPM or PROS_ERR_F if the operation failed, setting
+   * errno.
    */
   virtual double getActualVelocity() const = 0;
 
@@ -575,5 +574,3 @@ class AbstractMotor : public ControllerOutput<double> {
 AbstractMotor::GearsetRatioPair operator*(AbstractMotor::gearset gearset, double ratio);
 
 } // namespace okapi
-
-#endif

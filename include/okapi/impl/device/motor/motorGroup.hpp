@@ -5,8 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-#ifndef _OKAPI_MOTORGROUP_HPP_
-#define _OKAPI_MOTORGROUP_HPP_
+#pragma once
 
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/impl/device/motor/motor.hpp"
@@ -165,8 +164,8 @@ class MotorGroup : public AbstractMotor {
    * This function uses the following values of errno when an error state is reached:
    * EACCES - Another resource is currently trying to access the port.
    *
-   * @return The motor's actual velocity in motor_encoder_units_e_t per second or PROS_ERR_F if the
-   * operation failed, setting errno.
+   * @return The motor's actual velocity in RPM or PROS_ERR_F if the operation failed, setting
+   * errno.
    */
   virtual double getActualVelocity() const override;
 
@@ -547,5 +546,3 @@ class MotorGroup : public AbstractMotor {
   std::vector<Motor> motors;
 };
 } // namespace okapi
-
-#endif

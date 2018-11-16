@@ -6,6 +6,8 @@ DriveToPosition::DriveToPosition(int leftTarget, int rightTarget) {
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
   this->motorSpeed = 0;
+
+  this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / 150) * 150);
 }
 
 DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed) {
@@ -13,6 +15,8 @@ DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
   this->motorSpeed = motorSpeed;
+
+  this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / motorSpeed) * 150);
 }
 
 bool DriveToPosition::canRun() {
@@ -31,11 +35,12 @@ void DriveToPosition::execute() {
 }
 
 bool DriveToPosition::isFinished() {
-  return Robot::robotBase->baseAtTarget(); // This is the default va  lue anyways, so this method can be removed
+  return Robot::robotBase->baseAtTarget() || pros::millis() > endTime; // This is the default va  lue anyways, so this method can be removed
 }
 
 void DriveToPosition::end() {
   // Code that runs when isFinished() returns true.
+  Robot::robotBase->moveBase(0, 0);
 }
 
 void DriveToPosition::interrupted() {

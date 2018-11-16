@@ -16,6 +16,8 @@ Base::Base() {
   rightFrontBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   leftBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   rightBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
+  baseGyro = new pros::ADIGyro(gyroPort);
 }
 
 void Base::toggleBase() {
@@ -64,6 +66,14 @@ void Base::moveBaseTo(int leftTarget, int rightTarget, int motorSpeed) {
 
 bool Base::baseAtTarget() {
   return abs(leftFrontBaseMotor->getMotorObject()->get_target_position() - leftFrontBaseMotor->getMotorObject()->get_position()) <= 5; // Tune threshold and make a varaible
+}
+
+double Base::getGyroValue() {
+  return baseGyro->get_value();
+}
+
+void Base::resetGyro() {
+  baseGyro->reset();
 }
 
 void Base::initDefaultCommand() {

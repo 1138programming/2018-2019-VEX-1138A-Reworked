@@ -79,7 +79,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new AutonGroup3();
+  autonGroup = new ThreeFlag();
   autonGroup->run();
 }
 

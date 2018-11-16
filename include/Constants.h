@@ -13,6 +13,8 @@
 #define MAX_MOTORS 20
 #define MAX_FOLLOWERS 3
 
+#define USE_GYRO 1
+
 // Motor ports
 const int rightFrontBaseMotorPort = 1;
 const int rightBackBaseMotorPort = 2;
@@ -25,18 +27,13 @@ const int flywheelMotorPort = 7;
 const int frontCollectorMotorPort = 8;
 const int middleCollectorMotorPort = 6;
 
+const int gyroPort = 1;
+
 //Motor and encoder constants
 const int KMaxMotorSpeed = 127;
 const int KMaxJoystickValue = 127;
 const int encoderTicks = 360; // Encoder ticks in one revolution
 const float rotationsPerInch = 31.400156410256; // TODO check if this is correct
-
-// IME addresses
-const unsigned char exampleIMEAddress = 0;
-
-// Encoder ports
-const int exampleEncoderTopPort = 0;
-const int exampleEncoderBottomPort = 1;
 
 const double slowSpeedMultiplier = 0.65;
 

@@ -13,6 +13,8 @@ class Base : public libIterativeRobot::Subsystem {
     Motor* rightFrontBaseMotor;
     Motor* rightBackBaseMotor;
 
+    pros::ADIGyro* baseGyro;
+
     bool baseReversed = false;
     bool baseSlow = false;
   public:
@@ -22,6 +24,8 @@ class Base : public libIterativeRobot::Subsystem {
     void moveBase(int left, int right);
     void moveBaseTo(int leftTarget, int rightTarget, int motorSpeed = 0);
     bool baseAtTarget();
+    double getGyroValue();
+    void resetGyro();
     Base();
 };
 
