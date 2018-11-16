@@ -8,7 +8,7 @@
 
 ThreeFlag::ThreeFlag() {
     addSequentialCommand(new FlywheelRevUp());
-    addSequentialCommand(new CollectorForwardTimed(1500));
+    addParallelCommand(new CollectorForwardTimed(1500));
     addParallelCommand(new DriveToPosition(3750, -3750)); // Forward for 4450
     addSequentialCommand(new DelayCommand(150));
 
@@ -17,7 +17,7 @@ ThreeFlag::ThreeFlag() {
     addParallelCommand(new DriveToPosition(250, -250));
     addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new DriveToPosition(-4450, 4450)); // Back to starting point
+    addSequentialCommand(new DriveToPosition(-4350, 4350)); // Back to starting point
     addSequentialCommand(new DelayCommand(150));
     addSequentialCommand(new DriveToPosition(250, -250));
     addSequentialCommand(new DelayCommand(150));
@@ -35,12 +35,12 @@ ThreeFlag::ThreeFlag() {
     addSequentialCommand(new DelayCommand(150));
     addSequentialCommand(new CollectorMiddleForwardTimed(1500));
 
-    addSequentialCommand(new DriveToPosition(-4850, 4850));
+    addSequentialCommand(new DriveToPosition(-3159, 3150));
 
-#ifdef USE_GYRO
-    addSequentialCommand(new TurnWithGyro(900)); // -90 for red, 90 for blue
-#else
-    addSequentialCommand(new DriveToPosition(-760, -760)); // Both positive for RED
-#endif
-    addSequentialCommand(new DriveToPosition(6750, -6750, 200));
+// #ifdef USE_GYRO
+//     addSequentialCommand(new TurnWithGyro(900)); // -90 for red, 90 for blue
+// #else
+//     addSequentialCommand(new DriveToPosition(-760, -760)); // Both positive for RED
+// #endif
+//     addSequentialCommand(new DriveToPosition(6750, -6750, 200));
 }
