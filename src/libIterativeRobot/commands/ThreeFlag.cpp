@@ -1,4 +1,5 @@
 #include "libIterativeRobot/commands/ThreeFlag.h"
+#include "libIterativeRobot/commands/ThreeFlagSubgroup.h"
 #include "libIterativeRobot/commands/DriveToPosition.h"
 #include "libIterativeRobot/commands/FlywheelRevUp.h"
 #include "libIterativeRobot/commands/DelayCommand.h"
@@ -8,6 +9,22 @@
 
 ThreeFlag::ThreeFlag() {
     addSequentialCommand(new FlywheelRevUp());
+    addParallelCommand(new DriveToPosition(2400, -2400));
+    addParallelCommand(new CollectorForwardTimed(3000));
+    addSequentialCommand(new DriveToPosition(-3500, 3500));
+    addSequentialCommand(new DriveToPosition(-500, 500, 50));
+    addSequentialCommand(new DriveToPosition(500, -500));
+    addSequentialCommand(new DriveToPosition(-670, -670));
+    addSequentialCommand(new DelayCommand(150));
+    addSequentialCommand(new DriveToPosition(300, -300));
+    addSequentialCommand(new DelayCommand(150));
+    addSequentialCommand(new CollectorMiddleForwardTimed(1000));
+    addSequentialCommand(new DriveToPosition(300, -300));
+    addSequentialCommand(new DelayCommand(150));
+    addSequentialCommand(new CollectorMiddleForwardTimed(1000));
+    addSequentialCommand(new DriveToPosition(1000, -1000));
+    addSequentialCommand(new DelayCommand(150));
+    /*addSequentialCommand(new FlywheelRevUp());
     addParallelCommand(new CollectorForwardTimed(1500));
     addParallelCommand(new DriveToPosition(3750, -3750)); // Forward for 4450
     addSequentialCommand(new DelayCommand(150));
@@ -35,7 +52,7 @@ ThreeFlag::ThreeFlag() {
     addSequentialCommand(new DelayCommand(150));
     addSequentialCommand(new CollectorMiddleForwardTimed(1500));
 
-    addSequentialCommand(new DriveToPosition(-3159, 3150));
+    addSequentialCommand(new DriveToPosition(-3159, 3150));*/
 
 // #ifdef USE_GYRO
 //     addSequentialCommand(new TurnWithGyro(900)); // -90 for red, 90 for blue
