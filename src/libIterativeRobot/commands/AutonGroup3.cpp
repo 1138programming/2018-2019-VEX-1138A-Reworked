@@ -11,17 +11,17 @@ AutonGroup3::AutonGroup3() {
     addSequentialCommand(new CollectorMiddleForwardTimed(500));
     addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new DriveToPosition(3050, -3050));
+    addSequentialCommand(new DriveToPosition(3650, -3650));
     //addSequentialCommand(new DelayCommand(500));
     addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new DriveToPosition(-4850, 4850)); // 5050 for BLUE, 4850 for RED
+    addSequentialCommand(new DriveToPosition(-4950, 4950)); // 5050 for BLUE, 4850 for RED
 
 #ifdef USE_GYRO
-    addSequentialCommand(new TurnWithGyro(900)); // - for BLUE
+    addSequentialCommand(new TurnWithGyro(-900)); // - for BLUE
 #else
-    addSequentialCommand(new DriveToPosition(760, 760)); // Both negative for BLUE
+    addSequentialCommand(new DriveToPosition(-780, -780, 100)); // Both negative for BLUE
 #endif
 
-    addSequentialCommand(new DriveToPosition(5600, -6250, 200)); // Red is 6250, blue is 5950
+    addSequentialCommand(new DriveToPosition(4250, -4250, 200)); // Red is 6250, blue is 5950
 }

@@ -1,6 +1,6 @@
 #include "abstractBaseClasses/PIDController.h"
 
-PIDController* PIDController::instances[MAX_MOTORS] = {0}; //  All values are initialized to 0
+std::vector<PIDController*> PIDController::instances; //  All values are initialized to 0
 
 PIDController::PIDController(Motor* outputMotor, float kP, float kI, float kD) {
   this->outputMotor = outputMotor;
@@ -11,13 +11,15 @@ PIDController::PIDController(Motor* outputMotor, float kP, float kI, float kD) {
   //this->controllers.push_back(this);
 }
 
+PIDController::PIDController(float kP, float kI, float kD) {
+  this->outputMotor = NULL;
+  this->kP = kP;
+  this->kI = kI;
+  this->kD = kD;
+}
+
 void PIDController::addInstance() {
-  for (int i = 0; i < MAX_MOTORS; i++) {
-    if (instances[i] == 0) {
-      instances[i] = this;
-      return;
-    }
-  }
+  instances.push_back(this);
 }
 
 void PIDController::setKp(float kP) {
@@ -38,6 +40,10 @@ void PIDController::setSetpoint(int setpoint) {
   integral = 0;
 }
 
+void PIDController::setSetpointRelative(int setpoint) {
+  this->setpoint = getSensorValue() + setpoint;
+}
+
 int PIDController::getSetpoint() {
   return this->setpoint;
 }
@@ -54,8 +60,19 @@ int PIDController::getSetpoint() {
   this->encoder = NULL;
 }*/
 
+void PIDController::setSensorValue(int sensorValue) {
+  currSensorValue = sensorValue;
+}
+
 int PIDController::getSensorValue() {
+  if (outputMotor == NULL) {
+    return currSensorValue;
+  }
   return outputMotor->getEncoderValue();
+}
+
+int PIDController::getOutput() {
+  return output;
 }
 
 void PIDController::setThreshold(int threshold) {
@@ -70,11 +87,11 @@ void PIDController::loop() {
   error = setpoint - currSensorValue;
   integral += error * (deltaTime / 1000);
   derivative  = (error - previousError) / (deltaTime / 1000);
-  output = (int)(kP * error + kI * integral + kD * derivative);
+  output = (int)(kP * error + kI * integral + kD * derivative * scalar);
   int sign = output < 0 ? output == 0 ? -1 : 0 : 1;
   //int sign = 0;
   output = confineToRange(output + (sign * 12));
-  printf("Current sensor value is %d\n", currSensorValue);
+  //printf("Current sensor value is %d\n", currSensorValue);
   //printf("Error is %d, integral is %f, derivative is %f, and output is %d\n", error, integral, derivative, output);
   //printf("Error is %d and output is %d\n", error, output);
   // if (this->outputMotor->getChannel() == 10) {
@@ -89,14 +106,21 @@ void PIDController::lock() {
   setSetpoint(getSensorValue());
 }
 
+void PIDController::setMaxPIDSpeed(int maxSpeed) {
+  this->scalar = maxSpeed / KMaxMotorSpeed;
+}
+
 bool PIDController::atSetpoint() {
-  bool atSetpoint = inRange(this->currSensorValue, setpoint - threshold, setpoint + threshold) && fabs(derivative) < 0.1;
+  currSensorValue = getSensorValue();
+  bool range = inRange(currSensorValue, setpoint - threshold, setpoint + threshold);
+  bool smallDerivative = fabs(derivative) < 0.1;
+  bool atSetpoint = range && smallDerivative; // Checks if the sensor value is within a threshold of the target and whether the derivative is less than 0.1
   return atSetpoint;
 }
 
 void PIDController::loopAll() {
-  for (int i = 0; i < MAX_MOTORS; i++) {
-    if(instances[i]->enabled)
+  for (size_t i = 0; i < instances.size(); i++) {
+    if (instances[i]->enabled)
       instances[i]->loop();
   }
 }

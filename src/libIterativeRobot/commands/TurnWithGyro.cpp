@@ -22,33 +22,36 @@ void TurnWithGyro::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   Robot::robotBase->resetGyro();
+  gyroPID = new PIDController(1.0, 0.0, 0.0);
+  gyroPID->setSensorValue(0);
 }
 
 void TurnWithGyro::execute() {
   // Code that runs when this command is scheduled to run
-  int motorSpeed = this->motorSpeed ? this->motorSpeed : 25;
+  gyroPID->setSensorValue(Robot::robotBase->getGyroValue());
   //if (abs(degrees - Robot::robotBase->getGyroValue()) < 900) {
   //  motorSpeed = motorSpeed * log(-abs(degrees - Robot::robotBase->getGyroValue()) + 900);
   //}
   // printf("Gyro value\n");
   // pros::delay(10);
-  if (degrees > Robot::robotBase->getGyroValue()) {
-    Robot::robotBase->moveBase(-motorSpeed, motorSpeed);
-  } else if (degrees < Robot::robotBase->getGyroValue()) {
-    Robot::robotBase->moveBase(motorSpeed, -motorSpeed);
-  }
+  gyroPID->loop();
+  int motorSpeed = gyroPID->getOutput();
+
+  Robot::robotBase->moveBase(motorSpeed, -motorSpeed);
 }
 
 bool TurnWithGyro::isFinished() {
-  return abs(degrees - Robot::robotBase->getGyroValue()) < 50; // This is the default va  lue anyways, so this method can be removed
+  return gyroPID->atSetpoint(); // This is the default value anyways, so this method can be removed
 }
 
 void TurnWithGyro::end() {
   // Code that runs when isFinished() returns true.
   Robot::robotBase->moveBase(0, 0);
+  delete gyroPID;
 }
 
 void TurnWithGyro::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
+  delete gyroPID;
 }

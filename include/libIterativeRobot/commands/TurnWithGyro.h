@@ -2,11 +2,13 @@
 #define _COMMANDS_TURNWITHGYRO_H_
 
 #include "libIterativeRobot/commands/Command.h"
+#include "abstractBaseClasses/PIDController.h"
 
 class TurnWithGyro : public libIterativeRobot::Command {
   private:
     int degrees;
     int motorSpeed;
+    PIDController* gyroPID;
   public:
     bool canRun();
     void initialize();
