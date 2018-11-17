@@ -15,13 +15,13 @@ AutonGroup3::AutonGroup3() {
     //addSequentialCommand(new DelayCommand(500));
     addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new DriveToPosition(-5050, 5050)); // 5050 for BLUE, 4850 for RED
+    addSequentialCommand(new DriveToPosition(-4850, 4850)); // 5050 for BLUE, 4850 for RED
 
 #ifdef USE_GYRO
     addSequentialCommand(new TurnWithGyro(900)); // - for BLUE
 #else
-    addSequentialCommand(new DriveToPosition(-760, -760)); // Both negative for BLUE
+    addSequentialCommand(new DriveToPosition(760, 760)); // Both negative for BLUE
 #endif
 
-    addSequentialCommand(new DriveToPosition(5950, -5950, 200)); // Red is 6250, blue is 5950
+    addSequentialCommand(new DriveToPosition(5600, -6250, 200)); // Red is 6250, blue is 5950
 }

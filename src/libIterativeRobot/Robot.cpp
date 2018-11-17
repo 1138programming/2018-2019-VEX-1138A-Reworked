@@ -80,7 +80,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new ThreeFlag();
+  autonGroup = new AutonGroup3();
   // AutonGroup3 is for top, bototm, and platform. You need to modify the file for both red and blue, though the comments in there should
   // guide you. Lmk if you need any help with that.
 
