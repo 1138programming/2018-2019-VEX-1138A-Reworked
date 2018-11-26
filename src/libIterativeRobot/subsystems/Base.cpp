@@ -60,12 +60,12 @@ void Base::moveBaseTo(int leftTarget, int rightTarget, int motorSpeed) {
   leftFrontBaseMotor->getMotorObject()->move_relative(leftTarget, motorSpeed ? motorSpeed : 150); // TODO: Move last argument to a variable
   leftBackBaseMotor->getMotorObject()->move_relative(leftTarget, motorSpeed ?  motorSpeed : 150);
 
-  rightFrontBaseMotor->getMotorObject()->move_relative(rightTarget, motorSpeed ? motorSpeed : 150);
-  rightBackBaseMotor->getMotorObject()->move_relative(rightTarget, motorSpeed ? motorSpeed : 150);
+  rightFrontBaseMotor->getMotorObject()->move_relative(-rightTarget, motorSpeed ? motorSpeed : 150);
+  rightBackBaseMotor->getMotorObject()->move_relative(-rightTarget, motorSpeed ? motorSpeed : 150);
 }
 
 bool Base::baseAtTarget() {
-  return abs(leftFrontBaseMotor->getMotorObject()->get_target_position() - leftFrontBaseMotor->getMotorObject()->get_position()) <= 5; // Tune threshold and make a varaible
+  return abs(leftFrontBaseMotor->getMotorObject()->get_target_position() - leftFrontBaseMotor->getMotorObject()->get_position()) <= 3; // Tune threshold and make a varaible
 }
 
 double Base::getGyroValue() {

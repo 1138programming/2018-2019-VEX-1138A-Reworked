@@ -14,8 +14,6 @@ class CommandGroup : public Command {
     std::vector<std::vector<int>> added; // 2d vector keeping track of which commands and command groups have been added to the event scheduler
     size_t sequentialIndex = 0; // Keeps track of the current sequential step the command group is running
   public:
-    Status status = Idle; // Keeps track of the status of the command group
-
     std::vector<Subsystem*>& getRequirements(); // Returns a vector containing the subsystem requirements of all of the commands and command groups in the current sequential step
 
     bool canRun(); // Checks if all the commands and command groups in the command group can run

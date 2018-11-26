@@ -14,18 +14,18 @@ AutonGroup2::AutonGroup2() {
   addSequentialCommand(new CollectorMiddleForwardTimed(500));
   addSequentialCommand(new DelayCommand(150));
 
-  addSequentialCommand(new DriveToPosition(3050, -3050));
+  addSequentialCommand(new DriveToPosition(3050, 3050));
   //addSequentialCommand(new DelayCommand(500));
   addSequentialCommand(new DelayCommand(150));
 
   if (true) { // Two falses for old
-    addSequentialCommand(new DriveToPosition(-3400, 3400));
+    addSequentialCommand(new DriveToPosition(-3400, -3400));
     addSequentialCommand(new DelayCommand(250));
 
     // Turn and move forward
-    addSequentialCommand(new DriveToPosition(590, 590));
+    addSequentialCommand(new DriveToPosition(590, -590));
     addSequentialCommand(new DelayCommand(150));
-    addSequentialCommand(new DriveToPosition(2700, -2700));
+    addSequentialCommand(new DriveToPosition(2700, 2700));
     addParallelCommand(new CollectorForwardTimed(1800));
     addSequentialCommand(new DelayCommand(150));
 
@@ -34,25 +34,25 @@ AutonGroup2::AutonGroup2() {
       addSequentialCommand(new CollectorMiddleForwardTimed(500));
       addParallelCommand(new CollectorForwardTimed(500));
 
-      addSequentialCommand(new DriveToPosition(-400, 400));
+      addSequentialCommand(new DriveToPosition(-400, -400));
 
-      addSequentialCommand(new DriveToPosition(-700, -700));
-      addSequentialCommand(new DriveToPosition(-1250, 1250, 200));
-    } else {
       addSequentialCommand(new DriveToPosition(-700, 700));
+      addSequentialCommand(new DriveToPosition(-1250, -1250, 200));
+    } else {
+      addSequentialCommand(new DriveToPosition(-700, -700));
       addSequentialCommand(new DelayCommand(150));
-      addSequentialCommand(new DriveToPosition(-850, -850));
+      addSequentialCommand(new DriveToPosition(-850, 850));
       addSequentialCommand(new DelayCommand(150));
-      addSequentialCommand(new DriveToPosition(600, -600));
+      addSequentialCommand(new DriveToPosition(600, 600));
       addSequentialCommand(new FlywheelRevUp());
       addSequentialCommand(new DelayCommand(250));
       addSequentialCommand(new CollectorMiddleForwardTimed(1500));
       addParallelCommand(new CollectorForwardTimed(500));
     }
   } else {
-    addSequentialCommand(new DriveToPosition(-4850, 4850));
-    addSequentialCommand(new DriveToPosition(950, 950));
-    addSequentialCommand(new DriveToPosition(4000, -4000, 200));
+    addSequentialCommand(new DriveToPosition(-4850, -4850));
+    addSequentialCommand(new DriveToPosition(950, -950));
+    addSequentialCommand(new DriveToPosition(4000, 4000, 200));
   }
 
 }

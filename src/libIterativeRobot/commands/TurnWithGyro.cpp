@@ -14,7 +14,7 @@ TurnWithGyro::TurnWithGyro(int turnDegrees, int motorSpeed) {
 }
 
 bool TurnWithGyro::canRun() {
-  printf("TurnWithGyro(%d);\n", degrees);
+  //printf("TurnWithGyro(%d);\n", degrees);
   return true; // This is the default value anyways, so this method can be removed
 }
 
@@ -22,26 +22,24 @@ void TurnWithGyro::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   Robot::robotBase->resetGyro();
-  gyroPID = new PIDController(1.0, 0.0, 0.0);
+  gyroPID = new PIDController(0.05, 0.0 , 0.002);
   gyroPID->setSensorValue(0);
+  gyroPID->setSetpoint(degrees);
 }
 
 void TurnWithGyro::execute() {
   // Code that runs when this command is scheduled to run
+  printf("Gyro value: %f\n", Robot::robotBase->getGyroValue());
+  //printf("Hello, world!\n");
   gyroPID->setSensorValue(Robot::robotBase->getGyroValue());
-  //if (abs(degrees - Robot::robotBase->getGyroValue()) < 900) {
-  //  motorSpeed = motorSpeed * log(-abs(degrees - Robot::robotBase->getGyroValue()) + 900);
-  //}
-  // printf("Gyro value\n");
-  // pros::delay(10);
   gyroPID->loop();
   int motorSpeed = gyroPID->getOutput();
 
-  Robot::robotBase->moveBase(motorSpeed, -motorSpeed);
+  Robot::robotBase->moveBase(-motorSpeed, motorSpeed);
 }
 
 bool TurnWithGyro::isFinished() {
-  return gyroPID->atSetpoint(); // This is the default value anyways, so this method can be removed
+  return false; //gyroPID->atSetpoint(); // This is the default value anyways, so this method can be removed
 }
 
 void TurnWithGyro::end() {

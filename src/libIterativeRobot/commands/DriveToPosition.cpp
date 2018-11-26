@@ -23,7 +23,7 @@ bool DriveToPosition::canRun() {
 void DriveToPosition::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / motorSpeed) * 150);
+  this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / (motorSpeed ? motorSpeed : 150)) * 150);
   Robot::robotBase->moveBaseTo(leftTarget, rightTarget, motorSpeed);
 }
 
@@ -32,7 +32,7 @@ void DriveToPosition::execute() {
 }
 
 bool DriveToPosition::isFinished() {
-  return Robot::robotBase->baseAtTarget() || pros::millis() > endTime; // This is the default va  lue anyways, so this method can be removed
+  return Robot::robotBase->baseAtTarget() || pros::millis() > endTime; // This is the default value anyways, so this method can be removed
 }
 
 void DriveToPosition::end() {

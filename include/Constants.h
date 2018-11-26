@@ -13,7 +13,7 @@
 #define MAX_MOTORS 20
 #define MAX_FOLLOWERS 3
 
-//#define USE_GYRO 1 Not today, Jose
+#define USE_GYRO 1
 
 // Motor ports
 const int rightFrontBaseMotorPort = 1;

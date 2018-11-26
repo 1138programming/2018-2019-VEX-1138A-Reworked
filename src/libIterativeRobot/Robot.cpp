@@ -74,8 +74,8 @@ void Robot::robotInit() {
 }
 
 void Robot::autonInit() {
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
+  printf("Auton initialized\n");
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
   if (autonGroup != NULL) {
     delete autonGroup;
     autonGroup = NULL;
@@ -100,14 +100,7 @@ void Robot::autonPeriodic() {
 }
 
 void Robot::teleopInit() {
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
-
-  robotBase->initDefaultCommand();
-  collector->initDefaultCommand();
-  middleCollector->initDefaultCommand();
-  beater->initDefaultCommand();
-  flywheel->initDefaultCommand();
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
 
   printf("Default teleopInit() function\n");
 }
@@ -120,8 +113,7 @@ void Robot::teleopPeriodic() {
 }
 
 void Robot::disabledInit() {
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandQueue();
-  libIterativeRobot::EventScheduler::getInstance()->clearCommandGroupQueue();
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
   printf("Default disabledInit() function\n");
 }
 

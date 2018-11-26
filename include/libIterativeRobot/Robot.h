@@ -11,6 +11,8 @@
 #include "subsystems/Beater.h"
 #include "subsystems/Flywheel.h"
 
+#include "events/EventScheduler.h"
+
 class Robot : public libIterativeRobot::RobotBase {
   private:
     static Robot* instance;
