@@ -5,12 +5,14 @@ TurnWithGyro::TurnWithGyro(int turnDegrees) {
   requires(Robot::robotBase);
   this->degrees = turnDegrees;
   this->motorSpeed = 0;
+  this->timeAtSetpoint = 0;
 }
 
 TurnWithGyro::TurnWithGyro(int turnDegrees, int motorSpeed) {
   requires(Robot::robotBase);
   this->degrees = turnDegrees;
   this->motorSpeed = motorSpeed;
+  this->timeAtSetpoint = 0;
 }
 
 bool TurnWithGyro::canRun() {
@@ -21,10 +23,14 @@ bool TurnWithGyro::canRun() {
 void TurnWithGyro::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  Robot::robotBase->resetGyro();
-  gyroPID = new PIDController(0.05, 0.0 , 0.002);
+  if (degrees != 0) {
+    Robot::robotBase->resetGyro();
+  }
+  gyroPID = new PIDController(0.1, 0.0 , 0.011);
   gyroPID->setSensorValue(0);
   gyroPID->setSetpoint(degrees);
+  //gyroPID->threshold = 30;
+  this->timeAtSetpoint = 0;
 }
 
 void TurnWithGyro::execute() {
@@ -33,19 +39,30 @@ void TurnWithGyro::execute() {
   //printf("Hello, world!\n");
   gyroPID->setSensorValue(Robot::robotBase->getGyroValue());
   gyroPID->loop();
-  int motorSpeed = gyroPID->getOutput();
+  int motorSpeed = (int)((double)gyroPID->getOutput() * 1.5);
 
   Robot::robotBase->moveBase(-motorSpeed, motorSpeed);
 }
 
 bool TurnWithGyro::isFinished() {
-  return false; //gyroPID->atSetpoint(); // This is the default value anyways, so this method can be removed
+
+  gyroPID->setSensorValue(Robot::robotBase->getGyroValue());
+  if (this->timeAtSetpoint == 0 && gyroPID->atSetpoint()) {
+    this->timeAtSetpoint = pros::millis() + 250;
+  } else if (this->timeAtSetpoint == 0) {
+    return false;
+  } else if (!gyroPID->atSetpoint()) {
+    this->timeAtSetpoint = 0;
+    return false;
+  }
+  return this->timeAtSetpoint > pros::millis();//gyroPID->atSetpoint();
 }
 
 void TurnWithGyro::end() {
   // Code that runs when isFinished() returns true.
   Robot::robotBase->moveBase(0, 0);
   delete gyroPID;
+  Robot::robotBase->resetGyro();
 }
 
 void TurnWithGyro::interrupted() {

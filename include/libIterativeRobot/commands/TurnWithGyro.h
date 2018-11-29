@@ -8,6 +8,7 @@ class TurnWithGyro : public libIterativeRobot::Command {
   private:
     int degrees;
     int motorSpeed;
+    int timeAtSetpoint;
     PIDController* gyroPID;
   public:
     bool canRun();

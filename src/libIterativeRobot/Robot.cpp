@@ -80,7 +80,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new AutonGroup3();
+  autonGroup = new ThreeFlag();
   // AutonGroup3 is for top, bototm, and platform. You need to modify the file for both red and blue, though the comments in there should
   // guide you. Lmk if you need any help with that.
 
@@ -119,4 +119,11 @@ void Robot::disabledInit() {
 
 void Robot::disabledPeriodic() {
   //printf("Default disabledPeriodic() function\n");
+}
+
+Robot* Robot::getInstance() {
+  if (instance == 0) {
+    instance = new Robot();
+  }
+  return instance;
 }

@@ -2,62 +2,61 @@
 #include "libIterativeRobot/commands/ThreeFlagSubgroup.h"
 #include "libIterativeRobot/commands/DriveToPosition.h"
 #include "libIterativeRobot/commands/FlywheelRevUp.h"
+#include "libIterativeRobot/commands/FlywheelForward.h"
 #include "libIterativeRobot/commands/DelayCommand.h"
 #include "libIterativeRobot/commands/CollectorMiddleForwardTimed.h"
 #include "libIterativeRobot/commands/CollectorForwardTimed.h"
 #include "libIterativeRobot/commands/TurnWithGyro.h"
+#include "libIterativeRobot/commands/ResetGyro.h"
+#include "libIterativeRobot/commands/BeaterForwardTimed.h"
 
 ThreeFlag::ThreeFlag() {
-    addSequentialCommand(new FlywheelRevUp());
-    addParallelCommand(new DriveToPosition(2400, -2400));
-    addParallelCommand(new CollectorForwardTimed(3000));
-    addSequentialCommand(new DriveToPosition(-3500, 3500));
-    addSequentialCommand(new DriveToPosition(-500, 500, 50));
-    addSequentialCommand(new DriveToPosition(500, -500));
-    addSequentialCommand(new DriveToPosition(-670, -670));
-    addSequentialCommand(new DelayCommand(150));
-    addSequentialCommand(new DriveToPosition(300, -300));
-    addSequentialCommand(new DelayCommand(150));
-    addSequentialCommand(new CollectorMiddleForwardTimed(1000));
-    addSequentialCommand(new DriveToPosition(300, -300));
-    addSequentialCommand(new DelayCommand(150));
-    addSequentialCommand(new CollectorMiddleForwardTimed(1000));
-    addSequentialCommand(new DriveToPosition(1000, -1000));
-    addSequentialCommand(new DelayCommand(150));
-    /*addSequentialCommand(new FlywheelRevUp());
-    addParallelCommand(new CollectorForwardTimed(1500));
-    addParallelCommand(new DriveToPosition(3750, -3750)); // Forward for 4450
-    addSequentialCommand(new DelayCommand(150));
+  // addSequentialCommand(new ResetGyro());
+  // addSequentialCommand(new DriveToPosition(3250, 3250));
+  // addParallelCommand(new BeaterForwardTimed(500));
+  // addParallelCommand(new FlywheelForward());
+  //
+  // addParallelCommand(new CollectorForwardTimed(1500));
+  // addSequentialCommand(new CollectorMiddleForwardTimed(500));
+  // addParallelCommand(new CollectorForwardTimed(500));
+  //
+  // addSequentialCommand(new DelayCommand(150));
+  // addSequentialCommand(new TurnWithGyro(0));
+  //
+  // addSequentialCommand(new DriveToPosition(-4500, -4500));
+  //
+  // // Turn now
+  // addSequentialCommand(new DelayCommand(250));
+  // addSequentialCommand(new DriveToPosition(345, 345));
+  //
+  // addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new CollectorForwardTimed(150));
-    addParallelCommand(new CollectorMiddleForwardTimed(250));
-    addParallelCommand(new DriveToPosition(250, -250));
-    addSequentialCommand(new DelayCommand(150));
+  TurnWithGyro* test = new TurnWithGyro(900);
+  printf("Address of test: 0x%x", test);
 
-    addSequentialCommand(new DriveToPosition(-4350, 4350)); // Back to starting point
-    addSequentialCommand(new DelayCommand(150));
-    addSequentialCommand(new DriveToPosition(250, -250));
-    addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(test); // - for BLUE
 
-#ifdef USE_GYRO
-    addSequentialCommand(new TurnWithGyro(-900)); // 900 for red, -900 for blue
-#else
-    addSequentialCommand(new DriveToPosition(680, 680)); // Rotate counterclockwise? // - for red
-#endif
-    addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new FlywheelRevUp());
-    addSequentialCommand(new CollectorMiddleForwardTimed(500));
-    addSequentialCommand(new DriveToPosition(1800, -1800));
-    addSequentialCommand(new DelayCommand(150));
-    addSequentialCommand(new CollectorMiddleForwardTimed(1500));
+  // addSequentialCommand(new DriveToPosition(200, 200));
+  // addSequentialCommand(new FlywheelRevUp());
+  // addSequentialCommand(new CollectorMiddleForwardTimed(500)); // Shoot first ball to top flag
+  // addSequentialCommand(new DelayCommand(250));
+  // // Move forward and shoot the middle flag
+  // addSequentialCommand(new DriveToPosition(800, 800));
+  // addSequentialCommand(new CollectorMiddleForwardTimed(1500));
+  // addSequentialCommand(new DelayCommand(150));
+  // // Hit the bottom flag
+  // addSequentialCommand(new DriveToPosition(2400, 2400));
+  // addSequentialCommand(new DelayCommand(150));
+  //
+  // addSequentialCommand(new DriveToPosition(-400, -400));
+  // addSequentialCommand(new TurnWithGyro(0));
+  // addSequentialCommand(new DriveToPosition(-4400, -4400));
+  // addSequentialCommand(new DelayCommand(150));
+  // Turn onto the platform
+  addSequentialCommand(new TurnWithGyro(-900));
+  addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(new DriveToPosition(250, 250)); // 6000
 
-    addSequentialCommand(new DriveToPosition(-3159, 3150));*/
-
-// #ifdef USE_GYRO
-//     addSequentialCommand(new TurnWithGyro(900)); // -90 for red, 90 for blue
-// #else
-//     addSequentialCommand(new DriveToPosition(-760, -760)); // Both positive for RED
-// #endif
-//     addSequentialCommand(new DriveToPosition(6750, -6750, 200));
 }
