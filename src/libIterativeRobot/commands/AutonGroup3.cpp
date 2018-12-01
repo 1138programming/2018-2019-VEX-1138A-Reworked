@@ -8,15 +8,6 @@
 
 AutonGroup3::AutonGroup3() {
 
-    addSequentialCommand(new DriveToPosition(-750, -750));
-    addSequentialCommand(new DelayCommand(150));
-    addSequentialCommand(new DriveToPosition(250, 250));
-
-    TurnWithGyro* test = new TurnWithGyro(900);
-    printf("Addres of test: 0x%x", test);
-
-    addSequentialCommand(test); // - for BLUE
-
     addSequentialCommand(new FlywheelRevUp());
     addSequentialCommand(new CollectorMiddleForwardTimed(500));
     addSequentialCommand(new DelayCommand(150));
@@ -25,9 +16,9 @@ AutonGroup3::AutonGroup3() {
     //addSequentialCommand(new DelayCommand(500));
     addSequentialCommand(new DelayCommand(150));
 
-    addSequentialCommand(new DriveToPosition(-4950, -4950)); // 5050 for BLUE, 4850 for RED
+    addSequentialCommand(new DriveToPosition(-5050, -5050)); // 5050 for BLUE, 4850 for RED
 
-    addSequentialCommand(new TurnWithGyro(-900)); // - for BLUE
+    addSequentialCommand(new TurnWithGyro(-930)); // - for BLUE
 
     addSequentialCommand(new DriveToPosition(4250, 4250, 200)); // Red is 6250, blue is 5950
 }

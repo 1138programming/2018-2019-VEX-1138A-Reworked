@@ -98,7 +98,7 @@ void PIDController::loop() {
   //   printf("Wrist output is %d\n", output);
   // }
   if (outputMotor != NULL) {
-    outputMotor->setSpeed(output);
+    outputMotor->getMotorObject()->move_velocity(output);
   }
   //printf("Error is %d, output is %d\n", error, output);
   previousError = error;
