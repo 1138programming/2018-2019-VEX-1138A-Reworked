@@ -4,10 +4,11 @@
 
 Flywheel::Flywheel() {
   flywheelMotor = Motor::getMotor(flywheelMotorPort);
+  flywheelMotor->getMotorObject()->set_gearing(pros::E_MOTOR_GEARSET_06);
 }
 
 void Flywheel::setFlywheel(int velocity) {
-  flywheelMotor->getMotorObject()->move_velocity(velocity);
+  flywheelMotor->getMotorObject()->move_voltage(velocity * 18);
 }
 
 double Flywheel::getFlywheelTemperature() {
