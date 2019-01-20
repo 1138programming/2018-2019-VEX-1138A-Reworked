@@ -1,39 +1,39 @@
-#include "libIterativeRobot/commands/BeaterForwardTimed.h"
+#include "libIterativeRobot/commands/FlipperForwardTimed.h"
 #include "libIterativeRobot/Robot.h"
 
 #include "api.h"
 
-BeaterForwardTimed::BeaterForwardTimed(int mSecs) {
-  requires(Robot::beater);
+FlipperForwardTimed::FlipperForwardTimed(int mSecs) {
+  requires(Robot::flipper);
   runTime = mSecs;
 }
 
-bool BeaterForwardTimed::canRun() {
+bool FlipperForwardTimed::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void BeaterForwardTimed::initialize() {
+void FlipperForwardTimed::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   startTime = pros::millis();
 }
 
-void BeaterForwardTimed::execute() {
+void FlipperForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::beater->runBeater(-200);
+  Robot::flipper->runFlipper(200);
 }
 
-bool BeaterForwardTimed::isFinished() {
+bool FlipperForwardTimed::isFinished() {
   return (pros::millis() - startTime) > runTime;
 }
 
-void BeaterForwardTimed::end() {
+void FlipperForwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::beater->runBeater(0);
+  Robot::flipper->runFlipper(0);
 }
 
-void BeaterForwardTimed::interrupted() {
+void FlipperForwardTimed::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

@@ -16,16 +16,16 @@
 #define USE_GYRO 1
 
 // Motor ports
-const int rightFrontBaseMotorPort = 1;
-const int rightBackBaseMotorPort = 2;
-const int leftFrontBaseMotorPort = 9;
-const int leftBackBaseMotorPort = 10;
+const int rightFrontBaseMotorPort = 4;
+const int rightBackBaseMotorPort = 8;
+const int leftFrontBaseMotorPort = 1;
+const int leftBackBaseMotorPort = 3;
 
-const int beaterPort = 5;
+const int flipperPort = 2;
 
-const int flywheelMotorPort = 7;
-const int frontCollectorMotorPort = 8;
-const int middleCollectorMotorPort = 6;
+const int flywheelMotorPort = 5;
+const int frontCollectorMotorPort = 9;
+const int middleCollectorMotorPort = 10;
 
 const int gyroPort = 1;
 

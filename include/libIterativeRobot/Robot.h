@@ -8,7 +8,7 @@
 #include "subsystems/Base.h"
 #include "subsystems/Collector.h"
 #include "subsystems/MiddleCollector.h"
-#include "subsystems/Beater.h"
+#include "subsystems/Flipper.h"
 #include "subsystems/Flywheel.h"
 
 #include "events/EventScheduler.h"
@@ -34,7 +34,7 @@ class Robot : public libIterativeRobot::RobotBase {
     static Base* robotBase;
     static Collector* collector;
     static MiddleCollector* middleCollector;
-    static Beater* beater;
+    static Flipper* flipper;
     static Flywheel* flywheel;
 
     // So that we don't leak memory

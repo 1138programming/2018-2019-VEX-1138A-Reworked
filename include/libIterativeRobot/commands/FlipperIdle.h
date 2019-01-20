@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_BEATERFORWARD_H_
-#define _COMMANDS_BEATERFORWARD_H_
+#ifndef _COMMANDS_FLIPPERIDLE_H_
+#define _COMMANDS_FLIPPERIDLE_H_
 
 #include "libIterativeRobot/commands/Command.h"
 
-class BeaterForward : public libIterativeRobot::Command {
+class FlipperIdle : public libIterativeRobot::Command {
   public:
     bool canRun();
     void initialize();
@@ -11,7 +11,7 @@ class BeaterForward : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    BeaterForward();
+    FlipperIdle();
 };
 
-#endif // _COMMANDS_BEATERFORWARD_H_
+#endif // _COMMANDS_FLIPPERIDLE_H_

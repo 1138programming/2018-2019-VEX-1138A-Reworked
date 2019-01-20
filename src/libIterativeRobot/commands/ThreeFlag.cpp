@@ -8,12 +8,12 @@
 #include "libIterativeRobot/commands/CollectorForwardTimed.h"
 #include "libIterativeRobot/commands/TurnWithGyro.h"
 #include "libIterativeRobot/commands/ResetGyro.h"
-#include "libIterativeRobot/commands/BeaterForwardTimed.h"
+#include "libIterativeRobot/commands/FlipperForwardTimed.h"
 
 ThreeFlag::ThreeFlag() {
   // addSequentialCommand(new ResetGyro());
   // addSequentialCommand(new DriveToPosition(3250, 3250));
-  // addParallelCommand(new BeaterForwardTimed(500));
+  // addParallelCommand(new FlipperForwardTimed(500));
   // addParallelCommand(new FlywheelForward());
   //
   // addParallelCommand(new CollectorForwardTimed(1500));

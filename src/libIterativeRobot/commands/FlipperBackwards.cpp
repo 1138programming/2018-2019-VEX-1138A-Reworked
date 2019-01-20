@@ -1,34 +1,34 @@
-#include "libIterativeRobot/commands/BeaterIdle.h"
+#include "libIterativeRobot/commands/FlipperBackwards.h"
 #include "libIterativeRobot/Robot.h"
 
-BeaterIdle::BeaterIdle() {
-  requires(Robot::beater);
+FlipperBackwards::FlipperBackwards() {
+  requires(Robot::flipper);
 }
 
-bool BeaterIdle::canRun() {
+bool FlipperBackwards::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void BeaterIdle::initialize() {
+void FlipperBackwards::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
 }
 
-void BeaterIdle::execute() {
+void FlipperBackwards::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::beater->runBeater(0);
+  Robot::flipper->runFlipper(-200);
 }
 
-bool BeaterIdle::isFinished() {
+bool FlipperBackwards::isFinished() {
   return true; // This is the default va  lue anyways, so this method can be removed
 }
 
-void BeaterIdle::end() {
+void FlipperBackwards::end() {
   // Code that runs when isFinished() returns true.
 }
 
-void BeaterIdle::interrupted() {
+void FlipperBackwards::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }
