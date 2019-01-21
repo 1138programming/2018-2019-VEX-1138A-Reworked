@@ -18,6 +18,7 @@ void MiddleCollectorBackwards::execute() {
   // Code that runs when this command is scheduled to run
 
   Robot::middleCollector->runMiddleCollector(-200);
+  //Robot::middleCollector->move(-127);
 }
 
 bool MiddleCollectorBackwards::isFinished() {

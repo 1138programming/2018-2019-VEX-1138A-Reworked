@@ -10,6 +10,10 @@ void MiddleCollector::runMiddleCollector(int velocity) {
   middleCollectorMotor->getMotorObject()->move_velocity(velocity);
 }
 
+void MiddleCollector::move(int speed) {
+  middleCollectorMotor->setSpeed(speed);
+}
+
 void MiddleCollector::initDefaultCommand() {
   // Setup up a default command here
   setDefaultCommand(new MiddleCollectorIdle());

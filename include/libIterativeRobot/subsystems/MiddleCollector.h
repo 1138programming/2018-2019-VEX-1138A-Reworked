@@ -11,6 +11,7 @@ class MiddleCollector : public libIterativeRobot::Subsystem {
   public:
     void initDefaultCommand();
     void runMiddleCollector(int velocity);
+    void move(int speed);
     MiddleCollector();
 };
 
