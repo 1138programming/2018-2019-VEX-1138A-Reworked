@@ -13,6 +13,7 @@
 #include "libIterativeRobot/commands/FlipperBackwards.h"
 #include "libIterativeRobot/commands/BaseToggle.h"
 #include "libIterativeRobot/commands/BaseSpeedToggle.h"
+#include "libIterativeRobot/commands/UltrasonicIdle.h"
 
 #include "libIterativeRobot/commands/AutonGroup3.h"
 #include "libIterativeRobot/commands/ThreeFlag.h"
@@ -24,6 +25,7 @@ Collector* Robot::collector = 0;
 MiddleCollector* Robot::middleCollector = 0;
 Flipper*    Robot::flipper = 0;
 Flywheel*  Robot::flywheel  = 0;
+Ultrasonic* Robot::ultrasonic = 0;
 
 pros::Controller* Robot::mainController = 0;
 pros::Controller* Robot::partnerController = 0;
@@ -36,6 +38,7 @@ Robot::Robot() {
   middleCollector = new MiddleCollector();
   flipper = new Flipper();
   flywheel  = new Flywheel();
+  ultrasonic = new Ultrasonic();
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
   partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);

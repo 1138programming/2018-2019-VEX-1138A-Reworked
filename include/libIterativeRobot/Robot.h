@@ -10,6 +10,7 @@
 #include "subsystems/MiddleCollector.h"
 #include "subsystems/Flipper.h"
 #include "subsystems/Flywheel.h"
+#include "subsystems/Ultrasonic.h"
 
 #include "events/EventScheduler.h"
 
@@ -36,6 +37,7 @@ class Robot : public libIterativeRobot::RobotBase {
     static MiddleCollector* middleCollector;
     static Flipper* flipper;
     static Flywheel* flywheel;
+    static Ultrasonic* ultrasonic;
 
     // So that we don't leak memory
     libIterativeRobot::CommandGroup* autonGroup;

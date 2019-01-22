@@ -18,12 +18,12 @@
 // Motor ports
 const int rightFrontBaseMotorPort = 4;
 const int rightBackBaseMotorPort = 8;
-const int leftFrontBaseMotorPort = 1;
+const int leftFrontBaseMotorPort = 5;
 const int leftBackBaseMotorPort = 3;
 
 const int flipperPort = 2;
 
-const int flywheelMotorPort = 5;
+const int flywheelMotorPort = 1;
 const int frontCollectorMotorPort = 9;
 const int middleCollectorMotorPort = 10;
 
