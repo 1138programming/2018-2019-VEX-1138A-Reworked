@@ -4,18 +4,23 @@
 #include "libIterativeRobot/commands/DelayCommand.h"
 #include "libIterativeRobot/commands/CollectorMiddleForwardTimed.h"
 #include "libIterativeRobot/commands/CollectorForwardTimed.h"
+#include "libIterativeRobot/commands/ForwardTimedFlipper.h"
 
 AutonGroup3::AutonGroup3() {
   addSequentialCommand(new FlywheelRevUp());
-  addSequentialCommand(new DriveToPosition(1250, -1250)); 
-  addSequentialCommand(new CollectorMiddleForwardTimed(500));
+  addSequentialCommand(new DriveToPosition(2600, 2600));
+  addParallelCommand(new CollectorForwardTimed(2600));
+  addSequentialCommand(new DriveToPosition(-800, -800));
   addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(new DriveToPosition(-416, 416));
+  addParallelCommand(new ForwardTimedFlipper(750));
+  //addSequentialCommand(new DelayCommand(150));
 
-  addSequentialCommand(new DriveToPosition(-315, 315));
-  addSequentialCommand(new DriveToPosition(-208, -208));
+  //addSequentialCommand(new DriveToPosition(-315, 315));
+  //addSequentialCommand(new DriveToPosition(-208, -208));
   /*
-  //addSequentialCommand(new DriveToPosition(1250, -1250)); // Forwards one tile
-  //addSequentialCommand(new DriveToPosition(-208, -208)); // Rotate 45 degrees
+  //addSequentialCommand(new DriveToPosition(1250, 1250)); // Forwards one tile
+  //addSequentialCommand(new DriveToPosition(-208, 208)); // Rotate 45 degrees left
   //addSequentialCommand(new DriveToPosition(-30, -30)); // Rotate x degrees
 
   addSequentialCommand(new FlywheelRevUp());
