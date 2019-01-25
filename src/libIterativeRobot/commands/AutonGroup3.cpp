@@ -14,7 +14,7 @@ AutonGroup3::AutonGroup3() {
   addSequentialCommand(new DelayCommand(500));
   addSequentialCommand(new DriveToPosition(-400, 400));
   addParallelCommand(new ForwardTimedFlipper(750));
-  addSequentialCommand(new DelayCommand(150));
+  //addSequentialCommand(new DelayCommand(150));
 
   //addSequentialCommand(new DriveToPosition(-315, 315));
   //addSequentialCommand(new DriveToPosition(-208, -208));
