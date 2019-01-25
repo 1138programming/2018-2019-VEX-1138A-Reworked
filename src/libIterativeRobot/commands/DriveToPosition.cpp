@@ -8,13 +8,15 @@ DriveToPosition::DriveToPosition(int leftTarget, int rightTarget) {
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
   this->motorSpeed = 0;
+  this->mV = 12000;
 }
 
-DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed) {
+DriveToPosition::DriveToPosition(int leftTarget, int rightTarget, int motorSpeed, int mV) {
   requires(Robot::robotBase);
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
   this->motorSpeed = motorSpeed;
+  this->mV = mV;
 }
 
 bool DriveToPosition::canRun() {
@@ -26,6 +28,7 @@ void DriveToPosition::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   this->endTime = pros::millis() + ((((abs(leftTarget) + abs(rightTarget)) / 2) / (motorSpeed ? motorSpeed : 150)) * 150);
+  Robot::robotBase->setVoltageLimit(mV);
   Robot::robotBase->moveBaseTo(leftTarget, rightTarget, motorSpeed);
 }
 
@@ -40,9 +43,11 @@ bool DriveToPosition::isFinished() {
 void DriveToPosition::end() {
   // Code that runs when isFinished() returns true.
   Robot::robotBase->moveBase(0, 0);
+  Robot::robotBase->setVoltageLimit(12000);
 }
 
 void DriveToPosition::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
+  Robot::robotBase->setVoltageLimit(12000);
 }

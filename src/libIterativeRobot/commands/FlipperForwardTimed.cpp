@@ -3,8 +3,9 @@
 
 #include "api.h"
 
-FlipperForwardTimed::FlipperForwardTimed(int mSecs) {
+FlipperForwardTimed::FlipperForwardTimed(int speed, int mSecs) {
   requires(Robot::flipper);
+  speed = speed;
   runTime = mSecs;
 }
 
@@ -21,7 +22,7 @@ void FlipperForwardTimed::initialize() {
 void FlipperForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::flipper->runFlipper(200);
+  Robot::flipper->runFlipper(speed);
 }
 
 bool FlipperForwardTimed::isFinished() {

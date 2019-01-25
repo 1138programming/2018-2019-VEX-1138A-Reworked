@@ -21,7 +21,7 @@ void ForwardTimedFlipper::initialize() {
 void ForwardTimedFlipper::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::flipper->runFlipper(-200);
+  Robot::flipper->runFlipper(200);
 }
 
 bool ForwardTimedFlipper::isFinished() {

@@ -23,6 +23,7 @@ class Base : public libIterativeRobot::Subsystem {
     void toggleBaseSpeed();
     void moveBase(int left, int right);
     void moveBaseTo(int leftTarget, int rightTarget, int motorSpeed = 0);
+    void setVoltageLimit(int mV);
     bool baseAtTarget();
     double getGyroValue();
     void resetGyro();

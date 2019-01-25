@@ -7,7 +7,8 @@ class DriveToPosition : public libIterativeRobot::Command {
   private:
     double leftTarget;
     double rightTarget;
-    double motorSpeed;
+    int motorSpeed;
+    int mV;
 
     int endTime;
   public:
@@ -17,7 +18,7 @@ class DriveToPosition : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    DriveToPosition(int leftTarget, int rightTarget, int motorSpeed);
+    DriveToPosition(int leftTarget, int rightTarget, int motorSpeed, int mV);
     DriveToPosition(int leftTarget, int rightTarget);
 };
 

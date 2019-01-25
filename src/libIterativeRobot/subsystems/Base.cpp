@@ -64,6 +64,14 @@ void Base::moveBaseTo(int leftTarget, int rightTarget, int motorSpeed) {
   rightBackBaseMotor->getMotorObject()->move_relative(-rightTarget, motorSpeed ? motorSpeed : 150);
 }
 
+void Base::setVoltageLimit(int mV) {
+  leftFrontBaseMotor->getMotorObject()->set_voltage_limit(mV);
+  leftBackBaseMotor->getMotorObject()->set_voltage_limit(mV);
+
+  rightFrontBaseMotor->getMotorObject()->set_voltage_limit(mV);
+  rightBackBaseMotor->getMotorObject()->set_voltage_limit(mV);
+}
+
 bool Base::baseAtTarget() {
   return abs(leftFrontBaseMotor->getMotorObject()->get_target_position() - leftFrontBaseMotor->getMotorObject()->get_position()) <= 3; // Tune threshold and make a varaible
 }

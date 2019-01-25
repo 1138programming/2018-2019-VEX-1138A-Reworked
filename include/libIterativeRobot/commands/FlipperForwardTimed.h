@@ -5,6 +5,7 @@
 
 class FlipperForwardTimed : public libIterativeRobot::Command {
   private:
+    int speed; // Speed for the flipper to run at
     int runTime; // Time, in milliseconds, to run
     int startTime; // Starting time of this command
   public:
@@ -14,7 +15,7 @@ class FlipperForwardTimed : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    FlipperForwardTimed(int mSecs);
+    FlipperForwardTimed(int speed, int mSecs);
 };
 
 #endif // _COMMANDS_FLIPPERFORWARDTIMED_H_
