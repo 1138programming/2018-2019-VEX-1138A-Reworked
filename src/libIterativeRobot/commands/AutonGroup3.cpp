@@ -11,10 +11,10 @@ AutonGroup3::AutonGroup3() {
   addSequentialCommand(new DriveToPosition(2600, 2600));
   addParallelCommand(new CollectorForwardTimed(2600));
   addSequentialCommand(new DriveToPosition(-800, -800));
-  addSequentialCommand(new DelayCommand(150));
-  addSequentialCommand(new DriveToPosition(-416, 416));
+  addSequentialCommand(new DelayCommand(500));
+  addSequentialCommand(new DriveToPosition(-400, 400));
   addParallelCommand(new ForwardTimedFlipper(750));
-  //addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(new DelayCommand(150));
 
   //addSequentialCommand(new DriveToPosition(-315, 315));
   //addSequentialCommand(new DriveToPosition(-208, -208));
