@@ -17,7 +17,7 @@ void UltrasonicIdle::initialize() {
 
 void UltrasonicIdle::execute() {
   // Code that runs when this command is scheduled to run
-  printf("Ultrasonic(%d);\n", Robot::ultrasonic->getUltrasonic());
+  //printf("Ultrasonic(%d);\n", Robot::ultrasonic->getUltrasonic());
   if (Robot::ultrasonic->getUltrasonic() < 95 && Robot::ultrasonic->getUltrasonic() != -1) {
     //Robot::collector->runCollector(0);
   }

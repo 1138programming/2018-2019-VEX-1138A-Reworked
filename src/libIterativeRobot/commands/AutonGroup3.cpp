@@ -1,5 +1,6 @@
 #include "libIterativeRobot/commands/AutonGroup3.h"
 #include "libIterativeRobot/commands/DriveToPosition.h"
+#include "libIterativeRobot/commands/MoveBaseTo.h"
 #include "libIterativeRobot/commands/FlywheelRevUp.h"
 #include "libIterativeRobot/commands/DelayCommand.h"
 #include "libIterativeRobot/commands/CollectorMiddleForwardTimed.h"
@@ -8,17 +9,19 @@
 #include "libIterativeRobot/commands/ForwardTimedFlipper.h"
 
 AutonGroup3::AutonGroup3() {
-  addSequentialCommand(new FlywheelRevUp());
+  //addSequentialCommand(new DriveToPosition(1000, 1000, 0, 6000));
+  addSequentialCommand(new MoveBaseTo(1000, 1000, 100));
+  /*addSequentialCommand(new FlywheelRevUp());
   addSequentialCommand(new DriveToPosition(2600, 2600, 100, 6000));
   addParallelCommand(new CollectorForwardTimed(2450));
   addSequentialCommand(new DriveToPosition(-800, -800, 100, 6000));
   addSequentialCommand(new DelayCommand(1000));
   addSequentialCommand(new DriveToPosition(-420, 420, 100, 6000));
-  addParallelCommand(new ForwardTimedFlipper(500));
+  addSequentialCommand(new ForwardTimedFlipper(500));
   addSequentialCommand(new DelayCommand(1000));
   addSequentialCommand(new DriveToPosition(1200, 1200, 100, 6000));
   addSequentialCommand(new DelayCommand(1000));
-  addSequentialCommand(new FlipperForwardTimed(-200, 1000));
+  addSequentialCommand(new FlipperForwardTimed(-200, 1000));*/
 
   //addSequentialCommand(new DriveToPosition(-315, 315));
   //addSequentialCommand(new DriveToPosition(-208, -208));

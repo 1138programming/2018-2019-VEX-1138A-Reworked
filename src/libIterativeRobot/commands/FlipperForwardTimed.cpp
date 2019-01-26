@@ -5,7 +5,8 @@
 
 FlipperForwardTimed::FlipperForwardTimed(int speed, int mSecs) {
   requires(Robot::flipper);
-  speed = speed;
+
+  this->speed = speed;
   runTime = mSecs;
 }
 
@@ -21,7 +22,6 @@ void FlipperForwardTimed::initialize() {
 
 void FlipperForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
-
   Robot::flipper->runFlipper(speed);
 }
 
