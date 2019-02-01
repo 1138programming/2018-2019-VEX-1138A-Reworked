@@ -4,18 +4,32 @@
 #include "libIterativeRobot/commands/DelayCommand.h"
 #include "libIterativeRobot/commands/CollectorMiddleForwardTimed.h"
 #include "libIterativeRobot/commands/CollectorForwardTimed.h"
-#include "libIterativeRobot/commands/ForwardTimedFlipper.h"
+#include "libIterativeRobot/commands/FlipperForwardTimed.h"
+#include "libIterativeRobot/commands/FlipperBackwardTimed.h"
 
 AutonGroup3::AutonGroup3() {
   addSequentialCommand(new FlywheelRevUp());
-  addSequentialCommand(new DriveToPosition(2600, 2600));
-  addParallelCommand(new CollectorForwardTimed(2600));
-  addSequentialCommand(new DriveToPosition(-800, -800));
-  addSequentialCommand(new DelayCommand(500));
-  addSequentialCommand(new DriveToPosition(-400, 400));
-  addParallelCommand(new ForwardTimedFlipper(750));
+  addSequentialCommand(new DelayCommand(300));
+  addSequentialCommand(new DriveToPosition(2750, 2750, 150));
+  addParallelCommand(new CollectorForwardTimed(3000));
+  addSequentialCommand(new DriveToPosition(-1000, -1000, 150));
+  addSequentialCommand(new DelayCommand(300));
+  addSequentialCommand(new DriveToPosition(-435, 435, 60));
+  addSequentialCommand(new DelayCommand(75));
+  addSequentialCommand(new FlipperBackwardTimed(300));
+  addSequentialCommand(new DelayCommand(200));
+  addSequentialCommand(new DriveToPosition(1200, 1200, 90));
   addSequentialCommand(new DelayCommand(150));
-
+  addSequentialCommand(new FlipperForwardTimed(300));
+  addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(new DriveToPosition(-500, -500, 50));
+  addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(new DriveToPosition(1075, -1075, 60));
+  addSequentialCommand(new DelayCommand(150));
+  addSequentialCommand(new DriveToPosition(600, 600, 50));
+  addSequentialCommand(new DelayCommand(1500));
+  addSequentialCommand(new CollectorMiddleForwardTimed(1000));
+  addParallelCommand(new CollectorForwardTimed(1000));
   //addSequentialCommand(new DriveToPosition(-315, 315));
   //addSequentialCommand(new DriveToPosition(-208, -208));
   /*

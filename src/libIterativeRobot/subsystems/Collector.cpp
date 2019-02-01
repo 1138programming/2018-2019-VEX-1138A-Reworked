@@ -7,7 +7,7 @@ Collector::Collector() {
 }
 
 void Collector::runCollector(int velocity) {
-  frontCollectorMotor->getMotorObject()->move_velocity(-velocity);
+  frontCollectorMotor->getMotorObject()->move_velocity(velocity);
 }
 
 void Collector::initDefaultCommand() {

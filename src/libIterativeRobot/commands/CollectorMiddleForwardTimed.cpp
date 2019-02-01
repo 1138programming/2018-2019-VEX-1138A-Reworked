@@ -22,7 +22,7 @@ void CollectorMiddleForwardTimed::initialize() {
 void CollectorMiddleForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::middleCollector->runMiddleCollector(-200);
+  Robot::middleCollector->runMiddleCollector(200);
 }
 
 bool CollectorMiddleForwardTimed::isFinished() {

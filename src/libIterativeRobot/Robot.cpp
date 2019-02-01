@@ -16,6 +16,7 @@
 #include "libIterativeRobot/commands/UltrasonicIdle.h"
 
 #include "libIterativeRobot/commands/AutonGroup3.h"
+#include "libIterativeRobot/commands/AutonGroup2.h"
 #include "libIterativeRobot/commands/ThreeFlag.h"
 #include "libIterativeRobot/commands/AutonGroup4.h"
 
@@ -48,9 +49,9 @@ Robot::Robot() {
   libIterativeRobot::JoystickButton* flywheelBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
   flywheelBackwardsButton->whenPressed(new FlywheelBackwards());
 
-  libIterativeRobot::JoystickButton* collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
+  libIterativeRobot::JoystickButton* collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
   collectorForwardsButton->whileHeld(new CollectorForward());
-  libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+  libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
 
   libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
@@ -83,7 +84,7 @@ void Robot::autonInit() {
     delete autonGroup;
     autonGroup = NULL;
   }
-  autonGroup = new AutonGroup3();
+  autonGroup = new AutonGroup2();
   // AutonGroup3 is for top, bototm, and platform. You need to modify the file for both red and blue, though the comments in there should
   // guide you. Lmk if you need any help with that.
 

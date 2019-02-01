@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_FORWARDTIMEDFLIPPER_H_
-#define _COMMANDS_FORWARDTIMEDFLIPPER_H_
+#ifndef _COMMANDS_FLIPPERBACKWARDTIMED_H_
+#define _COMMANDS_FLIPPERBACKWARDTIMED_H_
 
 #include "libIterativeRobot/commands/Command.h"
 
-class ForwardTimedFlipper : public libIterativeRobot::Command {
+class FlipperBackwardTimed : public libIterativeRobot::Command {
   private:
     int runTime; // Time, in milliseconds, to run
     int startTime; // Starting time of this command
@@ -14,7 +14,7 @@ class ForwardTimedFlipper : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    ForwardTimedFlipper(int mSecs);
+    FlipperBackwardTimed(int mSecs);
 };
 
-#endif // _COMMANDS_FORWARDTIMEDFLIPPER_H_
+#endif // _COMMANDS_FLIPPERBACKWARDTIMED_H_

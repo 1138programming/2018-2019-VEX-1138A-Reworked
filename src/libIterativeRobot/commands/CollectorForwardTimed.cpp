@@ -21,7 +21,7 @@ void CollectorForwardTimed::initialize() {
 void CollectorForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runCollector(-200);
+  Robot::collector->runCollector(200);
 }
 
 bool CollectorForwardTimed::isFinished() {

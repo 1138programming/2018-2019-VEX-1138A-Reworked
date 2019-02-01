@@ -10,7 +10,9 @@ class Flipper : public libIterativeRobot::Subsystem {
     Motor* flipperMotor;
   public:
     void initDefaultCommand();
-    void runFlipper(int velocity);
+    void runFlipperForward(int velocity);
+    void runFlipperBackward(int velocity);
+    void runFlipperDriver(int velocity);
     Flipper();
 };
 
