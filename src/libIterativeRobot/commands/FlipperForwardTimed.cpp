@@ -21,7 +21,7 @@ void FlipperForwardTimed::initialize() {
 void FlipperForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::flipper->runFlipperForward(-200);
+  Robot::flipper->runFlipper(-200);
 }
 
 bool FlipperForwardTimed::isFinished() {
@@ -30,7 +30,7 @@ bool FlipperForwardTimed::isFinished() {
 
 void FlipperForwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::flipper->runFlipperForward(0);
+  Robot::flipper->runFlipper(0);
 }
 
 void FlipperForwardTimed::interrupted() {

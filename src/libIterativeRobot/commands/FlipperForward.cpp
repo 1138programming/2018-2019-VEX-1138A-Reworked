@@ -17,7 +17,7 @@ void FlipperForward::initialize() {
 void FlipperForward::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::flipper->runFlipperDriver(600);
+  Robot::flipper->runFlipper(200);
 }
 
 bool FlipperForward::isFinished() {

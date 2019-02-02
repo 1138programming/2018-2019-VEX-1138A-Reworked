@@ -17,7 +17,7 @@ void FlipperIdle::initialize() {
 void FlipperIdle::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::flipper->runFlipperForward(0);
+  Robot::flipper->runFlipper(0);
 }
 
 bool FlipperIdle::isFinished() {

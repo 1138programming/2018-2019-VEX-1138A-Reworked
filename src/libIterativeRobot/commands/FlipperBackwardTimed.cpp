@@ -21,7 +21,7 @@ void FlipperBackwardTimed::initialize() {
 void FlipperBackwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::flipper->runFlipperBackward(-125);
+  Robot::flipper->runFlipper(-200);
 }
 
 bool FlipperBackwardTimed::isFinished() {
@@ -30,7 +30,7 @@ bool FlipperBackwardTimed::isFinished() {
 
 void FlipperBackwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::flipper->runFlipperBackward(0);
+  Robot::flipper->runFlipper(0);
 }
 
 void FlipperBackwardTimed::interrupted() {
