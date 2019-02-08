@@ -8,7 +8,7 @@ Flywheel::Flywheel() {
 }
 
 void Flywheel::setFlywheel(int velocity) {
-  flywheelMotor->getMotorObject()->move_voltage(velocity * 18);
+  flywheelMotor->getMotorObject()->move_voltage(velocity * 20);
 }
 
 double Flywheel::getFlywheelTemperature() {

@@ -29,8 +29,8 @@ void Base::toggleBaseSpeed() {
 }
 
 void Base::moveBase(int leftSpeed, int rightSpeed) {
-  double left = threshold(leftSpeed);
-  double right = threshold(rightSpeed);
+  double left = threshold(leftSpeed, 5);
+  double right = threshold(rightSpeed, 5);
   left *= 2;
   right *= 2;
 
