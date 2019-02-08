@@ -57,7 +57,8 @@ Robot::Robot() {
   libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
   libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
+  middleCollectorBackwardsButton->whileHeld(new FlipperForward());
+  //middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
 
   libIterativeRobot::JoystickButton* flipperForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
