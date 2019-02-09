@@ -7,10 +7,8 @@
 #include "commands/CommandGroup.h"
 #include "subsystems/Base.h"
 #include "subsystems/Collector.h"
-#include "subsystems/MiddleCollector.h"
 #include "subsystems/Flipper.h"
 #include "subsystems/Flywheel.h"
-#include "subsystems/Ultrasonic.h"
 
 #include "events/EventScheduler.h"
 
@@ -34,16 +32,15 @@ class Robot : public libIterativeRobot::RobotBase {
 
     static Base* robotBase;
     static Collector* collector;
-    static MiddleCollector* middleCollector;
     static Flipper* flipper;
     static Flywheel* flywheel;
-    static Ultrasonic* ultrasonic;
+
+    static AutonChooser* autonChooser;
+
+    static pros::Controller* mainController;
 
     // So that we don't leak memory
     libIterativeRobot::CommandGroup* autonGroup;
-
-    static pros::Controller* mainController;
-    static pros::Controller* partnerController;
 };
 
 

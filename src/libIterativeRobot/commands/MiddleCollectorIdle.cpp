@@ -2,7 +2,7 @@
 #include "libIterativeRobot/Robot.h"
 
 MiddleCollectorIdle::MiddleCollectorIdle() {
-  requires(Robot::middleCollector);
+  requires(Robot::collector);
 }
 
 bool MiddleCollectorIdle::canRun() {

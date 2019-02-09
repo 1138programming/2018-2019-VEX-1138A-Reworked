@@ -13,36 +13,33 @@
 #include "libIterativeRobot/commands/FlipperBackwards.h"
 #include "libIterativeRobot/commands/BaseToggle.h"
 #include "libIterativeRobot/commands/BaseSpeedToggle.h"
-#include "libIterativeRobot/commands/UltrasonicIdle.h"
 
-#include "libIterativeRobot/commands/AutonGroup3.h"
-#include "libIterativeRobot/commands/AutonGroup2.h"
-#include "libIterativeRobot/commands/ThreeFlag.h"
-#include "libIterativeRobot/commands/AutonGroup4.h"
+#include "libIterativeRobot/commands/Auton_Blue_Left_Start_Six_Flag.h"
+#include "libIterativeRobot/commands/Auton_Red_Left_Start_Six_Flag.h"
+#include "libIterativeRobot/commands/Auton_Blue_Right_Start_Six_Flag.h"
+#include "libIterativeRobot/commands/Auton_Red_Right_Start_Six_Flag.h"
 
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
 Collector* Robot::collector = 0;
-MiddleCollector* Robot::middleCollector = 0;
 Flipper*    Robot::flipper = 0;
 Flywheel*  Robot::flywheel  = 0;
-Ultrasonic* Robot::ultrasonic = 0;
+
+AutonChooser* Robot::autonChooser = 0;
 
 pros::Controller* Robot::mainController = 0;
-pros::Controller* Robot::partnerController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
   // Initialize any subsystems
   robotBase = new Base();
   collector = new Collector();
-  middleCollector = new MiddleCollector();
   flipper = new Flipper();
   flywheel  = new Flywheel();
-  ultrasonic = new Ultrasonic();
+
+  autonChooser = AutonChooser::getInstance();
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
-  partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
 
   libIterativeRobot::JoystickButton* flywheelForwardButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
   flywheelForwardButton->whenPressed(new FlywheelForward());
@@ -57,7 +54,8 @@ Robot::Robot() {
   libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
   libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
+  //middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
+  middleCollectorBackwardsButton->whileHeald(new FlipperForward());
 
   libIterativeRobot::JoystickButton* flipperForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
@@ -78,22 +76,28 @@ void Robot::robotInit() {
 }
 
 void Robot::autonInit() {
-  printf("Auton initialized\n");
+  printf("Default autonInit() function\n");
   libIterativeRobot::EventScheduler::getInstance()->initialize();
-  if (autonGroup != NULL) {
-    delete autonGroup;
-    autonGroup = NULL;
+  autonChooser->uninit();
+
+  switch (autonChooser->getAutonChoice()) {
+    case 0:
+      printf("Running group %d\n", 1);
+      autonGroup = new Auton_Blue_Left_Start_Six_Flag();
+      break;
+    case 1:
+      printf("Running group %d\n", 1);
+      autonGroup = new Auton_Blue_Right_Start_Six_Flag();
+      break;
+    case 2:
+      printf("Running group %d\n", 2);
+      autonGroup = new Auton_Red_Left_Start_Six_Flag();
+      break;
+    case 3:
+      printf("Running group %d\n", 2);
+      autonGroup = new Auton_Red_Right_Start_Six_Flag();
+      break;
   }
-  autonGroup = new AutonGroup2();
-  // AutonGroup3 is for top, bototm, and platform. You need to modify the file for both red and blue, though the comments in there should
-  // guide you. Lmk if you need any help with that.
-
-  // AutonGroup4 is already already on the robot on slot 3, so there's no need to modify it.
-  // It shoots the middle and bottom flags, and then parks.
-
-  // To upload to a specific slot on the v5 brain, just run the following command:
-  // `prosv5 make` and then `prosv5 upload --name NAME --slot SLOTNUMBER`
-  // Upload Blue to slot 1 and Red to slot 2
   autonGroup->run();
 }
 
@@ -104,9 +108,9 @@ void Robot::autonPeriodic() {
 }
 
 void Robot::teleopInit() {
-  libIterativeRobot::EventScheduler::getInstance()->initialize();
-
   printf("Default teleopInit() function\n");
+  libIterativeRobot::EventScheduler::getInstance()->initialize();
+  autonChooser->init();
 }
 
 void Robot::teleopPeriodic() {
@@ -123,6 +127,7 @@ void Robot::disabledInit() {
 
 void Robot::disabledPeriodic() {
   //printf("Default disabledPeriodic() function\n");
+  autonChooser->uninit();
 }
 
 Robot* Robot::getInstance() {

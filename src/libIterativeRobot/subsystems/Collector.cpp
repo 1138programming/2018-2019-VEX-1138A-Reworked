@@ -3,11 +3,22 @@
 
 Collector::Collector() {
   frontCollectorMotor = Motor::getMotor(frontCollectorMotorPort);
+  middleCollectorMotor = Motor::getMotor(middleCollectorMotorPort);
+
+  ultrasonic = new pros::ADIUltrasonic(1, 2); // echo, pings
   // Slaving will be tested after initial test
 }
 
-void Collector::runCollector(int velocity) {
+void Collector::runFrontCollector(int velocity) {
   frontCollectorMotor->getMotorObject()->move_velocity(velocity);
+}
+
+void Collector::runMiddleCollector(int velocity) {
+  middleCollectorMotor->getMotorObject()->move_velocity(velocity);
+}
+
+int Collector::getUltrasonic() {
+  return ultrasonic->get_value();
 }
 
 void Collector::initDefaultCommand() {

@@ -17,7 +17,12 @@ void CollectorIdle::initialize() {
 void CollectorIdle::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runCollector(0);
+  Robot::collector->runFrontCollector(0);
+  Robot::collector->runMiddleCollector(0);
+  //printf("Ultrasonic(%d);\n", Robot::ultrasonic->getUltrasonic());
+  if (Robot::collector->getUltrasonic() < 95 && Robot::collector->getUltrasonic() != -1) {
+    //Robot::collector->runCollector(0);
+  }
 }
 
 bool CollectorIdle::isFinished() {

@@ -1,40 +1,40 @@
-#include "libIterativeRobot/commands/CollectorMiddleForwardTimed.h"
+#include "libIterativeRobot/commands/MiddleCollectorBackwardTimed.h"
 #include "libIterativeRobot/Robot.h"
 
 #include "api.h"
 
-CollectorMiddleForwardTimed::CollectorMiddleForwardTimed(int mSecs) {
-  requires(Robot::middleCollector);
+MiddleCollectorBackwardTimed::MiddleCollectorBackwardTimed(int mSecs) {
+  requires(Robot::collector);
   runTime = mSecs;
   startTime = pros::millis();
 }
 
-bool CollectorMiddleForwardTimed::canRun() {
+bool MiddleCollectorBackwardTimed::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void CollectorMiddleForwardTimed::initialize() {
+void MiddleCollectorBackwardTimed::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   startTime = pros::millis();
 }
 
-void CollectorMiddleForwardTimed::execute() {
+void MiddleCollectorBackwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::middleCollector->runMiddleCollector(200);
+  Robot::collector->runMiddleCollector(-200);
 }
 
-bool CollectorMiddleForwardTimed::isFinished() {
+bool MiddleCollectorBackwardTimed::isFinished() {
   return (pros::millis() - startTime) > runTime;
 }
 
-void CollectorMiddleForwardTimed::end() {
+void MiddleCollectorBackwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::middleCollector->runMiddleCollector(0);
+  Robot::collector->runMiddleCollector(0);
 }
 
-void CollectorMiddleForwardTimed::interrupted() {
+void MiddleCollectorBackwardTimed::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

@@ -21,7 +21,7 @@ void CollectorForwardTimed::initialize() {
 void CollectorForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runCollector(200);
+  Robot::collector->runFrontCollector(200);
 }
 
 bool CollectorForwardTimed::isFinished() {
@@ -30,7 +30,7 @@ bool CollectorForwardTimed::isFinished() {
 
 void CollectorForwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::collector->runCollector(0);
+  Robot::collector->runFrontCollector(0);
 }
 
 void CollectorForwardTimed::interrupted() {

@@ -42,6 +42,8 @@
 #include "abstractBaseClasses/Motor.h"
 #include "abstractBaseClasses/PIDController.h"
 
+#include "libIterativeRobot/AutonChooser.h"
+
 /**
  * You should add more #includes here
  */

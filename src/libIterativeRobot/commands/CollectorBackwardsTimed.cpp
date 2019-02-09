@@ -21,7 +21,7 @@ void CollectorBackwardsTimed::initialize() {
 void CollectorBackwardsTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runCollector(-200);
+  Robot::collector->runFrontCollector(-200);
 }
 
 bool CollectorBackwardsTimed::isFinished() {
@@ -30,7 +30,7 @@ bool CollectorBackwardsTimed::isFinished() {
 
 void CollectorBackwardsTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::collector->runCollector(0);
+  Robot::collector->runFrontCollector(0);
 }
 
 void CollectorBackwardsTimed::interrupted() {

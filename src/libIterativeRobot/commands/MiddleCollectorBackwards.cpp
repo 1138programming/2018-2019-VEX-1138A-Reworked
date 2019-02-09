@@ -2,7 +2,7 @@
 #include "libIterativeRobot/Robot.h"
 
 MiddleCollectorBackwards::MiddleCollectorBackwards() {
-  requires(Robot::middleCollector);
+  requires(Robot::collector);
 }
 
 bool MiddleCollectorBackwards::canRun() {
@@ -17,7 +17,7 @@ void MiddleCollectorBackwards::initialize() {
 void MiddleCollectorBackwards::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::middleCollector->runMiddleCollector(-200);
+  Robot::collector->runMiddleCollector(-200);
   //Robot::middleCollector->move(-127);
 }
 
