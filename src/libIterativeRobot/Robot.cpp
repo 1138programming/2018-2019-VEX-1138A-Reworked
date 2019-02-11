@@ -9,8 +9,10 @@
 #include "libIterativeRobot/commands/CollectorBackwards.h"
 #include "libIterativeRobot/commands/MiddleCollectorForward.h"
 #include "libIterativeRobot/commands/MiddleCollectorBackwards.h"
+#include "libIterativeRobot/commands/MiddleCollectorForwardTimed.h"
 #include "libIterativeRobot/commands/FlipperForward.h"
 #include "libIterativeRobot/commands/FlipperBackwards.h"
+#include "libIterativeRobot/commands/FlipperBackwardTimed.h"
 #include "libIterativeRobot/commands/BaseToggle.h"
 #include "libIterativeRobot/commands/BaseSpeedToggle.h"
 
@@ -52,15 +54,16 @@ Robot::Robot() {
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
 
   libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
-  middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
+  middleCollectorForwardsButton->whenPressed(new MiddleCollectorForwardTimed(100));
+
   libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   //middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
-  middleCollectorBackwardsButton->whileHeald(new FlipperForward());
+  middleCollectorBackwardsButton->whileHeld(new FlipperForward());
 
   libIterativeRobot::JoystickButton* flipperForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
   libIterativeRobot::JoystickButton* flipperBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
-  flipperBackwardsButton->whileHeld(new FlipperBackwards());
+  flipperBackwardsButton->whileReleased(new FlipperBackwardTimed(750));
 
   libIterativeRobot::JoystickButton* toggleButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);
   toggleButton->whenPressed(new BaseToggle());

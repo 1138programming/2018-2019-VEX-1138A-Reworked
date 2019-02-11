@@ -17,7 +17,7 @@ void MiddleCollectorIdle::initialize() {
 void MiddleCollectorIdle::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::middleCollector->runMiddleCollector(0);
+  Robot::collector->runMiddleCollector(0);
 }
 
 bool MiddleCollectorIdle::isFinished() {
