@@ -22,6 +22,7 @@ class CommandGroup : public Command {
     bool isFinished(); // Returns whether or not the command group is finished. The execute function is called continuously until this is true or the command group is interrupted
     void end(); // Run when command group is finished
     void interrupted(); // Run when command group was interrupted
+
     void addSequentialCommand(Command* aCommand); // Adds a command or command group to a new sequential step. Sequential steps are run in the order they are added
     void addParallelCommand(Command* aCommand); // Adds a command or command group to be run in parallel with the commands and command groups in the current sequential steps
 

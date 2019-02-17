@@ -7,7 +7,6 @@ namespace libIterativeRobot {
 
 class EventListener {
   private:
-    
   protected:
     virtual void checkConditions() = 0;
   public:
