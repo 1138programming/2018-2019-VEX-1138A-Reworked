@@ -10,6 +10,9 @@
 #include "subsystems/Flipper.h"
 #include "subsystems/Flywheel.h"
 
+
+#include "libIterativeRobot/events/JoystickButton.h"
+
 #include "events/EventScheduler.h"
 
 class Robot : public libIterativeRobot::RobotBase {
@@ -36,6 +39,8 @@ class Robot : public libIterativeRobot::RobotBase {
     static Flywheel* flywheel;
 
     static AutonChooser* autonChooser;
+
+    libIterativeRobot::JoystickButton* collectorForwardsButton;
 
     static pros::Controller* mainController;
 

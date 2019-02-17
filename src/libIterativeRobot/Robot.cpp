@@ -48,7 +48,7 @@ Robot::Robot() {
   libIterativeRobot::JoystickButton* flywheelBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
   flywheelBackwardsButton->whenPressed(new FlywheelBackwards());
 
-  libIterativeRobot::JoystickButton* collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+  collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
   collectorForwardsButton->whileHeld(new CollectorForward());
   libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
@@ -119,6 +119,7 @@ void Robot::teleopInit() {
 void Robot::teleopPeriodic() {
   //printf("Default teleopPeriodic() function\n");
   libIterativeRobot::EventScheduler::getInstance()->update();
+  printf("Button state: %d\n", collectorForwardsButton->get());
   //Motor::periodicUpdate();
   //PIDController::loopAll();
 }

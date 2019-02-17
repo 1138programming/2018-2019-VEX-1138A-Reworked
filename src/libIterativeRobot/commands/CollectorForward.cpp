@@ -12,12 +12,15 @@ bool CollectorForward::canRun() {
 void CollectorForward::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+
+  printf("Testing");
 }
 
 void CollectorForward::execute() {
   // Code that runs when this command is scheduled to run
 
   Robot::collector->runFrontCollector(200);
+  printf("Testing");
   Robot::collector->runMiddleCollector(200);
   if (Robot::collector->getUltrasonic() < 95 && Robot::collector->getUltrasonic() != -1) {
     Robot::collector->runMiddleCollector(0);
