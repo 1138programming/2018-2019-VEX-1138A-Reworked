@@ -14,7 +14,6 @@ class JoystickChannel : public Trigger {
     pros::controller_analog_e_t channel; // The channel to check
     std::int32_t threshold = kDefaultThreshold; // The treshold for the joystick value
   protected:
-    virtual void checkConditions();
   public:
     static const std::int32_t kDefaultThreshold = 10; // Default threshold
     JoystickChannel(pros::Controller* controller, pros::controller_analog_e_t channel);
