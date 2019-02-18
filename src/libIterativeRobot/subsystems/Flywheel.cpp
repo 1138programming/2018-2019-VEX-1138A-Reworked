@@ -1,5 +1,5 @@
 #include "libIterativeRobot/subsystems/Flywheel.h"
-#include "libIterativeRobot/commands/FlywheelMonitor.h"
+#include "libIterativeRobot/commands/FlywheelCommands/FlywheelMonitor.h"
 // TODO: Make a flywheel monitoring command
 
 Flywheel::Flywheel() {

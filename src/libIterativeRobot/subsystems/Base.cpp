@@ -1,7 +1,6 @@
 #include "libIterativeRobot/subsystems/Base.h"
-#include "libIterativeRobot/commands/ExampleCommand.h"
 
-#include "libIterativeRobot/commands/DriveWithJoysticks.h"
+#include "libIterativeRobot/commands/BaseCommands/DriveWithJoysticks.h"
 
 Base::Base() {
   leftFrontBaseMotor = Motor::getMotor(leftFrontBaseMotorPort);

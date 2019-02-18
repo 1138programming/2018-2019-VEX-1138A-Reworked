@@ -1,5 +1,5 @@
 #include "libIterativeRobot/subsystems/Flipper.h"
-#include "libIterativeRobot/commands/FlipperIdle.h"
+#include "libIterativeRobot/commands/FlipperCommands/FlipperIdle.h"
 
 Flipper::Flipper() {
   flipperMotor = Motor::getMotor(flipperPort);

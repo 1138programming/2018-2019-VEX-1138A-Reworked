@@ -7,8 +7,11 @@ int threshold(int aNumber, int threshold) {
 
 // DO NOT USE! Create pin objects in subsystems
 bool getLimitSwitch(unsigned char pin) {
+	bool returnValue = false;
 	pros::ADIDigitalIn* limitSwitch = new pros::ADIDigitalIn(pin);
-	return limitSwitch->get_value();
+	returnValue = limitSwitch->get_value();
+	delete limitSwitch; // Fix memory leak
+	return returnValue;
 }
 
 int confineToRange(int value, int min, int max) {

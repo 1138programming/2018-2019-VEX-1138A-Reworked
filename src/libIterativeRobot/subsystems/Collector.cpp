@@ -1,12 +1,11 @@
 #include "libIterativeRobot/subsystems/Collector.h"
-#include "libIterativeRobot/commands/CollectorIdle.h"
+#include "libIterativeRobot/commands/CollectorCommands/CollectorIdle.h"
 
 Collector::Collector() {
   frontCollectorMotor = Motor::getMotor(frontCollectorMotorPort);
   middleCollectorMotor = Motor::getMotor(middleCollectorMotorPort);
 
   ultrasonic = new pros::ADIUltrasonic(1, 2); // echo, pings
-  // Slaving will be tested after initial test
 }
 
 void Collector::runFrontCollector(int velocity) {
