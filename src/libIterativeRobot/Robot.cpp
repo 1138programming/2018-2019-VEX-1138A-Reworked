@@ -69,7 +69,7 @@ Robot::Robot() {
 
 
   JoystickButton* middleCollectorForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
-  middleCollectorForwardsButton->whenPressed(new MiddleCollectorForwardTimed(100));
+  middleCollectorForwardsButton->whenPressed(new MiddleCollectorForwardTimed(500));
 
   JoystickButton* middleCollectorBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   middleCollectorBackwardsButton->whileHeld(new FlipperForward());
