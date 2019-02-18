@@ -27,7 +27,7 @@ void TurnWithGyro::initialize() {
   if (degrees != 0) {
     Robot::robotBase->resetGyro();
   }
-  gyroPID = new PIDController(0.1, 0.0 , 0.011);
+  gyroPID = new PIDController(0.05, 0.0 , 0.00225);
   gyroPID->setSensorValue(0);
   gyroPID->setSetpoint(degrees);
   //gyroPID->threshold = 30;

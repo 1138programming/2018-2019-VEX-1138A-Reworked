@@ -27,7 +27,9 @@ const int flywheelMotorPort = 5;
 const int frontCollectorMotorPort = 9;
 const int middleCollectorMotorPort = 10;
 
-const int gyroPort = 1;
+const int gyroPort = 3;
+
+const int visionPort = 7;
 
 //Motor and encoder constants
 const int KMaxMotorSpeed = 127;

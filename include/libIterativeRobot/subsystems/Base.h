@@ -15,6 +15,8 @@ class Base : public libIterativeRobot::Subsystem {
 
     pros::ADIGyro* baseGyro;
 
+    pros::Vision* baseVision;
+
     bool baseReversed = false;
     bool baseSlow = false;
   public:

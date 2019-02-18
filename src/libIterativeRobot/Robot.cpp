@@ -88,6 +88,9 @@ Robot::Robot() {
   JoystickButton* speedToggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_A);
   speedToggleButton->whenPressed(new BaseSpeedToggle());
 
+  JoystickButton* autonButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_LEFT);
+  autonButton->whenPressed(new Auton_Blue_Left_Start_Six_Flag());
+
   autonGroup = NULL;
 }
 
@@ -130,6 +133,7 @@ void Robot::teleopInit() {
 
 void Robot::teleopPeriodic() {
   // Code to run while in teleop mode
+  printf("Gyro value: %f\n", robotBase->getGyroValue());
 }
 
 void Robot::disabledInit() {

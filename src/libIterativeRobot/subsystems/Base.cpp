@@ -17,6 +17,7 @@ Base::Base() {
   rightBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
   baseGyro = new pros::ADIGyro(gyroPort);
+  baseGyro->reset();
 }
 
 void Base::toggleBase() {
