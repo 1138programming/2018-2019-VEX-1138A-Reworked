@@ -9,7 +9,7 @@
 class AutonChooser {
   private:
     static size_t numAutons;
-    static std::vector<const char*> autonNames;
+    static std::vector<std::string> autonNames;
     static size_t auton;
 
     // LVGL Objects
@@ -21,6 +21,7 @@ class AutonChooser {
     static AutonChooser* instance;
   public:
     static lv_res_t updateAutonName(lv_obj_t* btn);
+    static void setAutonNames(std::vector<std::string> newAutonNames);
     static void init();
     static void uninit();
     static size_t getAutonChoice();

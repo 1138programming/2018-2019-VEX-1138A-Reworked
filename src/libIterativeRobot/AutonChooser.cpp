@@ -1,7 +1,7 @@
 #include "libIterativeRobot/AutonChooser.h"
 
 size_t AutonChooser::numAutons;
-std::vector<const char*> AutonChooser::autonNames;
+std::vector<std::string> AutonChooser::autonNames;
 size_t AutonChooser::auton;
 
 // LVGL Objects
@@ -14,30 +14,28 @@ AutonChooser* AutonChooser::instance;
 AutonChooser::AutonChooser() {
   auton = 0;
 
-  autonNames.push_back("Auton_Blue_Left_Start_Six_Flag");
-  autonNames.push_back("Auton_Blue_Right_Start_Six_Flag");
-  autonNames.push_back("Auton_Red_Left_Start_Six_Flag");
-  autonNames.push_back("Auton_Red_Right_Start_Six_Flag");
+  autonNames.push_back("Undefined Auton");
 
   numAutons = autonNames.size();
 }
 
 lv_res_t AutonChooser::updateAutonName(lv_obj_t* btn) {
   if (btn == scrollRight) {
-    if (auton >= numAutons - 1)
-      auton = 0;
-    else
-      auton++;
+    auton = (auton + 1) % numAutons;
   } else if (btn == scrollLeft) {
-    if (auton <= 0)
-      auton = numAutons - 1;
-    else
-      auton--;
+    auton = (auton - 1) % numAutons;
   }
   printf("Auton is %d, size is %d\n", auton, autonNames.size());
-  pros::delay(1000);
-  lv_label_set_text(autonName, autonNames[auton]);
+  lv_label_set_text(autonName, autonNames[auton].c_str());
   return LV_RES_OK;
+}
+
+void AutonChooser::setAutonNames(std::vector<std::string> newAutonNames) {
+  autonNames.clear();
+  for (std::string autonName : newAutonNames) {
+    autonNames.push_back(autonName);
+  }
+  numAutons = autonNames.size();
 }
 
 void AutonChooser::init() {
@@ -49,7 +47,7 @@ void AutonChooser::init() {
     lv_obj_align(scrollRight, NULL, LV_ALIGN_IN_RIGHT_MID, 0, 0);
 
     autonName = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_text(autonName, autonNames[auton]);
+    lv_label_set_text(autonName, autonNames[auton].c_str());
     lv_obj_align(autonName, NULL, LV_ALIGN_CENTER, 0, 0);
 
     scrollLeft = lv_btn_create(lv_scr_act(), NULL);

@@ -21,10 +21,12 @@
 #include "libIterativeRobot/commands/Auton/Auton_Blue_Right_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton/Auton_Red_Right_Start_Six_Flag.h"
 
+using namespace libIterativeRobot;
+
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
 Collector* Robot::collector = 0;
-Flipper*    Robot::flipper = 0;
+Flipper*   Robot::flipper = 0;
 Flywheel*  Robot::flywheel  = 0;
 
 AutonChooser* Robot::autonChooser = 0;
@@ -40,35 +42,50 @@ Robot::Robot() {
   flywheel  = new Flywheel();
 
   autonChooser = AutonChooser::getInstance();
+  autonChooser->setAutonNames(
+    {
+      "Front Tile Red",
+      "Back Tile Red",
+      "Front Tile Blue",
+      "Back Tile Blue"
+    }
+  );
 
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
 
-  libIterativeRobot::JoystickButton* flywheelForwardButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
+
+  JoystickButton* flywheelForwardButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
   flywheelForwardButton->whenPressed(new FlywheelForward());
-  libIterativeRobot::JoystickButton* flywheelBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
+
+  JoystickButton* flywheelBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
   flywheelBackwardsButton->whenPressed(new FlywheelBackwards());
 
-  collectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
+
+  JoystickButton* collectorForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
   collectorForwardsButton->whileHeld(new CollectorForward());
-  libIterativeRobot::JoystickButton* collectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
+
+  JoystickButton* collectorBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
 
-  libIterativeRobot::JoystickButton* middleCollectorForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
+
+  JoystickButton* middleCollectorForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   middleCollectorForwardsButton->whenPressed(new MiddleCollectorForwardTimed(100));
 
-  libIterativeRobot::JoystickButton* middleCollectorBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  //middleCollectorBackwardsButton->whileHeld(new MiddleCollectorBackwards());
+  JoystickButton* middleCollectorBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   middleCollectorBackwardsButton->whileHeld(new FlipperForward());
 
-  libIterativeRobot::JoystickButton* flipperForwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
+
+  JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
-  libIterativeRobot::JoystickButton* flipperBackwardsButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
+
+  JoystickButton* flipperBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
   flipperBackwardsButton->whileReleased(new FlipperBackwardTimed(750));
 
-  libIterativeRobot::JoystickButton* toggleButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);
+
+  JoystickButton* toggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);
   toggleButton->whenPressed(new BaseToggle());
 
-  libIterativeRobot::JoystickButton* speedToggleButton = new libIterativeRobot::JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_A);
+  JoystickButton* speedToggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_A);
   speedToggleButton->whenPressed(new BaseSpeedToggle());
 
   autonGroup = NULL;
@@ -79,8 +96,7 @@ void Robot::robotInit() {
 }
 
 void Robot::autonInit() {
-  printf("Default autonInit() function\n");
-  libIterativeRobot::EventScheduler::getInstance()->initialize();
+  printf("Starting autonInit() function\n");
   autonChooser->uninit();
 
   switch (autonChooser->getAutonChoice()) {
@@ -105,32 +121,22 @@ void Robot::autonInit() {
 }
 
 void Robot::autonPeriodic() {
-  libIterativeRobot::EventScheduler::getInstance()->update();
-  //Motor::periodicUpdate();
-  //PIDController::loopAll();
 }
 
 void Robot::teleopInit() {
-  printf("Default teleopInit() function\n");
-  libIterativeRobot::EventScheduler::getInstance()->initialize();
+  printf("Starting teleopInit() function\n");
   autonChooser->init();
 }
 
 void Robot::teleopPeriodic() {
-  //printf("Default teleopPeriodic() function\n");
-  libIterativeRobot::EventScheduler::getInstance()->update();
-  printf("Button state: %d\n", collectorForwardsButton->get());
-  //Motor::periodicUpdate();
-  //PIDController::loopAll();
+  // Code to run while in teleop mode
 }
 
 void Robot::disabledInit() {
-  libIterativeRobot::EventScheduler::getInstance()->initialize();
   printf("Default disabledInit() function\n");
 }
 
 void Robot::disabledPeriodic() {
-  //printf("Default disabledPeriodic() function\n");
   autonChooser->uninit();
 }
 
