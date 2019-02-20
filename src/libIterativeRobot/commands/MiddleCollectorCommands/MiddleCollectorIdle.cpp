@@ -3,7 +3,7 @@
 #include "libIterativeRobot/Robot.h"
 
 MiddleCollectorIdle::MiddleCollectorIdle() {
-  requires(Robot::collector);
+  requires(Robot::middleCollector);
 }
 
 bool MiddleCollectorIdle::canRun() {
@@ -18,7 +18,7 @@ void MiddleCollectorIdle::initialize() {
 void MiddleCollectorIdle::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runMiddleCollector(0);
+  Robot::middleCollector->runMiddleCollector(0);
 }
 
 bool MiddleCollectorIdle::isFinished() {

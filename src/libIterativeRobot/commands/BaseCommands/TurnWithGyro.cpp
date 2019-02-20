@@ -27,10 +27,14 @@ void TurnWithGyro::initialize() {
   if (degrees != 0) {
     Robot::robotBase->resetGyro();
   }
-  gyroPID = new PIDController(0.05, 0.0 , 0.00225);
+  if (degrees > 0) {
+    gyroPID = new PIDController(0.059, 0.0001 , 0.0022);
+  } else {
+    gyroPID = new PIDController(0.076, 0.0003, 0.0023);
+  }
   gyroPID->setSensorValue(0);
   gyroPID->setSetpoint(degrees);
-  //gyroPID->threshold = 30;
+  //gyroPID->threshold = 20;
   this->timeAtSetpoint = 0;
 }
 
@@ -40,7 +44,7 @@ void TurnWithGyro::execute() {
   //printf("Hello, world!\n");
   gyroPID->setSensorValue(Robot::robotBase->getGyroValue());
   gyroPID->loop();
-  int motorSpeed = (int)((double)gyroPID->getOutput() * 1.5);
+  int motorSpeed = (int)((double)gyroPID->getOutput() * 1.2);
 
   Robot::robotBase->moveBase(-motorSpeed, motorSpeed);
 }
@@ -56,7 +60,10 @@ bool TurnWithGyro::isFinished() {
     this->timeAtSetpoint = 0;
     return false;
   }
-  return this->timeAtSetpoint > pros::millis();//gyroPID->atSetpoint();
+  bool isDone = this->timeAtSetpoint > pros::millis();//gyroPID->atSetpoint();
+  if (isDone) {
+  }
+  return isDone;
 }
 
 void TurnWithGyro::end() {

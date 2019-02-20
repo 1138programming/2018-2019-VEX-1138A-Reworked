@@ -35,7 +35,7 @@ void DriveToPosition::execute() {
 }
 
 bool DriveToPosition::isFinished() {
-  return Robot::robotBase->baseAtTarget() || pros::millis() > endTime || (pros::c::adi_digital_read(5) && pros::c::adi_digital_read(6)); // This is the default value anyways, so this method can be removed
+  return Robot::robotBase->baseAtTarget() || pros::millis() > endTime; // This is the default value anyways, so this method can be removed
 }
 
 void DriveToPosition::end() {

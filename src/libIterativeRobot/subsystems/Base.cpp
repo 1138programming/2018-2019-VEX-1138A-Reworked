@@ -20,6 +20,13 @@ Base::Base() {
   baseGyro->reset();
 }
 
+void Base::setBaseMode(pros::motor_brake_mode_e motorMode) {
+  leftFrontBaseMotor->getMotorObject()->set_brake_mode(motorMode);
+  rightFrontBaseMotor->getMotorObject()->set_brake_mode(motorMode);
+  leftBackBaseMotor->getMotorObject()->set_brake_mode(motorMode);
+  rightBackBaseMotor->getMotorObject()->set_brake_mode(motorMode);
+}
+
 void Base::toggleBase() {
   baseReversed = !baseReversed;
 }
@@ -57,6 +64,10 @@ void Base::moveBase(int leftSpeed, int rightSpeed) {
 }
 
 void Base::moveBaseTo(int leftTarget, int rightTarget, int motorSpeed) {
+  leftFrontBaseMotor->getMotorObject()->tare_position();
+  leftBackBaseMotor->getMotorObject()->tare_position();
+  rightFrontBaseMotor->getMotorObject()->tare_position();
+  rightBackBaseMotor->getMotorObject()->tare_position();
   leftFrontBaseMotor->getMotorObject()->move_relative(leftTarget, motorSpeed ? motorSpeed : 150); // TODO: Move last argument to a variable
   leftBackBaseMotor->getMotorObject()->move_relative(leftTarget, motorSpeed ?  motorSpeed : 150);
 

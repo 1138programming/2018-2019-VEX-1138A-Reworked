@@ -26,6 +26,7 @@ using namespace libIterativeRobot;
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
 Collector* Robot::collector = 0;
+MiddleCollector* Robot::middleCollector = 0;
 Flipper*   Robot::flipper = 0;
 Flywheel*  Robot::flywheel  = 0;
 
@@ -38,6 +39,7 @@ Robot::Robot() {
   // Initialize any subsystems
   robotBase = new Base();
   collector = new Collector();
+  middleCollector = new MiddleCollector();
   flipper = new Flipper();
   flywheel  = new Flywheel();
 
@@ -69,17 +71,20 @@ Robot::Robot() {
 
 
   JoystickButton* middleCollectorForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
-  middleCollectorForwardsButton->whenPressed(new MiddleCollectorForwardTimed(500));
+  middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
 
   JoystickButton* middleCollectorBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   middleCollectorBackwardsButton->whileHeld(new FlipperForward());
+  Command* cancellable = new FlipperBackwardTimed(2000);
+  middleCollectorBackwardsButton->whenReleased(cancellable);
+  middleCollectorBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
 
 
   JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
 
   JoystickButton* flipperBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
-  flipperBackwardsButton->whileReleased(new FlipperBackwardTimed(750));
+  flipperBackwardsButton->whenReleased(new FlipperBackwardTimed(400));
 
 
   JoystickButton* toggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);

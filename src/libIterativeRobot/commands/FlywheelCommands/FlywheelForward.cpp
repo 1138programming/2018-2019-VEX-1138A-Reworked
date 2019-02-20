@@ -20,7 +20,7 @@ void FlywheelForward::execute() {
   if (Robot::flywheel->getFlywheelVelocity() > 0) {
     Robot::flywheel->setFlywheel(0);
   } else {
-    Robot::flywheel->setFlywheel(-600);
+    Robot::flywheel->setFlywheel(-550);
   }
 }
 

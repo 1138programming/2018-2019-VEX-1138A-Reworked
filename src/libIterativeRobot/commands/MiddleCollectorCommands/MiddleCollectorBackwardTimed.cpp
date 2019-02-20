@@ -5,7 +5,7 @@
 #include "api.h"
 
 MiddleCollectorBackwardTimed::MiddleCollectorBackwardTimed(int mSecs) {
-  requires(Robot::collector);
+  requires(Robot::middleCollector);
   runTime = mSecs;
   startTime = pros::millis();
 }
@@ -23,7 +23,7 @@ void MiddleCollectorBackwardTimed::initialize() {
 void MiddleCollectorBackwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runMiddleCollector(-200);
+  Robot::middleCollector->runMiddleCollector(-200);
 }
 
 bool MiddleCollectorBackwardTimed::isFinished() {
@@ -32,7 +32,7 @@ bool MiddleCollectorBackwardTimed::isFinished() {
 
 void MiddleCollectorBackwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::collector->runMiddleCollector(0);
+  Robot::middleCollector->runMiddleCollector(0);
 }
 
 void MiddleCollectorBackwardTimed::interrupted() {

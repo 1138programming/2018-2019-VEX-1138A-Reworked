@@ -22,10 +22,10 @@ void CollectorForward::execute() {
 
   Robot::collector->runFrontCollector(200);
   printf("Testing");
-  Robot::collector->runMiddleCollector(200);
-  if (Robot::collector->getUltrasonic() < 95 && Robot::collector->getUltrasonic() != -1) {
-    Robot::collector->runMiddleCollector(0);
-  }
+  //Robot::collector->runMiddleCollector(200);
+  //if (Robot::collector->getUltrasonic() < 95 && Robot::collector->getUltrasonic() != -1) {
+  //  Robot::collector->runMiddleCollector(0);
+  //}
 }
 
 bool CollectorForward::isFinished() {

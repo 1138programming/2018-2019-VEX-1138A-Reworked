@@ -5,7 +5,7 @@
 #include "api.h"
 
 MiddleCollectorForwardTimed::MiddleCollectorForwardTimed(int mSecs) {
-  requires(Robot::collector);
+  requires(Robot::middleCollector);
   runTime = mSecs;
   startTime = pros::millis();
 }
@@ -23,7 +23,7 @@ void MiddleCollectorForwardTimed::initialize() {
 void MiddleCollectorForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runMiddleCollector(200);
+  Robot::middleCollector->runMiddleCollector(200);
 }
 
 bool MiddleCollectorForwardTimed::isFinished() {
@@ -32,7 +32,7 @@ bool MiddleCollectorForwardTimed::isFinished() {
 
 void MiddleCollectorForwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::collector->runMiddleCollector(0);
+  Robot::middleCollector->runMiddleCollector(0);
 }
 
 void MiddleCollectorForwardTimed::interrupted() {

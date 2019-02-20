@@ -8,14 +8,10 @@
 class Collector : public libIterativeRobot::Subsystem {
   private:
     Motor* frontCollectorMotor;
-    Motor* middleCollectorMotor;
-    pros::ADIUltrasonic* ultrasonic;
     
   public:
     void initDefaultCommand();
     void runFrontCollector(int velocity);
-    void runMiddleCollector(int velocity);
-    int getUltrasonic();
     Collector();
 };
 

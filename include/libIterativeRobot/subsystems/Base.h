@@ -21,6 +21,7 @@ class Base : public libIterativeRobot::Subsystem {
     bool baseSlow = false;
   public:
     void initDefaultCommand();
+    void setBaseMode(pros::motor_brake_mode_e motorMode);
     void toggleBase();
     void toggleBaseSpeed();
     void moveBase(int left, int right);

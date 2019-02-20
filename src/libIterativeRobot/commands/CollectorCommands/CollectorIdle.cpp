@@ -19,7 +19,6 @@ void CollectorIdle::execute() {
   // Code that runs when this command is scheduled to run
 
   Robot::collector->runFrontCollector(0);
-  Robot::collector->runMiddleCollector(0);
 }
 
 bool CollectorIdle::isFinished() {
