@@ -5,6 +5,7 @@
 #include "api.h"
 
 #include "abstractBaseClasses/Motor.h"
+#include "abstractBaseClasses/PIDController.h"
 
 class Base : public libIterativeRobot::Subsystem {
   private:
@@ -14,6 +15,8 @@ class Base : public libIterativeRobot::Subsystem {
     Motor* rightBackBaseMotor;
 
     pros::ADIGyro* baseGyro;
+
+    PIDController* basePIDController;
 
     pros::Vision* baseVision;
 
@@ -26,7 +29,10 @@ class Base : public libIterativeRobot::Subsystem {
     void toggleBaseSpeed();
     void moveBase(int left, int right);
     void moveBaseTo(int leftTarget, int rightTarget, int motorSpeed = 0);
+    void moveBaseForward(int target, int motorSpeed = 0);
+    void updateLinearMovement();
     bool baseAtTarget();
+    bool baseAtLinearTarget();
     double getGyroValue();
     void resetGyro();
     Base();

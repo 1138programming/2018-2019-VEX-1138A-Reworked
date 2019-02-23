@@ -138,7 +138,6 @@ void Robot::teleopInit() {
 
 void Robot::teleopPeriodic() {
   // Code to run while in teleop mode
-  printf("Gyro value: %f\n", robotBase->getGyroValue());
 }
 
 void Robot::disabledInit() {

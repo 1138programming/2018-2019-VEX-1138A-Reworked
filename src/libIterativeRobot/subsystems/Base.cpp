@@ -3,6 +3,7 @@
 #include "libIterativeRobot/commands/BaseCommands/DriveWithJoysticks.h"
 
 Base::Base() {
+  basePIDController = new PIDController(0.05, 0, 0.00125);
   leftFrontBaseMotor = Motor::getMotor(leftFrontBaseMotorPort);
   leftBackBaseMotor = Motor::getMotor(leftBackBaseMotorPort);
 
@@ -75,8 +76,32 @@ void Base::moveBaseTo(int leftTarget, int rightTarget, int motorSpeed) {
   rightBackBaseMotor->getMotorObject()->move_relative(-rightTarget, motorSpeed ? motorSpeed : 150);
 }
 
+void Base::moveBaseForward(int target, int motorSpeed) {
+  leftFrontBaseMotor->getMotorObject()->tare_position();
+  leftBackBaseMotor->getMotorObject()->tare_position();
+  rightFrontBaseMotor->getMotorObject()->tare_position();
+  rightBackBaseMotor->getMotorObject()->tare_position();
+
+  basePIDController->setSetpoint(target);
+  basePIDController->setMaxPIDSpeed(motorSpeed ? motorSpeed : 150);
+  basePIDController->setSensorValue(0);
+  baseGyro->reset();
+}
+
+void Base::updateLinearMovement() {
+  basePIDController->setSensorValue(-rightFrontBaseMotor->getMotorObject()->get_position());
+  basePIDController->loop();
+  int output = reverseThreshold(-basePIDController->getOutput());
+  int gyroCorrection = baseGyro->get_value() * 0.12;
+  moveBase(output + gyroCorrection, output - gyroCorrection);
+}
+
 bool Base::baseAtTarget() {
   return abs(leftFrontBaseMotor->getMotorObject()->get_target_position() - leftFrontBaseMotor->getMotorObject()->get_position()) <= 3; // Tune threshold and make a varaible
+}
+
+bool Base::baseAtLinearTarget() {
+  return basePIDController->atSetpoint();
 }
 
 double Base::getGyroValue() {

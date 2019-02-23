@@ -10,6 +10,7 @@ class DriveToPosition : public libIterativeRobot::Command {
     double motorSpeed;
 
     int endTime;
+    int startTime;
   public:
     bool canRun();
     void initialize();

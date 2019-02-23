@@ -5,6 +5,8 @@
 
 int threshold(int aNumber, int threshold = 20);
 
+int reverseThreshold(int aNumber, int threshold = 20);
+
 bool getLimitSwitch(unsigned char pin);
 
 int confineToRange(int value, int min = -KMaxMotorSpeed, int max = KMaxMotorSpeed);
