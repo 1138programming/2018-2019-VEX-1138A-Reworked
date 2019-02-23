@@ -28,9 +28,9 @@ void TurnWithGyro::initialize() {
     Robot::robotBase->resetGyro();
   }
   if (degrees > 0) {
-    gyroPID = new PIDController(0.059, 0.0001 , 0.0022);
+    gyroPID = new PIDController(0.40, 0.0 , 0.0338234); // TUNE THIS
   } else {
-    gyroPID = new PIDController(0.48, 0.0, 0.033825);
+    gyroPID = new PIDController(0.48, 0.0, 0.0338234);
   }
   gyroPID->setSensorValue(0);
   gyroPID->setSetpoint(degrees);
