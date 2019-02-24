@@ -18,6 +18,8 @@ Base::Base() {
   rightBackBaseMotor->getMotorObject()->set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
   baseGyro = new pros::ADIGyro(gyroPort);
+  pros::c::adi_gyro_init(gyroPort, 1);
+  pros::c::delay(1300);
   baseGyro->reset();
 }
 
@@ -92,7 +94,7 @@ void Base::updateLinearMovement() {
   basePIDController->setSensorValue(-rightFrontBaseMotor->getMotorObject()->get_position());
   basePIDController->loop();
   int output = reverseThreshold(-basePIDController->getOutput());
-  int gyroCorrection = baseGyro->get_value() * 0.12;
+  int gyroCorrection = baseGyro->get_value() * 0.11;
   moveBase(output + gyroCorrection, output - gyroCorrection);
 }
 
