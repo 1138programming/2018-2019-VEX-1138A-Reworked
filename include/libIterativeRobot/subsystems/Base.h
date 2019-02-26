@@ -22,6 +22,8 @@ class Base : public libIterativeRobot::Subsystem {
 
     bool baseReversed = false;
     bool baseSlow = false;
+
+    int baseEncoderDrift = 0;
   public:
     void initDefaultCommand();
     void setBaseMode(pros::motor_brake_mode_e motorMode);

@@ -103,14 +103,29 @@ bool Base::baseAtTarget() {
 }
 
 bool Base::baseAtLinearTarget() {
+  printf("Here's to the idioticy that is me: %d\n", basePIDController->atSetpoint());
   return basePIDController->atSetpoint();
 }
 
 double Base::getGyroValue() {
-  return baseGyro->get_value();
+  // Combine gyro with encoders
+  // 900 ticks / rev with 18:1 gears
+  // Wheel diameter - 4.25 in
+  // Radius of the robot to wheels is 6.5 in
+  // TODO: Fix math
+  double radius = 4.5; // Inches
+  double ticksPerRev = 900;
+  double percentOfRotation = ((double)(leftFrontBaseMotor->getMotorObject()->get_position() + rightFrontBaseMotor->getMotorObject()->get_position()) / ticksPerRev);
+  double wheelArcLength = -1 * percentOfRotation * M_PI * radius;
+  return baseGyro->get_value();///(3.3 * (wheelArcLength / 2 * M_PI) * 20) + (baseGyro->get_value() * 0.8);
 }
 
 void Base::resetGyro() {
+  baseEncoderDrift = (getGyroValue() - (baseGyro->get_value() * 0.8)) / 0.2;
+  leftFrontBaseMotor->getMotorObject()->tare_position();
+  leftBackBaseMotor->getMotorObject()->tare_position();
+  rightFrontBaseMotor->getMotorObject()->tare_position();
+  rightBackBaseMotor->getMotorObject()->tare_position();
   baseGyro->reset();
 }
 
