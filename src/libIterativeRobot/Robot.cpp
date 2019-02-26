@@ -76,15 +76,15 @@ Robot::Robot() {
   JoystickButton* middleCollectorBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   middleCollectorBackwardsButton->whileHeld(new FlipperForward());
   Command* cancellable = new FlipperBackwardTimed(2000);
-  //middleCollectorBackwardsButton->whenReleased(cancellable);
-  //middleCollectorBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
+  middleCollectorBackwardsButton->whenReleased(cancellable);
+  middleCollectorBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
 
 
   JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
 
-  //JoystickButton* flipperBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
-  //flipperBackwardsButton->whenReleased(new FlipperBackwardTimed(400));
+  JoystickButton* flipperBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
+  flipperBackwardsButton->whenReleased(new FlipperBackwardTimed(400));
 
 
   JoystickButton* toggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);
@@ -105,7 +105,6 @@ void Robot::robotInit() {
 
 void Robot::autonInit() {
   printf("Starting autonInit() function\n");
-  libIterativeRobot::EventScheduler::getInstance()->initialize();
   autonChooser->uninit();
 
   switch (autonChooser->getAutonChoice()) {
@@ -131,19 +130,16 @@ void Robot::autonInit() {
 }
 
 void Robot::autonPeriodic() {
-  EventScheduler::getInstance()->update();
 }
 
 void Robot::teleopInit() {
   printf("Starting teleopInit() function\n");
-  EventScheduler::getInstance()->initialize();
   autonChooser->init();
 }
 
 void Robot::teleopPeriodic() {
   // Code to run while in teleop mode
   printf("Gyro value: %f\n", robotBase->getGyroValue());
-  EventScheduler::getInstance()->update();
 }
 
 void Robot::disabledInit() {

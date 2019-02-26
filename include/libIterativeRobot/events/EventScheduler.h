@@ -38,7 +38,7 @@ class EventScheduler {
     void trackSubsystem(Subsystem* aSubsystem); // Adds a subsystem to the subsystems vector
     bool commandInQueue(Command* aCommand); // Checks if a command is in the command queue
     bool commandGroupInQueue(CommandGroup* aCommandGroup); // Checks if a command is in the command group queue
-    void initialize();
+    void initialize(bool addDefaultCommand = false);
 };
 
 };
