@@ -114,15 +114,15 @@ void Robot::autonInit() {
       break;
     case 1:
       printf("Running group %d\n", 1);
-      autonGroup = new Auton_Blue_Left_Start_Six_Flag();
+      autonGroup = new Auton_Blue_Right_Start_Six_Flag();
       break;
     case 2:
       printf("Running group %d\n", 2);
-      autonGroup = new Auton_Blue_Left_Start_Six_Flag();
+      autonGroup = new Auton_Red_Left_Start_Six_Flag();
       break;
     case 3:
       printf("Running group %d\n", 2);
-      autonGroup = new Auton_Blue_Left_Start_Six_Flag();
+      autonGroup = new Auton_Red_Right_Start_Six_Flag();
       break;
   }
   autonGroup->run();

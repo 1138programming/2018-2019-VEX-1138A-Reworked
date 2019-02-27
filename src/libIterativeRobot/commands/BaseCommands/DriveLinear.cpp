@@ -9,7 +9,6 @@ DriveLinear::DriveLinear(int target) {
   this->target = target;
   this->motorSpeed = 0;
   this->startTime = pros::millis();
-  this->priority = 3;
 }
 
 DriveLinear::DriveLinear(int target, int motorSpeed) {
@@ -17,7 +16,6 @@ DriveLinear::DriveLinear(int target, int motorSpeed) {
   this->target = target;
   this->motorSpeed = motorSpeed;
   this->startTime = pros::millis();
-  this->priority = 3;
 }
 
 bool DriveLinear::canRun() {
@@ -35,9 +33,7 @@ void DriveLinear::initialize() {
 
 void DriveLinear::execute() {
   // Code that runs when this command is scheduled to run
-  printf("Executing?\n");
   Robot::robotBase->updateLinearMovement();
-  printf("And it executed\n");
 }
 
 bool DriveLinear::isFinished() {

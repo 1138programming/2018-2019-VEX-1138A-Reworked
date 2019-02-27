@@ -34,8 +34,8 @@ class Command {
     virtual void end() = 0; // Run when command is finished
     virtual void interrupted() = 0; // Run when command was interrupted by one with a higher priority
 
-    void run(); // Runs this command. May be called anywhere.
-    void stop(); // Stops this command while it is running. May be called anywhere.
+    virtual void run(); // Runs this command. May be called anywhere.
+    virtual void stop(); // Stops this command while it is running. May be called anywhere.
 
     // ...and finally, the constructor!
     Command();

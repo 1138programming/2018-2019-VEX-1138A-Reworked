@@ -22,8 +22,6 @@ class EventScheduler {
     std::vector<Command*> commandsToBeAdded;
     std::vector<CommandGroup*> commandGroupsToBeAdded;
     bool defaultAdded = false;
-    void clearCommandQueue(); // Removes all commands from the command queue and calls their interrupted functions
-    void clearCommandGroupQueue(); // Removes all command groups from the command group queue and calls their interrupted functions
   public:
     const static int millisecondTimeout = 25; // Maximum time to run event listeners
     static EventScheduler* getInstance(); // Return the singleton instance of the event scheduler
@@ -38,7 +36,7 @@ class EventScheduler {
     void trackSubsystem(Subsystem* aSubsystem); // Adds a subsystem to the subsystems vector
     bool commandInQueue(Command* aCommand); // Checks if a command is in the command queue
     bool commandGroupInQueue(CommandGroup* aCommandGroup); // Checks if a command is in the command group queue
-    void initialize(bool addDefaultCommand = false);
+    void initialize();
 };
 
 };

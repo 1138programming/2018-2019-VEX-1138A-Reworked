@@ -103,7 +103,6 @@ bool Base::baseAtTarget() {
 }
 
 bool Base::baseAtLinearTarget() {
-  printf("Here's to the idioticy that is me: %d\n", basePIDController->atSetpoint());
   return basePIDController->atSetpoint();
 }
 
