@@ -41,11 +41,11 @@ Auton_Blue_Left_Start_Six_Flag::Auton_Blue_Left_Start_Six_Flag() {
 
   addSequentialCommand(new DriveLinear(600));
   addSequentialCommand(new DriveLinear(200));
-  addParallelCommand(new FlipperForwardTimed(250));
+  addParallelCommand(new FlipperForwardTimed(200));
   addSequentialCommand(new DriveLinear(-1100));
   addParallelCommand(new FlipperBackwardTimed(400));
 
-  addSequentialCommand(new TurnWithGyro(-900 * (isRed ? -1 : 0.5)));
+  addSequentialCommand(new TurnWithGyro(-900 * (isRed ? -1 : 1)));
   addParallelCommand(new FlipperForwardTimed(750));
   addSequentialCommand(new DriveLinear(580));
   addSequentialCommand(new FlipperBackwardTimed(500));

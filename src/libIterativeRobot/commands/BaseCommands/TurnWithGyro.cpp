@@ -31,7 +31,7 @@ void TurnWithGyro::initialize() {
     gyroPID = new PIDController(0.055, 0.0 , 0.002); // TUNE THIS
     //degrees -= 40;
   } else {
-    gyroPID = new PIDController(0.18, 0.0006, 0.0075); // Between 0.01 and 0.01125
+    gyroPID = new PIDController(0.12, 0.0, 0.003); // Between 0.01 and 0.01125
     //degrees += 45;
   }
   gyroPID->setSensorValue(0);
