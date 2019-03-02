@@ -21,6 +21,8 @@
 #include "libIterativeRobot/commands/Auton/Auton_Blue_Right_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton/Auton_Red_Right_Start_Six_Flag.h"
 
+#include "libIterativeRobot/commands/Auton/SkillsAuton.h"
+
 using namespace libIterativeRobot;
 
 Robot*     Robot::instance  = 0;
@@ -93,8 +95,8 @@ Robot::Robot() {
   JoystickButton* speedToggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_A);
   speedToggleButton->whenPressed(new BaseSpeedToggle());
 
-  JoystickButton* autonButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_LEFT);
-  autonButton->whenPressed(new Auton_Blue_Left_Start_Six_Flag());
+  //JoystickButton* autonButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_LEFT);
+  //autonButton->whenPressed(new Auton_Blue_Left_Start_Six_Flag());
 
   autonGroup = NULL;
 }
@@ -107,23 +109,34 @@ void Robot::autonInit() {
   printf("Starting autonInit() function\n");
   autonChooser->uninit();
 
-  switch (autonChooser->getAutonChoice()) {
-    case 0:
-      printf("Running group %d\n", 1);
-      autonGroup = new Auton_Red_Left_Start_Six_Flag();
-      break;
-    case 1:
-      printf("Running group %d\n", 1);
-      autonGroup = new Auton_Red_Right_Start_Six_Flag();
-      break;
-    case 2:
-      printf("Running group %d\n", 2);
-      autonGroup = new Auton_Blue_Left_Start_Six_Flag();
-      break;
-    case 3:
-      printf("Running group %d\n", 2);
-      autonGroup = new Auton_Blue_Right_Start_Six_Flag();
-      break;
+
+  bool isSkills = true;
+
+  if (isSkills) {
+
+    autonGroup = new SkillsAuton();
+
+  } else {
+
+    switch (autonChooser->getAutonChoice()) {
+      case 0:
+        printf("Running group %d\n", 1);
+        autonGroup = new Auton_Red_Left_Start_Six_Flag();
+        break;
+      case 1:
+        printf("Running group %d\n", 1);
+        autonGroup = new Auton_Red_Right_Start_Six_Flag();
+        break;
+      case 2:
+        printf("Running group %d\n", 2);
+        autonGroup = new Auton_Blue_Left_Start_Six_Flag();
+        break;
+      case 3:
+        printf("Running group %d\n", 2);
+        autonGroup = new Auton_Blue_Right_Start_Six_Flag();
+        break;
+    }
+
   }
   autonGroup->run();
 
