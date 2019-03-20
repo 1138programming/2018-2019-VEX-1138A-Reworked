@@ -21,6 +21,8 @@
 #include "libIterativeRobot/commands/Auton_Blue_Right_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton_Red_Right_Start_Six_Flag.h"
 
+#include "libIterativeRobot/MotionProfile.h"
+
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
 Collector* Robot::collector = 0;
