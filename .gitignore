@@ -38,3 +38,5 @@
 # Binaries + Libraries
 bin/*
 libIterativeRobot@*.zip
+
+!firmware/*
