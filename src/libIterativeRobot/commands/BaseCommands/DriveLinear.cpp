@@ -28,22 +28,26 @@ void DriveLinear::initialize() {
   // constructor
   printf("DriveLinear(%d)\n", target);
   this->endTime = pros::millis() + ((abs(target) / (motorSpeed ? motorSpeed : 150)) * 150) + 500;
+  Robot::robotBase->setLinearTarget(target);
   Robot::robotBase->moveBaseForward(target, motorSpeed);
 }
 
 void DriveLinear::execute() {
   // Code that runs when this command is scheduled to run
-  Robot::robotBase->updateLinearMovement();
+  printf("Executing\n");
+  //Robot::robotBase->updateLinearMovement();
 }
 
 bool DriveLinear::isFinished() {
-  printf("Here!\n");
-  if ((pros::millis() - startTime) < 250) return false;
-  return Robot::robotBase->baseAtLinearTarget() || pros::millis() > endTime; // This is the default value anyways, so this method can be removed
+  //printf("Here!\n");
+  return false;
+  //if ((pros::millis() - startTime) < 250) return false;
+  //return Robot::robotBase->baseAtLinearTarget() || pros::millis() > endTime; // This is the default value anyways, so this method can be removed
 }
 
 void DriveLinear::end() {
   // Code that runs when isFinished() returns true.
+  printf("Done\n");
   Robot::robotBase->moveBase(0, 0);
 }
 

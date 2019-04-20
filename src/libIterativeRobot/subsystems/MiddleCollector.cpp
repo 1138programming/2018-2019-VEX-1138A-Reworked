@@ -4,7 +4,7 @@
 MiddleCollector::MiddleCollector() {
   middleCollectorMotor = Motor::getMotor(middleCollectorMotorPort);
 
-  ultrasonic = new pros::ADIUltrasonic(1, 2); // echo, pings
+  ultrasonic = new pros::ADIUltrasonic(ultrasonicEchoPort, ultrasonicPingPort); // echo, pings
 }
 
 void MiddleCollector::runMiddleCollector(int velocity) {

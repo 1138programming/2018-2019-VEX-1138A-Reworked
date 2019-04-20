@@ -17,18 +17,21 @@
 
 
 // Motor ports
-const int rightFrontBaseMotorPort = 4;
-const int rightBackBaseMotorPort = 8;
-const int leftFrontBaseMotorPort = 1;
-const int leftBackBaseMotorPort = 3;
+const int rightFrontBaseMotorPort = 19;
+const int rightBackBaseMotorPort = 16;
+const int leftFrontBaseMotorPort = 15;
+const int leftBackBaseMotorPort = 12;
 
-const int flipperPort = 2;
+const int flipperPort = 13;
 
-const int flywheelMotorPort = 5;
-const int frontCollectorMotorPort = 9;
-const int middleCollectorMotorPort = 10;
+const int flywheelMotorPort = 11;
+const int frontCollectorMotorPort = 20;
+const int middleCollectorMotorPort = 14;
 
+// Analog Ports
 const int gyroPort = 3;
+const int ultrasonicEchoPort = 1;
+const int ultrasonicPingPort = 2;
 
 const int visionPort = 7;
 

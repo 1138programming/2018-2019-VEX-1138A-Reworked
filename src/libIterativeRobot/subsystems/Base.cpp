@@ -56,8 +56,8 @@ void Base::moveBase(int leftSpeed, int rightSpeed) {
     right = slowSpeedMultiplier * right;
   }
 
-  left = (int) left;
-  right = (int) right;
+  left = (int)left;
+  right = (int)right;
 
   leftFrontBaseMotor->getMotorObject()->move_velocity(-left);
   leftBackBaseMotor->getMotorObject()->move_velocity(-left);
@@ -90,8 +90,18 @@ void Base::moveBaseForward(int target, int motorSpeed) {
   baseGyro->reset();
 }
 
+void Base::setLinearTarget(int target, bool absolute) {
+  if (absolute) {
+    basePIDController->setSetpoint(target);
+  } else {
+    basePIDController->setSetpointRelative(target);
+  }
+}
+
 void Base::updateLinearMovement() {
   basePIDController->setSensorValue(-rightFrontBaseMotor->getMotorObject()->get_position());
+  printf("Enc pos: %d\n", rightFrontBaseMotor->getMotorObject()->get_position());
+  printf("Target is %d\n", basePIDController->getSetpoint());
   basePIDController->loop();
   int output = reverseThreshold(-basePIDController->getOutput());
   int gyroCorrection = baseGyro->get_value() * 0.11;
@@ -112,15 +122,15 @@ double Base::getGyroValue() {
   // Wheel diameter - 4.25 in
   // Radius of the robot to wheels is 6.5 in
   // TODO: Fix math
-  double radius = 4.5; // Inches
-  double ticksPerRev = 900;
-  double percentOfRotation = ((double)(leftFrontBaseMotor->getMotorObject()->get_position() + rightFrontBaseMotor->getMotorObject()->get_position()) / ticksPerRev);
-  double wheelArcLength = -1 * percentOfRotation * M_PI * radius;
+  //double radius = 4.5; // Inches
+  //double ticksPerRev = 900;
+  //double percentOfRotation = ((double)(leftFrontBaseMotor->getMotorObject()->get_position() + rightFrontBaseMotor->getMotorObject()->get_position()) / ticksPerRev);
+  //double wheelArcLength = -1 * percentOfRotation * M_PI * radius;
   return baseGyro->get_value();///(3.3 * (wheelArcLength / 2 * M_PI) * 20) + (baseGyro->get_value() * 0.8);
 }
 
 void Base::resetGyro() {
-  baseEncoderDrift = (getGyroValue() - (baseGyro->get_value() * 0.8)) / 0.2;
+  //baseEncoderDrift = (getGyroValue() - (baseGyro->get_value() * 0.8)) / 0.2;
   leftFrontBaseMotor->getMotorObject()->tare_position();
   leftBackBaseMotor->getMotorObject()->tare_position();
   rightFrontBaseMotor->getMotorObject()->tare_position();

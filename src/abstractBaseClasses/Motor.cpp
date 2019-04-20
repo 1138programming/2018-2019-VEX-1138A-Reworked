@@ -94,7 +94,7 @@ void Motor::addFollower(Motor* motor) {
     return;
 
   // Set all of the followers of the follower to null
-  for(unsigned int i = 0; i < motor->numFollowers; i++) {
+  for (unsigned int i = 0; i < motor->numFollowers; i++) {
     if (motor->followers[i] != NULL)
       return;
   }

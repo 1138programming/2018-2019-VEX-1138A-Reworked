@@ -20,6 +20,7 @@ void DelayCommand::initialize() {
 
 void DelayCommand::execute() {
   // Code that runs when this command is scheduled to run
+  printf("Executing delay\n");
   Robot::robotBase->toggleBaseSpeed();
 }
 

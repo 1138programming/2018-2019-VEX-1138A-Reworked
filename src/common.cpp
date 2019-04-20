@@ -18,6 +18,15 @@ bool getLimitSwitch(unsigned char pin) {
 	return returnValue;
 }
 
+int confineToRange(int value, int max) {
+	if (value >= abs(max))
+		return abs(max);
+	else if (value <= -abs(max))
+		return -abs(max);
+	else
+		return value;
+}
+
 int confineToRange(int value, int min, int max) {
 	if (min > max) return confineToRange(value, max, min);
 	if (value < min)

@@ -19,7 +19,9 @@
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
 
 Auton_Red_Left_Start_Six_Flag::Auton_Red_Left_Start_Six_Flag() {
-  bool isRed = true;
+  //addSequentialCommand(new DriveLinear(500));
+  addSequentialCommand(new DelayCommand(1000));
+  /*bool isRed = true;
   addSequentialCommand(new FlywheelBackwards());
   addParallelCommand(new DriveLinear(3400, 600));
   addParallelCommand(new CollectorForwardTimed(1850));
@@ -33,7 +35,7 @@ Auton_Red_Left_Start_Six_Flag::Auton_Red_Left_Start_Six_Flag() {
   addSequentialCommand(new DriveLinear(200, 50));
   addParallelCommand(new MiddleCollectorForwardTimed(250));
   addParallelCommand(new CollectorForwardTimed(300));
-  
+
   addSequentialCommand(new DriveLinear(1800));
   addParallelCommand(new CollectorForwardTimed(1000));
   addSequentialCommand(new MiddleCollectorForwardTimed(500));
@@ -48,5 +50,5 @@ Auton_Red_Left_Start_Six_Flag::Auton_Red_Left_Start_Six_Flag() {
   addSequentialCommand(new TurnWithGyro(-900 * (isRed ? -1 : 1)));
   addParallelCommand(new FlipperForwardTimed(750));
   addSequentialCommand(new DriveLinear(580));
-  addSequentialCommand(new FlipperBackwardTimed(500));
+  addSequentialCommand(new FlipperBackwardTimed(500));*/
 }

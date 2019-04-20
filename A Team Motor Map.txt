@@ -1,0 +1,14 @@
+Port 11: Flywheel
+Port 12: Base Left Back
+Port 13: Flipper
+Port 14: Indexer
+Port 15: Base Front Left
+Port 16: Base Back Right
+Port 19: Base Front Right
+Port 20: Collector
+Port A: Ultrasonic Echo
+Port B: Ultrasonic Pings
+Port C: Gyro
+Port F: Accelerometer Z
+Port G: Accelerometer Y
+Port H: Accelerometer X

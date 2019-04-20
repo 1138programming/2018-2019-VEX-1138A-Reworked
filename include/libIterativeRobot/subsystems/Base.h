@@ -32,6 +32,7 @@ class Base : public libIterativeRobot::Subsystem {
     void moveBase(int left, int right);
     void moveBaseTo(int leftTarget, int rightTarget, int motorSpeed = 0);
     void moveBaseForward(int target, int motorSpeed = 0);
+    void setLinearTarget(int target, bool absolute = false);
     void updateLinearMovement();
     bool baseAtTarget();
     bool baseAtLinearTarget();

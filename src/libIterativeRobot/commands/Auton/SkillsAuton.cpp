@@ -24,7 +24,7 @@ SkillsAuton::SkillsAuton() {
   addParallelCommand(new DriveLinear(3400, 600));
   addParallelCommand(new CollectorForwardTimed(1850));
 
-  // But in skills... we move backwards, use the tusk, 
+  // But in skills... we move backwards, use the tusk,
   addSequentialCommand(new DriveLinear(-600));
   addSequentialCommand(new FlipperForwardTimed(250));
   addSequentialCommand(new DriveLinear(600));
@@ -40,7 +40,7 @@ SkillsAuton::SkillsAuton() {
   addSequentialCommand(new DriveLinear(200, 50));
   addParallelCommand(new MiddleCollectorForwardTimed(250));
   addParallelCommand(new CollectorForwardTimed(300));
-  
+
   addSequentialCommand(new DriveLinear(1800));
   addParallelCommand(new CollectorForwardTimed(1000));
   addSequentialCommand(new MiddleCollectorForwardTimed(500));

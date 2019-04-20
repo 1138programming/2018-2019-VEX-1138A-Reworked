@@ -21,6 +21,8 @@
 #include "libIterativeRobot/commands/Auton/Auton_Blue_Right_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton/Auton_Red_Right_Start_Six_Flag.h"
 
+#include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
+
 #include "libIterativeRobot/commands/Auton/SkillsAuton.h"
 
 using namespace libIterativeRobot;
@@ -38,26 +40,29 @@ pros::Controller* Robot::mainController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
-  // Initialize any subsystems
+  // Initializing subsystems
   robotBase = new Base();
   collector = new Collector();
   middleCollector = new MiddleCollector();
   flipper = new Flipper();
   flywheel  = new Flywheel();
 
+  // Set autons available to be chosen
   autonChooser = AutonChooser::getInstance();
   autonChooser->setAutonNames(
     {
       "Front Tile Red",
       "Back Tile Red",
       "Front Tile Blue",
-      "Back Tile Blue"
+      "Back Tile Blue",
+      "Skills"
     }
   );
 
+  // Initializing controller
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
 
-
+  // Initializing joysticks and buttons
   JoystickButton* flywheelForwardButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
   flywheelForwardButton->whenPressed(new FlywheelForward());
 
@@ -109,15 +114,12 @@ void Robot::autonInit() {
   printf("Starting autonInit() function\n");
   autonChooser->uninit();
 
+  //bool isSkills = true;
 
-  bool isSkills = true;
-
-  if (isSkills) {
-
+  /*if (isSkills) {
     autonGroup = new SkillsAuton();
-
-  } else {
-
+  } else {*/
+  //if () {
     switch (autonChooser->getAutonChoice()) {
       case 0:
         printf("Running group %d\n", 1);
@@ -135,11 +137,15 @@ void Robot::autonInit() {
         printf("Running group %d\n", 2);
         autonGroup = new Auton_Blue_Right_Start_Six_Flag();
         break;
+      case 4:
+        printf("Running skills group\n");
+        autonGroup = new SkillsAuton();
+        break;
     }
-
-  }
+  //}
   autonGroup->run();
-
+  //Command* delay = new DelayCommand(1000);
+  //delay->run();
 }
 
 void Robot::autonPeriodic() {
