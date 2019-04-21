@@ -17,16 +17,28 @@
 
 
 // Motor ports
-const int rightFrontBaseMotorPort = 19;
-const int rightBackBaseMotorPort = 16;
-const int leftFrontBaseMotorPort = 15;
-const int leftBackBaseMotorPort = 12;
+const std::uint8_t rightFrontBaseMotorPort = 19;
+const std::uint8_t rightBackBaseMotorPort = 16;
+const std::uint8_t leftFrontBaseMotorPort = 15;
+const std::uint8_t leftBackBaseMotorPort = 12;
 
-const int flipperPort = 13;
+const std::uint8_t flipperPort = 13;
 
-const int flywheelMotorPort = 11;
-const int frontCollectorMotorPort = 20;
-const int middleCollectorMotorPort = 14;
+const std::uint8_t flywheelMotorPort = 11;
+const std::uint8_t collectorMotorPort = 20;
+const std::uint8_t indexerMotorPort = 14;
+
+// Motor gearsets
+const pros::motor_gearset_e_t baseMotorGearset = pros::E_MOTOR_GEARSET_18;
+const pros::motor_gearset_e_t flipperGearset = pros::E_MOTOR_GEARSET_06;
+const pros::motor_gearset_e_t flywheelGearset = pros::E_MOTOR_GEARSET_06;
+const pros::motor_gearset_e_t collectorGearset = pros::E_MOTOR_GEARSET_06;
+const pros::motor_gearset_e_t indexerGearset = pros::E_MOTOR_GEARSET_06;
+
+// Global configurations
+const pros::motor_encoder_units_e_t globalEncoderUnits = pros::E_MOTOR_ENCODER_COUNTS;
+const pros::motor_brake_mode_e_t globalBrakeMode = pros::E_MOTOR_BRAKE_COAST;
+const int globalSlewStep = 2 * 127;
 
 // Analog Ports
 const int gyroPort = 3;

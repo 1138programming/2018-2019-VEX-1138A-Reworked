@@ -7,14 +7,12 @@
 #include "libIterativeRobot/commands/FlywheelCommands/FlywheelBackwards.h"
 #include "libIterativeRobot/commands/CollectorCommands/CollectorForward.h"
 #include "libIterativeRobot/commands/CollectorCommands/CollectorBackwards.h"
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorForward.h"
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorBackwards.h"
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorForwardTimed.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerForward.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerBackwards.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerForwardTimed.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperForward.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperBackwards.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperBackwardTimed.h"
-#include "libIterativeRobot/commands/BaseCommands/BaseToggle.h"
-#include "libIterativeRobot/commands/BaseCommands/BaseSpeedToggle.h"
 
 #include "libIterativeRobot/commands/Auton/Auton_Blue_Left_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton/Auton_Red_Left_Start_Six_Flag.h"
@@ -30,7 +28,7 @@ using namespace libIterativeRobot;
 Robot*     Robot::instance  = 0;
 Base*      Robot::robotBase = 0;
 Collector* Robot::collector = 0;
-MiddleCollector* Robot::middleCollector = 0;
+Indexer* Robot::indexer = 0;
 Flipper*   Robot::flipper = 0;
 Flywheel*  Robot::flywheel  = 0;
 
@@ -43,7 +41,7 @@ Robot::Robot() {
   // Initializing subsystems
   robotBase = new Base();
   collector = new Collector();
-  middleCollector = new MiddleCollector();
+  indexer = new Indexer();
   flipper = new Flipper();
   flywheel  = new Flywheel();
 
@@ -77,14 +75,14 @@ Robot::Robot() {
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
 
 
-  JoystickButton* middleCollectorForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
-  middleCollectorForwardsButton->whileHeld(new MiddleCollectorForward());
+  JoystickButton* indexerForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
+  indexerForwardsButton->whileHeld(new IndexerForward());
 
-  JoystickButton* middleCollectorBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  middleCollectorBackwardsButton->whileHeld(new FlipperForward());
+  JoystickButton* indexerBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
+  indexerBackwardsButton->whileHeld(new FlipperForward());
   Command* cancellable = new FlipperBackwardTimed(2000);
-  middleCollectorBackwardsButton->whenReleased(cancellable);
-  middleCollectorBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
+  indexerBackwardsButton->whenReleased(cancellable);
+  indexerBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
 
 
   JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
@@ -92,13 +90,6 @@ Robot::Robot() {
 
   JoystickButton* flipperBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
   flipperBackwardsButton->whileHeld(new FlipperBackwards());
-
-
-  JoystickButton* toggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);
-  toggleButton->whenPressed(new BaseToggle());
-
-  JoystickButton* speedToggleButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_A);
-  speedToggleButton->whenPressed(new BaseSpeedToggle());
 
   //JoystickButton* autonButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_LEFT);
   //autonButton->whenPressed(new Auton_Blue_Left_Start_Six_Flag());
@@ -158,7 +149,8 @@ void Robot::teleopInit() {
 
 void Robot::teleopPeriodic() {
   // Code to run while in teleop mode
-  printf("Gyro value: %f\n", robotBase->getGyroValue());
+  //printf("Gyro value: %f\n", robotBase->getGyroValue());
+  printf("Left encoder value is %d, right encoder value is %d\n", robotBase->getLeftEncoderValue(), robotBase->getRightEncoderValue());
 }
 
 void Robot::disabledInit() {

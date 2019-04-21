@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_BASETOGGLE_H_
-#define _COMMANDS_BASETOGGLE_H_
+#ifndef _COMMANDS_INDEXERIDLE_H_
+#define _COMMANDS_INDEXERIDLE_H_
 
 #include "libIterativeRobot/commands/Command.h"
 
-class BaseToggle : public libIterativeRobot::Command {
+class IndexerIdle : public libIterativeRobot::Command {
   public:
     bool canRun();
     void initialize();
@@ -11,7 +11,7 @@ class BaseToggle : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    BaseToggle();
+    IndexerIdle();
 };
 
-#endif // _COMMANDS_BASETOGGLE_H_
+#endif // _COMMANDS_INDEXERIDLE_H_

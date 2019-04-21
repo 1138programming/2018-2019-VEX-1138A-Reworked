@@ -3,7 +3,7 @@
 // TODO: Make a flywheel monitoring command
 
 Flywheel::Flywheel() {
-  flywheelMotor = Motor::getMotor(flywheelMotorPort);
+  flywheelMotor = Motor::getMotor(flywheelMotorPort, flywheelGearset);
   flywheelMotor->getMotorObject()->set_gearing(pros::E_MOTOR_GEARSET_06);
 }
 

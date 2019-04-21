@@ -19,9 +19,9 @@ void CollectorBackwards::execute() {
   // Code that runs when this command is scheduled to run
 
   Robot::collector->runFrontCollector(-200);
-  //Robot::collector->runMiddleCollector(-200);
+  //Robot::collector->runIndexer(-200);
   //if (Robot::collector->getUltrasonic() < 95 && Robot::collector->getUltrasonic() != -1) {
-  //  Robot::collector->runMiddleCollector(0);
+  //  Robot::collector->runIndexer(0);
   //}
 }
 

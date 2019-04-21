@@ -1,34 +1,36 @@
-#include "libIterativeRobot/commands/BaseCommands/BaseToggle.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerBackwards.h"
 
 #include "libIterativeRobot/Robot.h"
 
-BaseToggle::BaseToggle() {
-  requires(Robot::robotBase);
+IndexerBackwards::IndexerBackwards() {
+  requires(Robot::indexer);
 }
 
-bool BaseToggle::canRun() {
+bool IndexerBackwards::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void BaseToggle::initialize() {
+void IndexerBackwards::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
 }
 
-void BaseToggle::execute() {
+void IndexerBackwards::execute() {
   // Code that runs when this command is scheduled to run
-  Robot::robotBase->toggleBase();
+
+  Robot::indexer->runIndexer(-200);
+  //Robot::indexer->move(-127);
 }
 
-bool BaseToggle::isFinished() {
+bool IndexerBackwards::isFinished() {
   return true; // This is the default va  lue anyways, so this method can be removed
 }
 
-void BaseToggle::end() {
+void IndexerBackwards::end() {
   // Code that runs when isFinished() returns true.
 }
 
-void BaseToggle::interrupted() {
+void IndexerBackwards::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

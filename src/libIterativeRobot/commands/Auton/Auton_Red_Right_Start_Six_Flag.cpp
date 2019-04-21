@@ -14,8 +14,8 @@
 #include "libIterativeRobot/commands/FlywheelCommands/FlywheelRevUp.h"
 #include "libIterativeRobot/commands/FlywheelCommands/FlywheelBackwards.h"
 
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorForwardTimed.h"
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorBackwardTimed.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerForwardTimed.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerBackwardTimed.h"
 
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
 

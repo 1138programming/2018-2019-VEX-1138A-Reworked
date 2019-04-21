@@ -2,7 +2,7 @@
 #include "libIterativeRobot/commands/FlipperCommands/FlipperIdle.h"
 
 Flipper::Flipper() {
-  flipperMotor = Motor::getMotor(flipperPort);
+  flipperMotor = Motor::getMotor(flipperPort, flipperGearset);
   // Slaving will be tested after initial test
 }
 

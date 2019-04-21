@@ -37,6 +37,8 @@ class Base : public libIterativeRobot::Subsystem {
     bool baseAtTarget();
     bool baseAtLinearTarget();
     double getGyroValue();
+    double getLeftEncoderValue();
+    double getRightEncoderValue();
     void resetGyro();
     Base();
 };

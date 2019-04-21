@@ -1,41 +1,41 @@
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorForwardTimed.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerForwardTimed.h"
 
 #include "libIterativeRobot/Robot.h"
 
 #include "api.h"
 
-MiddleCollectorForwardTimed::MiddleCollectorForwardTimed(int mSecs) {
-  requires(Robot::middleCollector);
+IndexerForwardTimed::IndexerForwardTimed(int mSecs) {
+  requires(Robot::indexer);
   runTime = mSecs;
   startTime = pros::millis();
 }
 
-bool MiddleCollectorForwardTimed::canRun() {
+bool IndexerForwardTimed::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void MiddleCollectorForwardTimed::initialize() {
+void IndexerForwardTimed::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   startTime = pros::millis();
 }
 
-void MiddleCollectorForwardTimed::execute() {
+void IndexerForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::middleCollector->runMiddleCollector(200);
+  Robot::indexer->runIndexer(200);
 }
 
-bool MiddleCollectorForwardTimed::isFinished() {
+bool IndexerForwardTimed::isFinished() {
   return (pros::millis() - startTime) > runTime;
 }
 
-void MiddleCollectorForwardTimed::end() {
+void IndexerForwardTimed::end() {
   // Code that runs when isFinished() returns true.
-  Robot::middleCollector->runMiddleCollector(0);
+  Robot::indexer->runIndexer(0);
 }
 
-void MiddleCollectorForwardTimed::interrupted() {
+void IndexerForwardTimed::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

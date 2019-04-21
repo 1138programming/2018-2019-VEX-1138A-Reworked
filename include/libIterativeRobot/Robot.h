@@ -7,7 +7,7 @@
 #include "commands/CommandGroup.h"
 #include "subsystems/Base.h"
 #include "subsystems/Collector.h"
-#include "subsystems/MiddleCollector.h"
+#include "subsystems/Indexer.h"
 #include "subsystems/Flipper.h"
 #include "subsystems/Flywheel.h"
 
@@ -36,7 +36,7 @@ class Robot : public libIterativeRobot::RobotBase {
 
     static Base* robotBase;
     static Collector* collector;
-    static MiddleCollector* middleCollector;
+    static Indexer* indexer;
     static Flipper* flipper;
     static Flywheel* flywheel;
 

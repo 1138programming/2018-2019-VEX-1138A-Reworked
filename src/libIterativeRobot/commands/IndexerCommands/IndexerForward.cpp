@@ -1,34 +1,36 @@
-#include "libIterativeRobot/commands/BaseCommands/BaseSpeedToggle.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerForward.h"
 
 #include "libIterativeRobot/Robot.h"
 
-BaseSpeedToggle::BaseSpeedToggle() {
-  requires(Robot::robotBase);
+IndexerForward::IndexerForward() {
+  requires(Robot::indexer);
 }
 
-bool BaseSpeedToggle::canRun() {
+bool IndexerForward::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void BaseSpeedToggle::initialize() {
+void IndexerForward::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
 }
 
-void BaseSpeedToggle::execute() {
+void IndexerForward::execute() {
   // Code that runs when this command is scheduled to run
-  Robot::robotBase->toggleBaseSpeed();
+
+  Robot::indexer->runIndexer(200);
+  //Robot::indexer->move(127);
 }
 
-bool BaseSpeedToggle::isFinished() {
+bool IndexerForward::isFinished() {
   return true; // This is the default va  lue anyways, so this method can be removed
 }
 
-void BaseSpeedToggle::end() {
+void IndexerForward::end() {
   // Code that runs when isFinished() returns true.
 }
 
-void BaseSpeedToggle::interrupted() {
+void IndexerForward::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

@@ -1,9 +1,9 @@
-#ifndef _COMMANDS_MIDDLECOLLECTORFORWARDTIMED_H_
-#define _COMMANDS_MIDDLECOLLECTORFORWARDTIMED_H_
+#ifndef _COMMANDS_INDEXERBACKWARDTIMED_H_
+#define _COMMANDS_INDEXERBACKWARDTIMED_H_
 
 #include "libIterativeRobot/commands/Command.h"
 
-class MiddleCollectorForwardTimed : public libIterativeRobot::Command {
+class IndexerBackwardTimed : public libIterativeRobot::Command {
   private:
     int runTime; // Time, in milliseconds, to run
     int startTime; // Starting time of this command
@@ -14,7 +14,7 @@ class MiddleCollectorForwardTimed : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    MiddleCollectorForwardTimed(int mSecs);
+    IndexerBackwardTimed(int mSecs);
 };
 
-#endif // _COMMANDS_MIDDLECOLLECTORFORWARDTIMED_H_
+#endif // _COMMANDS_INDEXERBACKWARDTIMED_H_

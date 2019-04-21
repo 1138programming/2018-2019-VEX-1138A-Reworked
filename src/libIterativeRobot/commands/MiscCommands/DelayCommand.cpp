@@ -35,4 +35,5 @@ void DelayCommand::end() {
 void DelayCommand::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
+  printf("Delay was interrupted\n");
 }

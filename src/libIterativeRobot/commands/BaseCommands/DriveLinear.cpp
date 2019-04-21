@@ -27,15 +27,16 @@ void DriveLinear::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   printf("DriveLinear(%d)\n", target);
-  this->endTime = pros::millis() + ((abs(target) / (motorSpeed ? motorSpeed : 150)) * 150) + 500;
+  //this->endTime = pros::millis() + ((abs(target) / (motorSpeed ? motorSpeed : 150)) * 150) + 500;
+  Robot::robotBase->resetGyro();
   Robot::robotBase->setLinearTarget(target);
-  Robot::robotBase->moveBaseForward(target, motorSpeed);
+  //Robot::robotBase->moveBaseForward(target, motorSpeed);
 }
 
 void DriveLinear::execute() {
   // Code that runs when this command is scheduled to run
-  printf("Executing\n");
-  //Robot::robotBase->updateLinearMovement();
+  //printf("Executing\n");
+  Robot::robotBase->updateLinearMovement();
 }
 
 bool DriveLinear::isFinished() {
@@ -54,4 +55,5 @@ void DriveLinear::end() {
 void DriveLinear::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
+  Robot::robotBase->moveBase(0, 0);
 }

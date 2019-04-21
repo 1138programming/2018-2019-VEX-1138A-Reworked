@@ -13,14 +13,14 @@
 #include "libIterativeRobot/commands/FlywheelCommands/FlywheelRevUp.h"
 #include "libIterativeRobot/commands/FlywheelCommands/FlywheelBackwards.h"
 
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorForwardTimed.h"
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorBackwardTimed.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerForwardTimed.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerBackwardTimed.h"
 
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
 
 Auton_Red_Left_Start_Six_Flag::Auton_Red_Left_Start_Six_Flag() {
-  //addSequentialCommand(new DriveLinear(500));
-  addSequentialCommand(new DelayCommand(1000));
+  addSequentialCommand(new DriveLinear(500));
+  //addSequentialCommand(new DelayCommand(1000));
   /*bool isRed = true;
   addSequentialCommand(new FlywheelBackwards());
   addParallelCommand(new DriveLinear(3400, 600));
@@ -33,12 +33,12 @@ Auton_Red_Left_Start_Six_Flag::Auton_Red_Left_Start_Six_Flag() {
 
   // ISSUE HERE
   addSequentialCommand(new DriveLinear(200, 50));
-  addParallelCommand(new MiddleCollectorForwardTimed(250));
+  addParallelCommand(new IndexerForwardTimed(250));
   addParallelCommand(new CollectorForwardTimed(300));
 
   addSequentialCommand(new DriveLinear(1800));
   addParallelCommand(new CollectorForwardTimed(1000));
-  addSequentialCommand(new MiddleCollectorForwardTimed(500));
+  addSequentialCommand(new IndexerForwardTimed(500));
   addParallelCommand(new CollectorForwardTimed(500));
 
   addSequentialCommand(new DriveLinear(600));

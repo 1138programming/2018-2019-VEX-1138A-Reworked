@@ -1,35 +1,35 @@
-#include "libIterativeRobot/commands/MiddleCollectorCommands/MiddleCollectorIdle.h"
+#include "libIterativeRobot/commands/IndexerCommands/IndexerIdle.h"
 
 #include "libIterativeRobot/Robot.h"
 
-MiddleCollectorIdle::MiddleCollectorIdle() {
-  requires(Robot::middleCollector);
+IndexerIdle::IndexerIdle() {
+  requires(Robot::indexer);
 }
 
-bool MiddleCollectorIdle::canRun() {
+bool IndexerIdle::canRun() {
   return true; // This is the default value anyways, so this method can be removed
 }
 
-void MiddleCollectorIdle::initialize() {
+void IndexerIdle::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
 }
 
-void MiddleCollectorIdle::execute() {
+void IndexerIdle::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::middleCollector->runMiddleCollector(0);
+  Robot::indexer->runIndexer(0);
 }
 
-bool MiddleCollectorIdle::isFinished() {
+bool IndexerIdle::isFinished() {
   return true; // This is the default va  lue anyways, so this method can be removed
 }
 
-void MiddleCollectorIdle::end() {
+void IndexerIdle::end() {
   // Code that runs when isFinished() returns true.
 }
 
-void MiddleCollectorIdle::interrupted() {
+void IndexerIdle::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
 }

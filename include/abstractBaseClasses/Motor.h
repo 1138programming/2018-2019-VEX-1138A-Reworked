@@ -4,6 +4,7 @@
 #include "api.h"
 #include "Constants.h"
 #include "common.h"
+#include <vector>
 
 enum Port {
   A = 22,
@@ -23,19 +24,21 @@ enum MotorType {
 
 class Motor {
   private:
-    const static int slewStep = 14;
-
-    std::uint8_t channel; // Motor channel
+    std::uint8_t port; // Motor port
     pros::motor_gearset_e_t gearset; // v5 motor gearset
     pros::motor_encoder_units_e_t encoderUnits; // v5 motor encoder units
+    pros::motor_brake_mode_e_t brakeMode;
 
     int currSpeed; // Used by updateSlew Rate
     int speed; // Speed of the motor
-    float multiplier; // Applied to speed
+    int slewedSpeed; // Speed of the motor taking its slew step into account
+    int slewStep; // Maximum value that the motor's speed can increase or decrease by in one update cycle
+    bool reversed = false;
     int threshold = 5;
 
-    Motor* followers[MAX_FOLLOWERS]; // Array containing the motor's followers
-    unsigned int numFollowers; // Number of followers
+    //Motor* followers[MAX_FOLLOWERS]; // Array containing the motor's followers
+    std::vector<Motor*> followers; // Vector containing the motor's followers
+    //unsigned int numFollowers; // Number of followers
     Motor* master; // Pointer to master motor
     bool following; // True if the motor is a follower, false otherwise
     void setMaster(Motor* motor); // Sets a motor to be a master motor
@@ -46,37 +49,39 @@ class Motor {
     pros::ADIEncoder* encoder; // Pointer to encoder object for v4 motors
 
     static Motor* motorInstances[MAX_MOTORS]; // Array of all motor instances
-    static const pros::motor_gearset_e_t defaultGearset; // Default gear set is 18, 200 rpm
-    static const pros::motor_encoder_units_e_t defaultEncoderUnits; // Default encoder units are counts, or encoder ticks
 
-    Motor(std::uint8_t channel); // Constructor, takes a channel
+    Motor(std::uint8_t port, pros::motor_gearset_e_t gearset); // Constructor, takes a port
+    Motor(Port port);
   public:
     // These functions are used to initialize and access the motor object
     static void init(); // Initializes motor objects
-    static Motor* getMotor(int motorPort); // Gets a motor on the specified port, between ports 1-22
-    static Motor* getMotor(Port motorPort); // Gets a motor on the specified port, between ports A-H
+    static Motor* getMotor(std::uint8_t port, pros::motor_gearset_e_t gearset); // Gets a motor on the specified port, between ports 1-22
+    static Motor* getMotor(Port port); // Gets a motor on the specified port, between ports A-H
 
     // These functions change something about the motor object
     void setSpeed(int speed); // Sets the speed of the motor
     void setThreshold(int threshold); // Sets a threshold for the motor's speed
     void reverse(); // Reverses the motor
-    void setMultiplier(float multiplier); // Sets a multiplier to apply to the motor's speed
     void setEncoder(pros::ADIEncoder* encoder); // Sets an encoder to be used for v4 motors in place of a built in encoder
+    void resetEncoder();
     void addFollower(Motor* motor); // Adds a follower to the motor
 
     // These functions get something from the motor object
     int getSpeed(); // Gets the last speed set
+    int getSlewedSpeed();
     int getTheshold(); // Gets the motor's threshold
-    int getChannel(); // Gets the motor's channel
-    std::int32_t getEncoderValue(); // Gets the encoder value of the motor
+    int getPort(); // Gets the motor's port
+    double getEncoderValue(); // Gets the encoder value of a v5 motor in the encoder units it uses
+    std::int32_t getRawEncoderValue(); // Gets the raw encoder value of the motor
     MotorType getMotorType(); // Gets the type of motor
-
     pros::Motor* getMotorObject();
 
     // These functions are called repeatedly, updating the motor object
     int updateSlewRate(int targetSpeed); // Doesn't work
     void move(); // Applies the current speed to the motor
     static void periodicUpdate(); // Updates all motors. Calls the move function on all motors
+
+    static void resetEncoders();
 };
 
 #endif

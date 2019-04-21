@@ -2,11 +2,11 @@
 #include "libIterativeRobot/commands/CollectorCommands/CollectorIdle.h"
 
 Collector::Collector() {
-  frontCollectorMotor = Motor::getMotor(frontCollectorMotorPort);
+  collectorMotor = Motor::getMotor(collectorMotorPort, collectorGearset);
 }
 
 void Collector::runFrontCollector(int velocity) {
-  frontCollectorMotor->getMotorObject()->move_velocity(velocity);
+  collectorMotor->getMotorObject()->move_velocity(velocity);
 }
 
 
