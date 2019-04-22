@@ -38,7 +38,7 @@ const pros::motor_gearset_e_t indexerGearset = pros::E_MOTOR_GEARSET_06;
 // Global configurations
 const pros::motor_encoder_units_e_t globalEncoderUnits = pros::E_MOTOR_ENCODER_COUNTS;
 const pros::motor_brake_mode_e_t globalBrakeMode = pros::E_MOTOR_BRAKE_COAST;
-const int globalSlewStep = 2 * 127;
+const int globalSlewStep = 14;
 
 // Analog Ports
 const int gyroPort = 3;

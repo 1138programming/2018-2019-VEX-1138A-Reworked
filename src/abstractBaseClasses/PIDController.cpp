@@ -68,7 +68,7 @@ int PIDController::getSensorValue() {
   if (outputMotor == NULL) {
     return currSensorValue;
   }
-  return outputMotor->getEncoderValue();
+  return (int)outputMotor->getEncoderValue();
 }
 
 int PIDController::getOutput() {
@@ -83,41 +83,78 @@ void PIDController::loop() {
   //printf("PID is looping\n");
   currSensorValue = getSensorValue();
   deltaTime = pros::millis() - lastTime;
-  lastTime = pros::millis();
+
+  // Calculates error
   error = setpoint - currSensorValue;
-  integral += error * (deltaTime / 1000);
-  derivative  = (error - previousError) / (deltaTime / 1000);
+
+  // Calculates the derivative
+  //derivative  = (error - pastErrors[lastErrorIndex]) / (deltaTime / 1000);
+
+  int secondToLastError = lastErrorIndex - 1;
+  if (secondToLastError < 0)
+    secondToLastError = numErrors - 1;
+
+  derivative = ((pastErrors[secondToLastError] + pastErrors[lastErrorIndex]) / 2) - error;
+
+  //printf("Last error index is %d, lastError is %d\n", lastErrorIndex, pastErrors[lastErrorIndex]);
+
+  // Update the position of the last error in the pastErrors vector
+  lastErrorIndex++;
+  if (lastErrorIndex >= numErrors)
+   lastErrorIndex = 0;
+  //pastErrors[lastErrorIndex] = (int)(error * (deltaTime / 1000));
+  pastErrors[lastErrorIndex] = error;
+
+  int oldestError = lastErrorIndex + 1;
+  if (oldestError >= numErrors)
+    oldestError = 0;
+
+  // Calculates the integral
+  integral += pastErrors[lastErrorIndex] - pastErrors[oldestError];
+  //printf("Current error is %d, oldestError is %d\n", pastErrors[lastErrorIndex], pastErrors[oldestError]);
+
+  // Calculates the output
   output = (int)(kP * error + kI * integral + kD * derivative);
-  int sign = output < 0 ? output == 0 ? -1 : 0 : 1;
-  //int sign = 0;
-  output = confineToRange(output + (sign * 30), -scalar, scalar);
-  //printf("Current sensor value is %d\n", currSensorValue);
-  //printf("Error is %d, integral is %f, derivative is %f, and output is %d\n", error, integral, derivative, output);
+  output = confineToRange(output, minOutput, maxOutput);
+  printf("Current sensor value is %d, error is %d, integral is %d, derivative is %f, and output is %d\n", currSensorValue, error, integral, derivative, output);
   //printf("Error is %d and output is %d\n", error, output);
-  // if (this->outputMotor->getChannel() == 10) {
-  //   printf("Wrist output is %d\n", output);
-  // }
+
   if (outputMotor != NULL) {
-    outputMotor->getMotorObject()->move_velocity(output);
+    outputMotor->setSpeed(output);
   }
-  //printf("Error is %d, output is %d\n", error, output);
-  previousError = error;
+
+  lastTime = pros::millis();
 }
 
 void PIDController::lock() {
   setSetpoint(getSensorValue());
 }
 
-void PIDController::setMaxPIDSpeed(int maxSpeed) {
-  this->scalar = maxSpeed;
+void PIDController::setOutputRange(int minOutput, int maxOutput) {
+  this->minOutput = minOutput;
+  this->maxOutput = maxOutput;
 }
 
 bool PIDController::atSetpoint() {
   currSensorValue = getSensorValue();
   bool range = inRange(currSensorValue, setpoint - threshold, setpoint + threshold);
-  bool smallDerivative = fabs(derivative) < 0.05;
+  bool smallDerivative = fabs(derivative) < maxDerivative;
   bool atSetpoint = range && smallDerivative; // Checks if the sensor value is within a threshold of the target and whether the derivative is less than 0.1
   return atSetpoint;
+}
+
+void PIDController::init() {
+  pastErrors.clear();
+  int error = setpoint - getSensorValue();
+  for (int i = 0; i < numErrors; i++)
+    pastErrors.push_back(error);
+  lastTime = pros::millis();
+  lastErrorIndex = 1;
+  integral = error * numErrors;
+}
+
+void PIDController::stop() {
+  std::vector<int>().swap(pastErrors);
 }
 
 void PIDController::loopAll() {

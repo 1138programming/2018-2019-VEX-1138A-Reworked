@@ -103,6 +103,7 @@ void Robot::robotInit() {
 
 void Robot::autonInit() {
   printf("Starting autonInit() function\n");
+  Motor::resetEncoders();
   autonChooser->uninit();
 
   //bool isSkills = true;
@@ -140,17 +141,22 @@ void Robot::autonInit() {
 }
 
 void Robot::autonPeriodic() {
+  Motor::periodicUpdate();
+  PIDController::loopAll();
 }
 
 void Robot::teleopInit() {
-  printf("Starting teleopInit() function\n");
+  //printf("Starting teleopInit() function\n");
+  Motor::resetEncoders();
   autonChooser->init();
 }
 
 void Robot::teleopPeriodic() {
   // Code to run while in teleop mode
   //printf("Gyro value: %f\n", robotBase->getGyroValue());
-  printf("Left encoder value is %d, right encoder value is %d\n", robotBase->getLeftEncoderValue(), robotBase->getRightEncoderValue());
+  //printf("Left encoder value is %f, right encoder value is %f\n", robotBase->getLeftEncoderValue(), robotBase->getRightEncoderValue());
+  Motor::periodicUpdate();
+  PIDController::loopAll();
 }
 
 void Robot::disabledInit() {

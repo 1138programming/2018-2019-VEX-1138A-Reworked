@@ -13,6 +13,7 @@ class Indexer : public libIterativeRobot::Subsystem {
   public:
     void initDefaultCommand();
     void runIndexer(int velocity);
+    double getEncoderValue();
     int getUltrasonic();
     Indexer();
 };

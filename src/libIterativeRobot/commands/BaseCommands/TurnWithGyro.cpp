@@ -37,7 +37,7 @@ void TurnWithGyro::initialize() {
   gyroPID->setSensorValue(0);
   gyroPID->setSetpoint(degrees);
   //gyroPID->setThreshold(30);
-  gyroPID->setMaxPIDSpeed(150);
+  //gyroPID->setMaxPIDSpeed(150);
   this->timeAtSetpoint = 0;
 }
 

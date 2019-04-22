@@ -80,6 +80,7 @@ void Motor::setSpeed(int speed) {
   //       followers[i]->speed = speed;
   //     }
   // }
+  this->speed = speed;
   for (Motor* follower : followers) {
     follower->speed = speed;
   }
@@ -129,7 +130,6 @@ void Motor::addFollower(Motor* motor) {
   //     return;
   //   }
   // }
-
   followers.push_back(motor);
   motor->setMaster(this);
 }
@@ -192,20 +192,25 @@ int Motor::updateSlewRate(int targetSpeed) {
 }
 
 void Motor::move() {
-  if (motorType == v4)
+  if (motorType == v4) {
     v4Motor->set_value(updateSlewRate(speed));
-  else
-    v5Motor->move(updateSlewRate(speed));
+  } else {
+    // v5Motor->move(updateSlewRate(speed));
+    v5Motor->move(speed);
+  }
 }
 
 void Motor::periodicUpdate() {
+  //printf("Updating motors\n");
   for (int i = 0; i < MAX_MOTORS; i++) {
-    motorInstances[i]->move();
+    if (motorInstances[i] != NULL) {
+      motorInstances[i]->move();
+    }
   }
 }
 
 void Motor::resetEncoders() {
-  printf("Resetting encoders\n");
+  //printf("Resetting encoders\n");
   for (int i = 0; i < MAX_MOTORS; i++) {
     if (motorInstances[i] != NULL)
       motorInstances[i]->resetEncoder();

@@ -19,7 +19,7 @@
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
 
 Auton_Red_Left_Start_Six_Flag::Auton_Red_Left_Start_Six_Flag() {
-  addSequentialCommand(new DriveLinear(500));
+  addSequentialCommand(new DriveLinear(1000));
   //addSequentialCommand(new DelayCommand(1000));
   /*bool isRed = true;
   addSequentialCommand(new FlywheelBackwards());

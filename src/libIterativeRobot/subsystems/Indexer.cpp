@@ -11,6 +11,10 @@ void Indexer::runIndexer(int velocity) {
   indexerMotor->getMotorObject()->move_velocity(velocity);
 }
 
+double Indexer::getEncoderValue() {
+  return indexerMotor->getEncoderValue();
+}
+
 int Indexer::getUltrasonic() {
   return ultrasonic->get_value();
 }
