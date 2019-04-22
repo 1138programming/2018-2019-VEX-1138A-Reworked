@@ -88,30 +88,30 @@ void PIDController::loop() {
   error = setpoint - currSensorValue;
 
   // Calculates the derivative
-  //derivative  = (error - pastErrors[lastErrorIndex]) / (deltaTime / 1000);
+  derivative  = (error - (*pastErrors)[lastErrorIndex]) / (deltaTime / 5);
 
   int secondToLastError = lastErrorIndex - 1;
   if (secondToLastError < 0)
     secondToLastError = numErrors - 1;
 
-  derivative = ((pastErrors[secondToLastError] + pastErrors[lastErrorIndex]) / 2) - error;
+  derivative = (((*pastErrors)[secondToLastError] + (*pastErrors)[lastErrorIndex]) / 2) - error;
 
-  //printf("Last error index is %d, lastError is %d\n", lastErrorIndex, pastErrors[lastErrorIndex]);
+  //printf("Last error index is %d, lastError is %d\n", lastErrorIndex, (*pastErrors)[lastErrorIndex]);
 
   // Update the position of the last error in the pastErrors vector
   lastErrorIndex++;
   if (lastErrorIndex >= numErrors)
    lastErrorIndex = 0;
-  //pastErrors[lastErrorIndex] = (int)(error * (deltaTime / 1000));
-  pastErrors[lastErrorIndex] = error;
+  (*pastErrors)[lastErrorIndex] = (int)(error * (deltaTime / 5));
+  //(*pastErrors)[lastErrorIndex] = error;
 
   int oldestError = lastErrorIndex + 1;
   if (oldestError >= numErrors)
     oldestError = 0;
 
   // Calculates the integral
-  integral += pastErrors[lastErrorIndex] - pastErrors[oldestError];
-  //printf("Current error is %d, oldestError is %d\n", pastErrors[lastErrorIndex], pastErrors[oldestError]);
+  integral += (*pastErrors)[lastErrorIndex] - (*pastErrors)[oldestError];
+  //printf("Current error is %d, oldestError is %d\n", (*pastErrors)[lastErrorIndex], (*pastErrors)[oldestError]);
 
   // Calculates the output
   output = (int)(kP * error + kI * integral + kD * derivative);
@@ -143,18 +143,33 @@ bool PIDController::atSetpoint() {
   return atSetpoint;
 }
 
+void PIDController::enable() {
+  enabled = true;
+  init();
+}
+
+void PIDController::disable() {
+  stop();
+}
+
 void PIDController::init() {
-  pastErrors.clear();
+  pastErrors = new std::vector<int>();
+
+  // Initializes all values in the past errors array to the current error
   int error = setpoint - getSensorValue();
-  for (int i = 0; i < numErrors; i++)
-    pastErrors.push_back(error);
+  for (int i = 0; i < numErrors; i++) {
+    pastErrors->push_back(error);
+  }
+
   lastTime = pros::millis();
   lastErrorIndex = 1;
   integral = error * numErrors;
 }
 
 void PIDController::stop() {
-  std::vector<int>().swap(pastErrors);
+  enabled = false;
+  //std::vector<int>().swap(pastErrors);
+  delete pastErrors;
 }
 
 void PIDController::loopAll() {

@@ -6,14 +6,16 @@
 
 DriveLinear::DriveLinear(int target) {
   requires(Robot::robotBase);
-  this->target = target;
+  this->leftTarget = target;
+  this->rightTarget = target;
   this->motorSpeed = 0;
   this->startTime = pros::millis();
 }
 
-DriveLinear::DriveLinear(int target, int motorSpeed) {
+DriveLinear::DriveLinear(int rightTarget, int leftTarget) {
   requires(Robot::robotBase);
-  this->target = target;
+  this->leftTarget = leftTarget;
+  this->rightTarget = rightTarget;
   this->motorSpeed = motorSpeed;
   this->startTime = pros::millis();
 }
@@ -28,14 +30,14 @@ void DriveLinear::initialize() {
   // constructor
   //this->endTime = pros::millis() + ((abs(target) / (motorSpeed ? motorSpeed : 150)) * 150) + 500;
   //Robot::robotBase->resetGyro();
-  Robot::robotBase->initLinearMovement(target);
+  Robot::robotBase->initLinearMovement(leftTarget, rightTarget);
   //Robot::robotBase->moveBaseForward(target, motorSpeed);
 }
 
 void DriveLinear::execute() {
   // Code that runs when this command is scheduled to run
   //printf("Executing\n");
-  //Robot::robotBase->updateLinearMovement();
+  Robot::robotBase->updateLinearMovement();
 }
 
 bool DriveLinear::isFinished() {

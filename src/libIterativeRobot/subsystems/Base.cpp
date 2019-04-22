@@ -14,16 +14,23 @@ Base::Base() {
   leftFrontBaseMotor->addFollower(leftBackBaseMotor);
   rightFrontBaseMotor->addFollower(rightBackBaseMotor);
 
-  leftPID = new PIDController(leftFrontBaseMotor, 0.15, 0, 0);
-  rightPID = new PIDController(rightFrontBaseMotor, 0.15, 0, 0);
-
-  leftPID->setOutputRange(-60, 60);
-  rightPID->setOutputRange(-60, 60);
-
   baseGyro = new pros::ADIGyro(gyroPort);
   pros::c::adi_gyro_init(gyroPort, 1);
   pros::c::delay(1300);
   baseGyro->reset();
+
+  gyroPID = new PIDController(0.1, 0, 0);
+  gyroPID->setOutputRange(-200, 200);
+
+  leftPosPID = new PIDController(0.1, 0, 0);
+  rightPosPID = new PIDController(0.1, 0, 0);
+  leftPosPID->setOutputRange(-200, 200);
+  rightPosPID->setOutputRange(-200, 200);
+
+  leftVelPID = new PIDController(0.05, 0, 0);
+  rightVelPID = new PIDController(0.05, 0, 0);
+  leftVelPID->setOutputRange(-60, 60);
+  rightVelPID->setOutputRange(-60, 60);
 }
 
 void Base::setBaseMode(pros::motor_brake_mode_e motorMode) {
@@ -62,18 +69,24 @@ void Base::moveBase(int leftSpeed, int rightSpeed) {
   baseGyro->reset();
 }*/
 
-void Base::initLinearMovement(int target, bool absolute) {
+void Base::initLinearMovement(int leftTarget, int rightTarget, bool absolute) {
   if (absolute) {
-    leftPID->setSetpoint(target);
-    rightPID->setSetpoint(target);
+    leftPosPID->setSetpoint(leftTarget);
+    rightPosPID->setSetpoint(rightTarget);
   } else {
-    leftPID->setSetpointRelative(target);
-    rightPID->setSetpointRelative(target);
+    leftPosPID->setSetpointRelative(leftTarget);
+    rightPosPID->setSetpointRelative(rightTarget);
   }
-  leftPID->init();
-  rightPID->init();
-  leftPID->enabled = true;
-  rightPID->enabled = true;
+  //leftPosPID->init();
+  //rightPosPID->init();
+  leftPosPID->enable();
+  rightPosPID->enable();
+  leftVelPID->enable();
+  rightVelPID->enable();
+
+  // Loop the position PIDs once so that they have a useful output to give to the velocity PIDs
+  leftPosPID->loop();
+  rightPosPID->loop();
   // if (absolute) {
   //   velPID->setSetpoint(target);
   // } else {
@@ -83,9 +96,23 @@ void Base::initLinearMovement(int target, bool absolute) {
   //lastPos = getRightEncoderValue();
 }
 
-//void Base::updateLinearMovement() {
-  //pros::delay(5);
+void Base::updateLinearMovement() {
+  pros::delay(5);
 
+  // Passes encoder values to the position PIDs
+  leftPosPID->setSensorValue((int)getLeftEncoderValue());
+  rightPosPID->setSensorValue((int)getRightEncoderValue());
+
+  // Passes the position PIDs' outputs to the velocity PIDs as their setpoints
+  leftVelPID->setSetpoint(leftPosPID->getOutput());
+  rightVelPID->setSetpoint(rightPosPID->getOutput());
+
+  // Passes velocitie values to the velocity PIDs
+  leftVelPID->setSensorValue((int)leftFrontBaseMotor->getMotorObject()->get_actual_velocity());
+  rightVelPID->setSensorValue((int)rightFrontBaseMotor->getMotorObject()->get_actual_velocity());
+
+  // Moves the base using the velocity PIDs' outputs
+  moveBase(leftVelPID->getOutput(), rightVelPID->getOutput());
   //int deltaTime = pros::millis() - lastTime;
   //double deltaPos = getRightEncoderValue() - lastPos;
 
@@ -114,25 +141,65 @@ void Base::initLinearMovement(int target, bool absolute) {
   //int gyroCorrection = baseGyro->get_value() * 0.11;
   //moveBase((int)(output + gyroCorrection), (int)(output - gyroCorrection));
   //moveBase(output, output);
-//}
+}
 
 // bool Base::baseAtTarget() {
 //   return abs(leftFrontBaseMotor->getMotorObject()->get_target_position() - leftFrontBaseMotor->getMotorObject()->get_position()) <= 3; // Tune threshold and make a varaible
 // }
 
 bool Base::baseAtLinearTarget() {
-  return leftPID->atSetpoint() && rightPID->atSetpoint();
+  return leftPosPID->atSetpoint() && rightPosPID->atSetpoint();
 }
 
 void Base::stopLinearMovement() {
-  leftPID->stop();
-  rightPID->stop();
-  leftPID->enabled = false;
-  rightPID->enabled = false;
+  //leftPosPID->stop();
+  //rightPosPID->stop();
+  leftPosPID->disable();
+  rightPosPID->disable();
+  leftVelPID->disable();
+  rightVelPID->disable();
 }
 
-double Base::getGyroValue() {
-  return baseGyro->get_value();///(3.3 * (wheelArcLength / 2 * M_PI) * 20) + (baseGyro->get_value() * 0.8);
+void Base::initTurnWithGyro(int target, bool absolute) {
+  if (absolute) {
+    gyroPID->setSetpoint(target);
+  } else {
+    gyroPID->setSetpointRelative(target);
+  }
+
+  gyroPID->enable();
+  leftVelPID->enable();
+  rightVelPID->enable();
+
+  gyroPID->loop();
+}
+
+void Base::updateTurnWithGyro() {
+  pros::delay(5);
+
+  // Passes the gyro value to the gyro PID
+  gyroPID->setSensorValue((int)getGyroValue());
+
+  // Passes the position PIDs' outputs to the velocity PIDs as their setpoints
+  leftVelPID->setSetpoint(gyroPID->getOutput());
+  rightVelPID->setSetpoint(gyroPID->getOutput());
+
+  // Passes velocitie values to the velocity PIDs
+  leftVelPID->setSensorValue((int)leftFrontBaseMotor->getMotorObject()->get_actual_velocity());
+  rightVelPID->setSensorValue((int)rightFrontBaseMotor->getMotorObject()->get_actual_velocity());
+
+  // Moves the base using the velocity PIDs' outputs
+  moveBase(leftVelPID->getOutput(), rightVelPID->getOutput());
+}
+
+bool Base::atTurnTarget() {
+  return gyroPID->atSetpoint();
+}
+
+void Base::stopTurnWithGyro() {
+  gyroPID->disable();
+  leftVelPID->disable();
+  rightVelPID->disable();
 }
 
 double Base::getLeftEncoderValue() {
@@ -143,6 +210,10 @@ double Base::getLeftEncoderValue() {
 double Base::getRightEncoderValue() {
   return rightFrontBaseMotor->getEncoderValue();
   //return rightBackBaseMotor->getEncoderValue();
+}
+
+double Base::getGyroValue() {
+  return baseGyro->get_value();///(3.3 * (wheelArcLength / 2 * M_PI) * 20) + (baseGyro->get_value() * 0.8);
 }
 
 void Base::resetEncoders() {

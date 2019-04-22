@@ -16,12 +16,18 @@ class Base : public libIterativeRobot::Subsystem {
 
     pros::ADIGyro* baseGyro;
 
-    PIDController* leftPID;
-    PIDController* rightPID;
+    PIDController* gyroPID;
+    PIDController* leftPosPID;
+    PIDController* rightPosPID;
+    PIDController* leftVelPID;
+    PIDController* rightVelPID;
 
     pros::Vision* baseVision;
 
-    double lastPos = 0;
+    int leftLastPos = 0;
+    int rightLastPos = 0;
+    int leftVel = 0;
+    int rightVel = 0;
     std::uint32_t lastTime = 0;
 
     bool baseReversed = false;
@@ -36,14 +42,20 @@ class Base : public libIterativeRobot::Subsystem {
     void moveBase(int left, int right);
     //void moveBaseTo(int leftTarget, int rightTarget, int motorSpeed = 0);
     //void moveBaseForward(int target, int motorSpeed = 0);
-    void initLinearMovement(int target, bool absolute = false);
-    //void updateLinearMovement();
+    void initLinearMovement(int leftTarget, int rightTarget, bool absolute = false);
+    void updateLinearMovement();
     //bool baseAtTarget();
     bool baseAtLinearTarget();
     void stopLinearMovement();
-    double getGyroValue();
+
+    void initTurnWithGyro(int target, bool absolute = false);
+    void updateTurnWithGyro();
+    bool atTurnTarget();
+    void stopTurnWithGyro();
+
     double getLeftEncoderValue();
     double getRightEncoderValue();
+    double getGyroValue();
     void resetEncoders();
     void resetGyro();
     Base();

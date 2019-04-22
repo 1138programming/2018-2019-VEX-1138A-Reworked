@@ -20,7 +20,7 @@ class PIDController {
     int error = 0;
 
     // Vector to hold psat error values, and other variables to hold the index of the last error value and the number of past error values to record
-    std::vector<int> pastErrors;
+    std::vector<int>* pastErrors;
     int numErrors = 100;
     int lastErrorIndex = 0;
 
@@ -35,6 +35,7 @@ class PIDController {
     int minOutput = -KMaxMotorSpeed; // Default is -KMaxMotorSpeed
     int maxOutput = KMaxMotorSpeed; // Default is KMaxMotorSpeed
     static std::vector<PIDController*> instances; // A vector to contain all PIDController instances
+    bool enabled = false; // If the loop is enabled it will loop when loopAll is called
     void addInstance();
   public:
     PIDController(Motor* motorChannel, float kP = 1, float kI = 0, float kD = 0); // Initializes a PID controller with a motor
@@ -53,7 +54,8 @@ class PIDController {
     void loop(); // Does all calculations
     void lock(); // Sets the setpoint to the current sensor value
     void setOutputRange(int minSpeed, int maxSpeed); // Sets the minimum and maximum values that the PID can calculate as the output
-    bool enabled = false; // If the loop is enabled it will loop when loopAll is called
+    void enable();
+    void disable();
     void init();
     void stop();
     static void loopAll();

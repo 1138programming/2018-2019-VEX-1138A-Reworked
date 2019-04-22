@@ -5,8 +5,9 @@
 
 class DriveLinear : public libIterativeRobot::Command {
   private:
-    double target;
-    double motorSpeed;
+    int leftTarget;
+    int rightTarget;
+    int motorSpeed;
 
     int endTime;
     int startTime;
