@@ -16,13 +16,14 @@ bool FlipperBackwardTimed::canRun() {
 void FlipperBackwardTimed::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  //Robot::flipper->disable();
   startTime = pros::millis();
 }
 
 void FlipperBackwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::flipper->runFlipper(-200);
+  Robot::flipper->runFlipper(-80);
 }
 
 bool FlipperBackwardTimed::isFinished() {

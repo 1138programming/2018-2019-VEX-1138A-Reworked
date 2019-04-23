@@ -8,18 +8,19 @@ FlipperForward::FlipperForward() {
 }
 
 bool FlipperForward::canRun() {
-  return true; // This is the default value anyways, so this method can be removed
+  return Robot::flipper->getEncoderValue() < Robot::flipper->bottomLimit;
+  //return true; // This is the default value anyways, so this method can be removed
 }
 
 void FlipperForward::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  //Robot::flipper->disable();
 }
 
 void FlipperForward::execute() {
   // Code that runs when this command is scheduled to run
-
-  Robot::flipper->runFlipper(200);
+  Robot::flipper->runFlipper(80);
 }
 
 bool FlipperForward::isFinished() {

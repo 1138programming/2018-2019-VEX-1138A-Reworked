@@ -35,6 +35,7 @@ class Motor {
     int slewStep; // Maximum value that the motor's speed can increase or decrease by in one update cycle
     bool reversed = false;
     int threshold = 5;
+    bool slew = false;
 
     //Motor* followers[MAX_FOLLOWERS]; // Array containing the motor's followers
     std::vector<Motor*> followers; // Vector containing the motor's followers
@@ -60,6 +61,10 @@ class Motor {
 
     // These functions change something about the motor object
     void setSpeed(int speed); // Sets the speed of the motor
+    void setSlewStep(int slewStep);
+    void enableSlewing();
+    void enableSlewing(int slewStep);
+    void disableSlewing();
     void setThreshold(int threshold); // Sets a threshold for the motor's speed
     void reverse(); // Reverses the motor
     void setEncoder(pros::ADIEncoder* encoder); // Sets an encoder to be used for v4 motors in place of a built in encoder

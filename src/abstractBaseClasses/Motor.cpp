@@ -86,6 +86,23 @@ void Motor::setSpeed(int speed) {
   }
 }
 
+void Motor::setSlewStep(int slewStep) {
+  this->slewStep = slewStep;
+}
+
+void Motor::enableSlewing() {
+  slew = true;
+}
+
+void Motor::enableSlewing(int slewStep) {
+  this->slewStep = slewStep;
+  slew = true;
+}
+
+void Motor::disableSlewing() {
+  slew = false;
+}
+
 void Motor::setThreshold(int threshold) {
   this->threshold = threshold;
 }
@@ -193,10 +210,15 @@ int Motor::updateSlewRate(int targetSpeed) {
 
 void Motor::move() {
   if (motorType == v4) {
-    v4Motor->set_value(updateSlewRate(speed));
+    if (slew)
+      v4Motor->set_value(updateSlewRate(speed));
+    else
+      v4Motor->set_value(speed);
   } else {
-    // v5Motor->move(updateSlewRate(speed));
-    v5Motor->move(speed);
+    if (slew)
+      v5Motor->move(updateSlewRate(speed));
+    else
+      v5Motor->move(speed);
   }
 }
 
@@ -210,7 +232,7 @@ void Motor::periodicUpdate() {
 }
 
 void Motor::resetEncoders() {
-  //printf("Resetting encoders\n");
+  printf("Resetting encoders\n");
   for (int i = 0; i < MAX_MOTORS; i++) {
     if (motorInstances[i] != NULL)
       motorInstances[i]->resetEncoder();

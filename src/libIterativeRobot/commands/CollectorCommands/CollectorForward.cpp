@@ -20,7 +20,7 @@ void CollectorForward::initialize() {
 void CollectorForward::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::collector->runFrontCollector(200);
+  Robot::collector->runFrontCollector(127);
   printf("Testing");
   //Robot::collector->runIndexer(200);
   //if (Robot::collector->getUltrasonic() < 95 && Robot::collector->getUltrasonic() != -1) {

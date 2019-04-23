@@ -18,8 +18,8 @@ class DriveLinear : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    DriveLinear(int target, int motorSpeed);
     DriveLinear(int target);
+    DriveLinear(int leftTarget, int rightTarget);
 };
 
 #endif // _COMMANDS_DriveLinearly_H_

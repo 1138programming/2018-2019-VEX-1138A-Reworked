@@ -13,6 +13,7 @@
 #include "libIterativeRobot/commands/FlipperCommands/FlipperForward.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperBackwards.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperBackwardTimed.h"
+#include "libIterativeRobot/commands/FlipperCommands/FlipperTo.h"
 
 #include "libIterativeRobot/commands/Auton/Auton_Blue_Left_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton/Auton_Red_Left_Start_Six_Flag.h"
@@ -61,8 +62,8 @@ Robot::Robot() {
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
 
   // Initializing joysticks and buttons
-  JoystickButton* flywheelForwardButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
-  flywheelForwardButton->whenPressed(new FlywheelForward());
+  // JoystickButton* flywheelForwardButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
+  // flywheelForwardButton->whenPressed(new FlywheelForward());
 
   JoystickButton* flywheelBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
   flywheelBackwardsButton->whenPressed(new FlywheelBackwards());
@@ -78,17 +79,17 @@ Robot::Robot() {
   JoystickButton* indexerForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
   indexerForwardsButton->whileHeld(new IndexerForward());
 
-  JoystickButton* indexerBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
-  indexerBackwardsButton->whileHeld(new FlipperForward());
-  Command* cancellable = new FlipperBackwardTimed(2000);
-  indexerBackwardsButton->whenReleased(cancellable);
-  indexerBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
+  // JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
+  // flipperForwardsButton->whileHeld(new FlipperForward());
+  //Command* cancellable = new FlipperBackwardTimed(2000);
+  //flipperBackwardsButton->whenReleased(cancellable);
+  //flipperBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
 
 
   JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
 
-  JoystickButton* flipperBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_B);
+  JoystickButton* flipperBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_Y);
   flipperBackwardsButton->whileHeld(new FlipperBackwards());
 
   //JoystickButton* autonButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_LEFT);

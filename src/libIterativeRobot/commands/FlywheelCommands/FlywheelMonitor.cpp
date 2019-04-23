@@ -10,6 +10,7 @@ FlywheelMonitor::FlywheelMonitor() {
 
 bool FlywheelMonitor::canRun() {
   return pros::millis() > (lastTime + 1500); // This is the default value anyways, so this method can be removed
+  //return true;
 }
 
 void FlywheelMonitor::initialize() {
@@ -22,12 +23,13 @@ void FlywheelMonitor::execute() {
   // Code that runs when this command is scheduled to run
   //Robot::mainController->set_text(0, 0, "Flywheel");
   //Robot::mainController->clear();
-  Robot::mainController->print(0, 0, "RPM: %f", Robot::flywheel->getFlywheelVelocity());
+  //printf("RPM: %f\n", Robot::flywheel->getFlywheelVelocity());
+  //Robot::mainController->print(0, 0, "RPM: %f", Robot::flywheel->getFlywheelVelocity());
   //Robot::mainController->print(2, 0, "Temp: %f", Robot::flywheel->getFlywheelTemperature());
 }
 
 bool FlywheelMonitor::isFinished() {
-  return true; // This is the default va  lue anyways, so this method can be removed
+  return true; // This is the default value anyways, so this method can be removed
 }
 
 void FlywheelMonitor::end() {

@@ -8,7 +8,8 @@ Indexer::Indexer() {
 }
 
 void Indexer::runIndexer(int velocity) {
-  indexerMotor->getMotorObject()->move_velocity(velocity);
+  //indexerMotor->getMotorObject()->move_velocity(velocity);
+  indexerMotor->setSpeed(velocity);
 }
 
 double Indexer::getEncoderValue() {

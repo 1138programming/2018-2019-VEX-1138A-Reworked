@@ -8,9 +8,17 @@
 class Flipper : public libIterativeRobot::Subsystem {
   private:
     Motor* flipperMotor;
+    PIDController* flipperControl;
   public:
     void initDefaultCommand();
     void runFlipper(int velocity);
+    void setSetpoint(int setpoint);
+    void setSetpointRelative(int setpoint);
+    bool atTarget();
+    int getEncoderValue();
+    void enable();
+    void disable();
+    int bottomLimit;
     Flipper();
 };
 

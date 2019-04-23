@@ -23,7 +23,7 @@ void IndexerForwardTimed::initialize() {
 void IndexerForwardTimed::execute() {
   // Code that runs when this command is scheduled to run
 
-  Robot::indexer->runIndexer(200);
+  Robot::indexer->runIndexer(84);
 }
 
 bool IndexerForwardTimed::isFinished() {

@@ -13,14 +13,19 @@ bool FlywheelBackwards::canRun() {
 void FlywheelBackwards::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
+  if (on)
+    on = false;
+  else
+    on = true;
 }
 
 void FlywheelBackwards::execute() {
   // Code that runs when this command is scheduled to run
-  if (Robot::flywheel->getFlywheelVelocity() < 0) {
-    Robot::flywheel->setFlywheel(0);
+  //printf("Flywheel backward executed\n");
+  if (on) {
+    Robot::flywheel->setFlywheel(116);
   } else {
-    Robot::flywheel->setFlywheel(550);
+    Robot::flywheel->setFlywheel(0);
   }
 }
 

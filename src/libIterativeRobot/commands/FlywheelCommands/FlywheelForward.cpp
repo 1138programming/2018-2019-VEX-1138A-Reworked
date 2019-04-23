@@ -17,11 +17,12 @@ void FlywheelForward::initialize() {
 
 void FlywheelForward::execute() {
   // Code that runs when this command is scheduled to run
-  if (Robot::flywheel->getFlywheelVelocity() > 0) {
-    Robot::flywheel->setFlywheel(0);
-  } else {
-    Robot::flywheel->setFlywheel(-550);
-  }
+  // printf("Flywheel forward executed\n");
+  // if (Robot::flywheel->getFlywheelVelocity() < 0) {
+  //   Robot::flywheel->setFlywheel(0);
+  // } else {
+  //   Robot::flywheel->setFlywheel(-116);
+  // }
 }
 
 bool FlywheelForward::isFinished() {

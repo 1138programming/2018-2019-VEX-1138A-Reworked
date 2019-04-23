@@ -16,6 +16,7 @@ PIDController::PIDController(float kP, float kI, float kD) {
   this->kP = kP;
   this->kI = kI;
   this->kD = kD;
+  addInstance();
 }
 
 void PIDController::addInstance() {
@@ -89,21 +90,22 @@ void PIDController::loop() {
 
   // Calculates the derivative
   derivative  = (error - (*pastErrors)[lastErrorIndex]) / (deltaTime / 5);
+  // printf("Error is %d and past error is %d\n", error, (*pastErrors)[lastErrorIndex]);
 
-  int secondToLastError = lastErrorIndex - 1;
-  if (secondToLastError < 0)
-    secondToLastError = numErrors - 1;
+  // int secondToLastError = lastErrorIndex - 1;
+  // if (secondToLastError < 0)
+  //   secondToLastError = numErrors - 1;
 
-  derivative = (((*pastErrors)[secondToLastError] + (*pastErrors)[lastErrorIndex]) / 2) - error;
+  // derivative = (((*pastErrors)[secondToLastError] + (*pastErrors)[lastErrorIndex]) / 2) - error;
 
-  //printf("Last error index is %d, lastError is %d\n", lastErrorIndex, (*pastErrors)[lastErrorIndex]);
+  // printf("Last error index is %d, lastError is %d\n", lastErrorIndex, (*pastErrors)[lastErrorIndex]);
 
   // Update the position of the last error in the pastErrors vector
   lastErrorIndex++;
   if (lastErrorIndex >= numErrors)
    lastErrorIndex = 0;
-  (*pastErrors)[lastErrorIndex] = (int)(error * (deltaTime / 5));
-  //(*pastErrors)[lastErrorIndex] = error;
+  //(*pastErrors)[lastErrorIndex] = (int)(error * (deltaTime / 5));
+  (*pastErrors)[lastErrorIndex] = error;
 
   int oldestError = lastErrorIndex + 1;
   if (oldestError >= numErrors)
@@ -116,7 +118,7 @@ void PIDController::loop() {
   // Calculates the output
   output = (int)(kP * error + kI * integral + kD * derivative);
   output = confineToRange(output, minOutput, maxOutput);
-  printf("Current sensor value is %d, error is %d, integral is %d, derivative is %f, and output is %d\n", currSensorValue, error, integral, derivative, output);
+  //printf("Current sensor value is %d, error is %d, integral is %d, derivative is %f, and output is %d\n", currSensorValue, error, integral, derivative, output);
   //printf("Error is %d and output is %d\n", error, output);
 
   if (outputMotor != NULL) {
@@ -144,12 +146,14 @@ bool PIDController::atSetpoint() {
 }
 
 void PIDController::enable() {
-  enabled = true;
   init();
+  enabled = true;
+  printf("PID enabled\n");
 }
 
 void PIDController::disable() {
   stop();
+  printf("PID disabled\n");
 }
 
 void PIDController::init() {
@@ -173,8 +177,13 @@ void PIDController::stop() {
 }
 
 void PIDController::loopAll() {
+  printf("Enabled flags are");
+  //printf("Number of loops is %d\n", instances.size());
   for (size_t i = 0; i < instances.size(); i++) {
-    if (instances[i]->enabled)
+    printf(", %d", instances[i]->enabled);
+    if (instances[i]->enabled) {
       instances[i]->loop();
+    }
   }
+  printf("\n");
 }

@@ -12,7 +12,7 @@ DriveLinear::DriveLinear(int target) {
   this->startTime = pros::millis();
 }
 
-DriveLinear::DriveLinear(int rightTarget, int leftTarget) {
+DriveLinear::DriveLinear(int leftTarget, int rightTarget) {
   requires(Robot::robotBase);
   this->leftTarget = leftTarget;
   this->rightTarget = rightTarget;
@@ -37,6 +37,7 @@ void DriveLinear::initialize() {
 void DriveLinear::execute() {
   // Code that runs when this command is scheduled to run
   //printf("Executing\n");
+  //printf("Executing\n");
   Robot::robotBase->updateLinearMovement();
 }
 
@@ -44,6 +45,7 @@ bool DriveLinear::isFinished() {
   //printf("Here!\n");
   //printf("At linear target is %d\n", Robot::robotBase->baseAtLinearTarget());
   return Robot::robotBase->baseAtLinearTarget();
+  // return false;
   //if ((pros::millis() - startTime) < 250) return false;
   //return Robot::robotBase->baseAtLinearTarget() || pros::millis() > endTime; // This is the default value anyways, so this method can be removed
 }
@@ -58,6 +60,7 @@ void DriveLinear::end() {
 void DriveLinear::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
+  //printf("Interrupted\n");
   Robot::robotBase->stopLinearMovement();
   Robot::robotBase->moveBase(0, 0);
 }

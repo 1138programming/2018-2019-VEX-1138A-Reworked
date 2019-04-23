@@ -6,7 +6,8 @@ Collector::Collector() {
 }
 
 void Collector::runFrontCollector(int velocity) {
-  collectorMotor->getMotorObject()->move_velocity(velocity);
+  //collectorMotor->getMotorObject()->move_velocity(velocity);
+  collectorMotor->setSpeed(velocity);
 }
 
 

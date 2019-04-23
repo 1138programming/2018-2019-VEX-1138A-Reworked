@@ -21,7 +21,7 @@ class PIDController {
 
     // Vector to hold psat error values, and other variables to hold the index of the last error value and the number of past error values to record
     std::vector<int>* pastErrors;
-    int numErrors = 100;
+    int numErrors = 30;
     int lastErrorIndex = 0;
 
     int output = 0; // Output of the PID loop

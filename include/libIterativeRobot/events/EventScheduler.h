@@ -21,6 +21,10 @@ class EventScheduler {
     std::vector<CommandGroup*> commandGroupQueue; // Queue for command groups that have been added
     std::vector<Command*> commandBuffer;
     std::vector<CommandGroup*> commandGroupBuffer;
+    std::vector<Command*> toInitialize;
+    std::vector<Command*> toExecute;
+    std::vector<Command*> toInterrupt;
+    std::vector<Command*> toEnd;
     bool defaultAdded = false;
     void clearScheduler(); // Removes all commands and command groups from both their respective buffers and queues
     void queueCommands(); // Adds commands in the commandBuffer vector into the commandQueue

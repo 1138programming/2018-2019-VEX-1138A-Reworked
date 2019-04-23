@@ -14,7 +14,7 @@ bool FlywheelRevUp::canRun() {
 void FlywheelRevUp::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
-  Robot::flywheel->setFlywheel(600);
+  Robot::flywheel->setFlywheel(127);
 }
 
 void FlywheelRevUp::execute() {

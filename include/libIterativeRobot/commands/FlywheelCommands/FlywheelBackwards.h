@@ -4,6 +4,8 @@
 #include "libIterativeRobot/commands/Command.h"
 
 class FlywheelBackwards : public libIterativeRobot::Command {
+  private:
+    bool on = false;
   public:
     bool canRun();
     void initialize();
