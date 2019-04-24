@@ -28,7 +28,7 @@ Auton_Blue_Left_Start_Six_Flag::Auton_Blue_Left_Start_Six_Flag() {
   addParallelCommand(new CollectorForwardTimed(2000));
   addParallelCommand(new FlywheelBackwards());
   addSequentialCommand(new DriveLinear(-3000, -3000));
-  addSequentialCommand(new DriveLinear(630, -630));
+  addSequentialCommand(new DriveLinear(650, -650));
   addSequentialCommand(new DriveLinear(1900, 1900));
   addParallelCommand(new DoubleShot());
   addSequentialCommand(new DriveLinear(800, 500));
