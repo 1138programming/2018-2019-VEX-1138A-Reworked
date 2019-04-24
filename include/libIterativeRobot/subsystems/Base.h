@@ -36,7 +36,8 @@ class Base : public libIterativeRobot::Subsystem {
     int baseEncoderDrift = 0;
 
     //double accel = 0.34;
-    double accel = 0.68;
+    //double accel = 0.68;
+    double accel = 0.51;
     double leftAccel = 0;
     double rightAccel = 0;
     double leftVel = 0;

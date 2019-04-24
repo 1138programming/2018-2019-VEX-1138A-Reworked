@@ -177,13 +177,13 @@ void PIDController::stop() {
 }
 
 void PIDController::loopAll() {
-  printf("Enabled flags are");
+  //printf("Enabled flags are");
   //printf("Number of loops is %d\n", instances.size());
   for (size_t i = 0; i < instances.size(); i++) {
-    printf(", %d", instances[i]->enabled);
+    //printf(", %d", instances[i]->enabled);
     if (instances[i]->enabled) {
       instances[i]->loop();
     }
   }
-  printf("\n");
+  //printf("\n");
 }

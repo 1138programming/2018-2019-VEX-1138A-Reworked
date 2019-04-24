@@ -5,6 +5,7 @@ Flipper::Flipper() {
   flipperMotor = Motor::getMotor(flipperPort, flipperGearset);
 
   flipperControl = new PIDController(flipperMotor, 0.4, 0.001, 0);
+  flipperControl->setThreshold(30);
 
   bottomLimit = 550;
 }

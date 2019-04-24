@@ -22,6 +22,7 @@ void FlipperTo::initialize() {
 void FlipperTo::execute() {
   // Code that runs when this command is scheduled to run
 
+  printf("Flipper encoder value is %d\n", Robot::flipper->getEncoderValue());
   //printf("Moving flipper to %d\n", target);
   //Robot::flipper->runFlipper(-42);
 }
@@ -32,7 +33,7 @@ bool FlipperTo::isFinished() {
 
 void FlipperTo::end() {
   // Code that runs when isFinished() returns true.
-  printf("Disabling flipper PID\n");
+  printf("FlipperTo finished, disabling flipper PID\n");
   Robot::flipper->disable();
   Robot::flipper->runFlipper(0);
 }

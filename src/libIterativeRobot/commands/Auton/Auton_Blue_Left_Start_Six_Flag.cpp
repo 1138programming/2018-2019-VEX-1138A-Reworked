@@ -9,6 +9,7 @@
 
 #include "libIterativeRobot/commands/FlipperCommands/FlipperForwardTimed.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperBackwardTimed.h"
+#include "libIterativeRobot/commands/FlipperCommands/FlipperTo.h"
 
 #include "libIterativeRobot/commands/FlywheelCommands/FlywheelRevUp.h"
 #include "libIterativeRobot/commands/FlywheelCommands/FlywheelBackwards.h"
@@ -18,37 +19,58 @@
 
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
 
-Auton_Blue_Left_Start_Six_Flag::Auton_Blue_Left_Start_Six_Flag() {
-  bool isRed = false;
-  addSequentialCommand(new FlywheelBackwards());
-  addParallelCommand(new DriveLinear(3400, 600));
-  addParallelCommand(new CollectorForwardTimed(1850));
-  addSequentialCommand(new DriveLinear(-2780));
-  addParallelCommand(new CollectorForwardTimed(500));
-  addSequentialCommand(new TurnWithGyro(900 * (isRed ? -1 : 1)));
+#include "libIterativeRobot/commands/Auton/DoubleShot.h"
 
-  addParallelCommand(new CollectorForwardTimed(500));
+#include "libIterativeRobot/Robot.h"
+
+Auton_Blue_Left_Start_Six_Flag::Auton_Blue_Left_Start_Six_Flag() {
+  addSequentialCommand(new DriveLinear(3500, 3500));
+  addParallelCommand(new CollectorForwardTimed(2000));
+  addParallelCommand(new FlywheelBackwards());
+  addSequentialCommand(new DriveLinear(-3000, -3000));
+  addSequentialCommand(new DriveLinear(630, -630));
+  addSequentialCommand(new DriveLinear(1900, 1900));
+  addParallelCommand(new DoubleShot());
+  addSequentialCommand(new DriveLinear(800, 500));
+  addSequentialCommand(new FlipperForwardTimed(500));
+  addSequentialCommand(new DriveLinear(-800, -500));
+  addParallelCommand(new FlipperBackwardTimed(800));
+  addSequentialCommand(new DriveLinear(-1000, -1000));
+  addSequentialCommand(new DriveLinear(-700, 0));
+  addSequentialCommand(new FlipperTo(Robot::flipper->bottomLimit));
+  addSequentialCommand(new DriveLinear(700, 700));
+  addSequentialCommand(new FlipperTo(0));
+
+  // bool isRed = false;
+  // addSequentialCommand(new FlywheelBackwards());
+  // addParallelCommand(new DriveLinear(3400, 600));
+  // addParallelCommand(new CollectorForwardTimed(1850));
+  // addSequentialCommand(new DriveLinear(-2780));
+  // addParallelCommand(new CollectorForwardTimed(500));
+  // addSequentialCommand(new TurnWithGyro(900 * (isRed ? -1 : 1)));
+  //
+  // addParallelCommand(new CollectorForwardTimed(500));
 
   // ISSUE HERE
-  addSequentialCommand(new DriveLinear(200, 50));
-  addParallelCommand(new IndexerForwardTimed(250));
-  addParallelCommand(new CollectorForwardTimed(300));
-  
-  addSequentialCommand(new DriveLinear(1800));
-  addParallelCommand(new CollectorForwardTimed(1000));
-  addSequentialCommand(new IndexerForwardTimed(500));
-  addParallelCommand(new CollectorForwardTimed(500));
-
-  addSequentialCommand(new DriveLinear(600));
-  addSequentialCommand(new DriveLinear(200));
-  addParallelCommand(new FlipperForwardTimed(200));
-  addSequentialCommand(new DriveLinear(-1100));
-  addParallelCommand(new FlipperBackwardTimed(400));
-
-  addSequentialCommand(new TurnWithGyro(-900 * (isRed ? -1 : 1)));
-  addParallelCommand(new FlipperForwardTimed(750));
-  addSequentialCommand(new DriveLinear(580));
-  addSequentialCommand(new FlipperBackwardTimed(500));
+  // addSequentialCommand(new DriveLinear(200, 50));
+  // addParallelCommand(new IndexerForwardTimed(250));
+  // addParallelCommand(new CollectorForwardTimed(300));
+  //
+  // addSequentialCommand(new DriveLinear(1800));
+  // addParallelCommand(new CollectorForwardTimed(1000));
+  // addSequentialCommand(new IndexerForwardTimed(500));
+  // addParallelCommand(new CollectorForwardTimed(500));
+  //
+  // addSequentialCommand(new DriveLinear(600));
+  // addSequentialCommand(new DriveLinear(200));
+  // addParallelCommand(new FlipperForwardTimed(200));
+  // addSequentialCommand(new DriveLinear(-1100));
+  // addParallelCommand(new FlipperBackwardTimed(400));
+  //
+  // addSequentialCommand(new TurnWithGyro(-900 * (isRed ? -1 : 1)));
+  // addParallelCommand(new FlipperForwardTimed(750));
+  // addSequentialCommand(new DriveLinear(580));
+  // addSequentialCommand(new FlipperBackwardTimed(500));
 
   // Go back and collect off of the cap
   // addSequentialCommand(new DelayCommand(250));

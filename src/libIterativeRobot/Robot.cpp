@@ -21,6 +21,8 @@
 #include "libIterativeRobot/commands/Auton/Auton_Red_Right_Start_Six_Flag.h"
 
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
+#include "libIterativeRobot/commands/MiscCommands/CollectorAndIndexer.h"
+#include "libIterativeRobot/commands/MiscCommands/ShootAndLoad.h"
 
 #include "libIterativeRobot/commands/Auton/SkillsAuton.h"
 
@@ -50,8 +52,8 @@ Robot::Robot() {
   autonChooser = AutonChooser::getInstance();
   autonChooser->setAutonNames(
     {
-      "Front Tile Red",
       "Back Tile Red",
+      "Front Tile Red",
       "Front Tile Blue",
       "Back Tile Blue",
       "Skills"
@@ -70,14 +72,17 @@ Robot::Robot() {
 
 
   JoystickButton* collectorForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L1);
-  collectorForwardsButton->whileHeld(new CollectorForward());
+  collectorForwardsButton->whileHeld(new CollectorAndIndexer());
+  //collectorForwardsButton->whileHeld(new CollectorForward());
 
   JoystickButton* collectorBackwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_L2);
   collectorBackwardsButton->whileHeld(new CollectorBackwards());
 
 
   JoystickButton* indexerForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R1);
-  indexerForwardsButton->whileHeld(new IndexerForward());
+  //indexerForwardsButton->whileHeld(new IndexerForward());
+  //indexerForwardsButton->whileHeld(new CollectorForward());
+  indexerForwardsButton->whenPressed(new ShootAndLoad());
 
   // JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_R2);
   // flipperForwardsButton->whileHeld(new FlipperForward());
@@ -116,11 +121,11 @@ void Robot::autonInit() {
     switch (autonChooser->getAutonChoice()) {
       case 0:
         printf("Running group %d\n", 1);
-        autonGroup = new Auton_Red_Left_Start_Six_Flag();
+        autonGroup = new Auton_Red_Right_Start_Six_Flag();
         break;
       case 1:
         printf("Running group %d\n", 1);
-        autonGroup = new Auton_Red_Right_Start_Six_Flag();
+        autonGroup = new Auton_Red_Left_Start_Six_Flag();
         break;
       case 2:
         printf("Running group %d\n", 2);

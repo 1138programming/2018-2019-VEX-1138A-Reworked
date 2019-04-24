@@ -30,12 +30,12 @@ bool FlipperIdle::isFinished() {
 void FlipperIdle::end() {
   // Code that runs when isFinished() returns true.
   //printf("Flipper idle is finished\n");
-  Robot::flipper->disable();
+  //Robot::flipper->disable();
 }
 
 void FlipperIdle::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
-  //printf("Flipper idle was Interrupted     ");
+  printf("Flipper idle was interrupted\n");
   Robot::flipper->disable();
 }

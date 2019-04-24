@@ -4,6 +4,8 @@
 #include "libIterativeRobot/commands/Command.h"
 
 class FlywheelRevUp : public libIterativeRobot::Command {
+  private:
+    int speed;
   public:
     bool canRun();
     void initialize();
@@ -11,7 +13,7 @@ class FlywheelRevUp : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    FlywheelRevUp();
+    FlywheelRevUp(int speed);
 };
 
 #endif // _COMMANDS_FLYWHEELREVUP_H_
