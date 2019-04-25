@@ -26,13 +26,13 @@ Base::Base() {
   rightPosPID = new PIDController(rightFrontBaseMotor, 0.4, 0, 0);
   leftPosPID->setOutputRange(-127, 127);
   rightPosPID->setOutputRange(-127, 127);
-  leftPosPID->setThreshold(30);
-  rightPosPID->setThreshold(30);
+  //leftPosPID->setThreshold(30);
+  //rightPosPID->setThreshold(30);
 
-  leftVelPID = new PIDController(0.8, 0, 0);
-  rightVelPID = new PIDController(0.8, 0, 0);
-  leftVelPID->setOutputRange(-127, 127);
-  rightVelPID->setOutputRange(-127, 127);
+  //leftVelPID = new PIDController(0.8, 0, 0);
+  //rightVelPID = new PIDController(0.8, 0, 0);
+  //leftVelPID->setOutputRange(-127, 127);
+  //rightVelPID->setOutputRange(-127, 127);
 }
 
 void Base::setBaseMode(pros::motor_brake_mode_e motorMode) {
@@ -268,8 +268,8 @@ void Base::initTurnWithGyro(int target, bool absolute) {
   }
 
   gyroPID->enable();
-  leftVelPID->enable();
-  rightVelPID->enable();
+  //leftVelPID->enable();
+  //rightVelPID->enable();
 
   gyroPID->loop();
 }
@@ -281,15 +281,15 @@ void Base::updateTurnWithGyro() {
   gyroPID->setSensorValue((int)getGyroValue());
 
   // Passes the position PIDs' outputs to the velocity PIDs as their setpoints
-  leftVelPID->setSetpoint(gyroPID->getOutput());
-  rightVelPID->setSetpoint(gyroPID->getOutput());
+  //leftVelPID->setSetpoint(gyroPID->getOutput());
+  //rightVelPID->setSetpoint(gyroPID->getOutput());
 
   // Passes velocitie values to the velocity PIDs
-  leftVelPID->setSensorValue((int)leftFrontBaseMotor->getMotorObject()->get_actual_velocity());
-  rightVelPID->setSensorValue((int)rightFrontBaseMotor->getMotorObject()->get_actual_velocity());
+  //leftVelPID->setSensorValue((int)leftFrontBaseMotor->getMotorObject()->get_actual_velocity());
+  //rightVelPID->setSensorValue((int)rightFrontBaseMotor->getMotorObject()->get_actual_velocity());
 
   // Moves the base using the velocity PIDs' outputs
-  moveBase(leftVelPID->getOutput(), rightVelPID->getOutput());
+  //moveBase(leftVelPID->getOutput(), rightVelPID->getOutput());
 }
 
 bool Base::atTurnTarget() {
@@ -298,8 +298,8 @@ bool Base::atTurnTarget() {
 
 void Base::stopTurnWithGyro() {
   gyroPID->disable();
-  leftVelPID->disable();
-  rightVelPID->disable();
+  //leftVelPID->disable();
+  //rightVelPID->disable();
 }
 
 double Base::getLeftEncoderValue() {

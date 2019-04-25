@@ -19,8 +19,8 @@ class Base : public libIterativeRobot::Subsystem {
     PIDController* gyroPID;
     PIDController* leftPosPID;
     PIDController* rightPosPID;
-    PIDController* leftVelPID;
-    PIDController* rightVelPID;
+    //PIDController* leftVelPID;
+    //PIDController* rightVelPID;
 
     pros::Vision* baseVision;
 

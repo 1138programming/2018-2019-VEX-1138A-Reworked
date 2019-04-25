@@ -54,8 +54,8 @@ Robot::Robot() {
   autonChooser = AutonChooser::getInstance();
   autonChooser->setAutonNames(
     {
-      "Back Tile Red",
       "Front Tile Red",
+      "Back Tile Red",
       "Front Tile Blue",
       "Back Tile Blue",
       "Skills"
@@ -126,11 +126,11 @@ void Robot::autonInit() {
     switch (autonChooser->getAutonChoice()) {
       case 0:
         printf("Running group %d\n", 1);
-        autonGroup = new Auton_Red_Right_Start_Six_Flag();
+        autonGroup = new Auton_Red_Left_Start_Six_Flag();
         break;
       case 1:
         printf("Running group %d\n", 1);
-        autonGroup = new Auton_Red_Left_Start_Six_Flag();
+        autonGroup = new Auton_Red_Right_Start_Six_Flag();
         break;
       case 2:
         printf("Running group %d\n", 2);
