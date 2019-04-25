@@ -4,10 +4,9 @@
 #include "libIterativeRobot/commands/Command.h"
 #include "abstractBaseClasses/PIDController.h"
 
-class BrakeBaseFor : public libIterativeRobot::Command {
+class ToggleBrake : public libIterativeRobot::Command {
   private:
-    int timeToRun;
-    int startTime;    
+    bool brake = false;
   public:
     bool canRun();
     void initialize();
@@ -15,7 +14,7 @@ class BrakeBaseFor : public libIterativeRobot::Command {
     bool isFinished();
     void end();
     void interrupted();
-    BrakeBaseFor(int timeToRun);
+    ToggleBrake(bool brake);
 };
 
 #endif // _COMMANDS_BRAKEBASEFOR_H_

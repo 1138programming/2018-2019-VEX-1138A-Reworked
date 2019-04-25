@@ -20,6 +20,8 @@
 #include "libIterativeRobot/commands/Auton/Auton_Blue_Right_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton/Auton_Red_Right_Start_Six_Flag.h"
 
+#include "libIterativeRobot/commands/BaseCommands/ToggleBrake.h"
+
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
 #include "libIterativeRobot/commands/MiscCommands/CollectorAndIndexer.h"
 #include "libIterativeRobot/commands/MiscCommands/ShootAndLoad.h"
@@ -90,6 +92,9 @@ Robot::Robot() {
   //flipperBackwardsButton->whenReleased(cancellable);
   //flipperBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
 
+  JoystickButton* toggleBrakeButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
+  toggleBrakeButton->whenPressed(new ToggleBrake(true));
+  toggleBrakeButton->whenReleased(new ToggleBrake(false));
 
   JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());

@@ -8,7 +8,8 @@ PIDController::PIDController(Motor* outputMotor, float kP, float kI, float kD) {
   this->kI = kI;
   this->kD = kD;
   addInstance();
-  //this->controllers.push_back(this);
+
+  pastErrors = NULL;
 }
 
 PIDController::PIDController(float kP, float kI, float kD) {
@@ -17,6 +18,8 @@ PIDController::PIDController(float kP, float kI, float kD) {
   this->kI = kI;
   this->kD = kD;
   addInstance();
+
+  pastErrors = NULL;
 }
 
 void PIDController::addInstance() {
@@ -81,6 +84,10 @@ void PIDController::setThreshold(int threshold) {
 }
 
 void PIDController::loop() {
+  if (pastErrors == NULL) {
+    printf("PID was looped before being initialized\n");
+    init();
+  }
   //printf("PID is looping\n");
   currSensorValue = getSensorValue();
   deltaTime = pros::millis() - lastTime;
@@ -173,6 +180,7 @@ void PIDController::init() {
 void PIDController::stop() {
   enabled = false;
   //std::vector<int>().swap(pastErrors);
+  pastErrors = NULL;
   delete pastErrors;
 }
 
