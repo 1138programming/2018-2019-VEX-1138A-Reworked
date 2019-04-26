@@ -37,12 +37,13 @@ class Base : public libIterativeRobot::Subsystem {
 
     //double accel = 0.34;
     //double accel = 0.68;
-    double accel = 0.51;
+    double accel = 0.17;
     double leftAccel = 0;
     double rightAccel = 0;
     double leftVel = 0;
     double rightVel = 0;
-    double maxVel = 34;
+    //double maxVel = 17;
+    double maxVel = 10;
     double leftSetpoint = 0;
     double rightSetpoint = 0;
     int leftTarget = 0;

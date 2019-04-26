@@ -22,12 +22,12 @@ Base::Base() {
   gyroPID = new PIDController(0.1, 0, 0);
   gyroPID->setOutputRange(-200, 200);
 
-  leftPosPID = new PIDController(leftFrontBaseMotor, 0.4, 0, 0);
-  rightPosPID = new PIDController(rightFrontBaseMotor, 0.4, 0, 0);
+  leftPosPID = new PIDController(leftFrontBaseMotor, 0.45, 0, 0);
+  rightPosPID = new PIDController(rightFrontBaseMotor, 0.45, 0, 0);
   leftPosPID->setOutputRange(-127, 127);
   rightPosPID->setOutputRange(-127, 127);
-  //leftPosPID->setThreshold(30);
-  //rightPosPID->setThreshold(30);
+  leftPosPID->setThreshold(30);
+  rightPosPID->setThreshold(30);
 
   //leftVelPID = new PIDController(0.8, 0, 0);
   //rightVelPID = new PIDController(0.8, 0, 0);
@@ -111,8 +111,8 @@ void Base::initLinearMovement(int leftTarget, int rightTarget) {
     rightAccel = -accel;
   }
 
-  printf("Left accel is %f, right accel is %f\n", leftAccel, rightAccel);
-  printf("Left deccel point is %d and right deccel point is %d\n", leftDeccelPoint, rightDeccelPoint);
+  //printf("Left accel is %f, right accel is %f\n", leftAccel, rightAccel);
+  //printf("Left deccel point is %d and right deccel point is %d\n", leftDeccelPoint, rightDeccelPoint);
 
   leftSetpoint = 0;
   rightSetpoint = 0;
@@ -184,12 +184,15 @@ void Base::updateLinearMovement() {
   rightSetpoint += rightVel;
 
   //printf("Left vel is %f, setpoint is %f, and sensor value is %d\n", leftVel, leftSetpoint, (int)getLeftEncoderValue());
-  printf("Left enc value is %d and right enc value is %d\n", (int)getLeftEncoderValue(), (int)getRightEncoderValue());
+  //printf("Left enc value is %d and right enc value is %d\n", (int)getLeftEncoderValue(), (int)getRightEncoderValue());
+
+  //printf("%f, %d, %d, %f, %d, %d\n", leftVel, (int)leftSetpoint, (int)getLeftEncoderValue(), rightVel, (int)leftSetpoint, (int)getRightEncoderValue());
+  //printf("%d\n", (int)(getLeftEncoderValue() - getRightEncoderValue()));
 
   leftPosPID->setSetpoint((int)leftSetpoint);
   rightPosPID->setSetpoint((int)rightSetpoint);
 
-  pros::delay(5);
+  //pros::delay(5);
   //printf("Left side rpm is %f and right side rpm is %f\n", leftFrontBaseMotor->getMotorObject()->get_actual_velocity(), rightFrontBaseMotor->getMotorObject()->get_actual_velocity());
 
   // Passes encoder values to the position PIDs

@@ -19,8 +19,9 @@
 #include "libIterativeRobot/commands/MiscCommands/DelayCommand.h"
 
 DoubleShot::DoubleShot() {
+  addSequentialCommand(new DelayCommand(100));
   addSequentialCommand(new IndexerForwardTimed(250));
   addSequentialCommand(new DelayCommand(1000));
-  addSequentialCommand(new CollectorForwardTimed(500));
-  addParallelCommand(new IndexerForwardTimed(500));
+  addSequentialCommand(new CollectorForwardTimed(750));
+  addParallelCommand(new IndexerForwardTimed(750));
 }

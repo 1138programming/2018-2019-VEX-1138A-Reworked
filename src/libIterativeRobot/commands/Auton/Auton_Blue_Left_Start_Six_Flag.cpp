@@ -24,14 +24,16 @@
 #include "libIterativeRobot/Robot.h"
 
 Auton_Blue_Left_Start_Six_Flag::Auton_Blue_Left_Start_Six_Flag() {
-  addSequentialCommand(new DriveLinear(3500, 3500));
-  addParallelCommand(new CollectorForwardTimed(2000));
+  addSequentialCommand(new DriveLinear(3100, 3100));
+  addParallelCommand(new CollectorForwardTimed(3000));
   addParallelCommand(new FlywheelBackwards());
-  addSequentialCommand(new DriveLinear(-3000, -3000));
+  addSequentialCommand(new DriveLinear(-2900, -2900));
   addSequentialCommand(new DriveLinear(650, -650));
   addSequentialCommand(new DriveLinear(1900, 1900));
   addParallelCommand(new DoubleShot());
+  addSequentialCommand(new DriveLinear(-1000, -1000));
   addSequentialCommand(new DriveLinear(800, 500));
+  addSequentialCommand(new DriveLinear(1000, 1000));
   addSequentialCommand(new FlipperForwardTimed(500));
   addSequentialCommand(new DriveLinear(-800, -500));
   addParallelCommand(new FlipperBackwardTimed(800));

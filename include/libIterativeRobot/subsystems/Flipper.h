@@ -19,6 +19,8 @@ class Flipper : public libIterativeRobot::Subsystem {
     void enable();
     void disable();
     int bottomLimit;
+    int bottomHuntRange;
+    PIDController* getPID();
     Flipper();
 };
 

@@ -20,6 +20,7 @@ class DriveLinear : public libIterativeRobot::Command {
     void interrupted();
     DriveLinear(int target);
     DriveLinear(int leftTarget, int rightTarget);
+    //DriveLinear(int leftTarget, int rightTarget, double maxAccel, double maxVel);
 };
 
 #endif // _COMMANDS_DriveLinearly_H_

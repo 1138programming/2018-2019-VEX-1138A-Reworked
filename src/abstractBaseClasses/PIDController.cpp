@@ -87,6 +87,8 @@ void PIDController::loop() {
   if (pastErrors == NULL) {
     printf("PID was looped before being initialized\n");
     init();
+    //enabled = false;
+    //return;
   }
   //printf("PID is looping\n");
   currSensorValue = getSensorValue();
@@ -161,6 +163,10 @@ void PIDController::enable() {
 void PIDController::disable() {
   stop();
   printf("PID disabled\n");
+}
+
+bool PIDController::isEnabled() {
+  return enabled;
 }
 
 void PIDController::init() {

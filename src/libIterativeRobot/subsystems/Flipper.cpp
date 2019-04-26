@@ -4,14 +4,25 @@
 Flipper::Flipper() {
   flipperMotor = Motor::getMotor(flipperPort, flipperGearset);
 
-  flipperControl = new PIDController(flipperMotor, 0.4, 0.001, 0);
+  flipperControl = new PIDController(flipperMotor, 0.4, 0, 0);
   flipperControl->setThreshold(30);
 
   bottomLimit = 550;
+  bottomHuntRange = 200;
 }
 
 void Flipper::runFlipper(int velocity) {
   //flipperMotor->getMotorObject()->move_velocity(velocity);
+
+  int enc = getEncoderValue();
+  int maxSpeed;
+
+  if (enc > (bottomLimit - bottomHuntRange)) {
+    maxSpeed = (int)(127 * ((0.75 * ((bottomLimit - enc) / (bottomLimit - bottomHuntRange))) + 0.25));
+    if (velocity > maxSpeed)
+      velocity = maxSpeed;
+  }
+
   flipperMotor->setSpeed(velocity);
 }
 
@@ -37,6 +48,10 @@ void Flipper::enable() {
 
 void Flipper::disable() {
   flipperControl->disable();
+}
+
+PIDController* Flipper::getPID() {
+  return flipperControl;
 }
 
 void Flipper::initDefaultCommand() {

@@ -24,12 +24,12 @@
 
 Auton_Blue_Right_Start_Six_Flag::Auton_Blue_Right_Start_Six_Flag() {
   addSequentialCommand(new FlywheelRevUp(116));
-  addSequentialCommand(new DriveLinear(3500, 3500));
-  addParallelCommand(new CollectorForwardTimed(2000));
-  addSequentialCommand(new DriveLinear(-1600, -1600));
+  addSequentialCommand(new DriveLinear(3100, 3100));
+  addParallelCommand(new CollectorForwardTimed(3000));
+  addSequentialCommand(new DriveLinear(-1200, -1200));
   addSequentialCommand(new DriveLinear(-630, 630));
   addSequentialCommand(new DriveLinear(1300, 1300));
-  addSequentialCommand(new DriveLinear(630, -630));
+  addSequentialCommand(new DriveLinear(500, -500));
   addSequentialCommand(new FlipperTo(Robot::flipper->bottomLimit));
   addSequentialCommand(new DriveLinear(600, 600));
   addSequentialCommand(new FlipperTo(0));

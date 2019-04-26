@@ -14,6 +14,7 @@
 #include "libIterativeRobot/commands/FlipperCommands/FlipperBackwards.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperBackwardTimed.h"
 #include "libIterativeRobot/commands/FlipperCommands/FlipperTo.h"
+#include "libIterativeRobot/commands/FlipperCommands/FlipperMonitor.h"
 
 #include "libIterativeRobot/commands/Auton/Auton_Blue_Left_Start_Six_Flag.h"
 #include "libIterativeRobot/commands/Auton/Auton_Red_Left_Start_Six_Flag.h"
@@ -40,6 +41,7 @@ Flywheel*  Robot::flywheel  = 0;
 AutonChooser* Robot::autonChooser = 0;
 
 pros::Controller* Robot::mainController = 0;
+pros::Controller* Robot::partnerController = 0;
 
 Robot::Robot() {
   printf("Overridden robot constructor!\n");
@@ -64,6 +66,7 @@ Robot::Robot() {
 
   // Initializing controller
   mainController = new pros::Controller(pros::E_CONTROLLER_MASTER);
+  partnerController = new pros::Controller(pros::E_CONTROLLER_PARTNER);
 
   // Initializing joysticks and buttons
   // JoystickButton* flywheelForwardButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_UP);
@@ -92,9 +95,9 @@ Robot::Robot() {
   //flipperBackwardsButton->whenReleased(cancellable);
   //flipperBackwardsButton->whenPressed(cancellable, libIterativeRobot::STOP);
 
-  JoystickButton* toggleBrakeButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
-  toggleBrakeButton->whenPressed(new ToggleBrake(true));
-  toggleBrakeButton->whenReleased(new ToggleBrake(false));
+  // JoystickButton* toggleBrakeButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_DOWN);
+  // toggleBrakeButton->whenPressed(new ToggleBrake(true));
+  // toggleBrakeButton->whenReleased(new ToggleBrake(false));
 
   JoystickButton* flipperForwardsButton = new JoystickButton(mainController, pros::E_CONTROLLER_DIGITAL_X);
   flipperForwardsButton->whileHeld(new FlipperForward());
@@ -106,6 +109,7 @@ Robot::Robot() {
   //autonButton->whenPressed(new Auton_Blue_Left_Start_Six_Flag());
 
   autonGroup = NULL;
+  flipperMonitor = new FlipperMonitor();
 }
 
 void Robot::robotInit() {
@@ -164,8 +168,10 @@ void Robot::teleopInit() {
 
 void Robot::teleopPeriodic() {
   // Code to run while in teleop mode
+  //printf("Teleop peridic\n");
   //printf("Gyro value: %f\n", robotBase->getGyroValue());
   //printf("Left encoder value is %f, right encoder value is %f\n", robotBase->getLeftEncoderValue(), robotBase->getRightEncoderValue());
+  flipperMonitor->run();
   Motor::periodicUpdate();
   PIDController::loopAll();
 }

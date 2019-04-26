@@ -16,11 +16,13 @@ void FlipperForward::initialize() {
   // Perform any initialization steps for this command here, not in the
   // constructor
   //Robot::flipper->disable();
+  //printf("Flipper forward init\n");
 }
 
 void FlipperForward::execute() {
   // Code that runs when this command is scheduled to run
   Robot::flipper->runFlipper(80);
+  //printf("Flipper forward exec\n");
 }
 
 bool FlipperForward::isFinished() {
@@ -29,9 +31,11 @@ bool FlipperForward::isFinished() {
 
 void FlipperForward::end() {
   // Code that runs when isFinished() returns true.
+  //printf("Flipper forward end\n");
 }
 
 void FlipperForward::interrupted() {
   // Code that runs when this command is interrupted by another one
   // with a higher priority.
+  //printf("Flipper forward interrupted");
 }

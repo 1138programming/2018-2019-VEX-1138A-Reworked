@@ -56,6 +56,7 @@ class PIDController {
     void setOutputRange(int minSpeed, int maxSpeed); // Sets the minimum and maximum values that the PID can calculate as the output
     void enable();
     void disable();
+    bool isEnabled();
     void init();
     void stop();
     static void loopAll();

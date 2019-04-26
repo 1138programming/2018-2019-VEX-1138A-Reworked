@@ -36,7 +36,7 @@ Auton_Red_Right_Start_Six_Flag::Auton_Red_Right_Start_Six_Flag() {
   addSequentialCommand(new DriveLinear(1300, 1300));
   addSequentialCommand(new DriveLinear(-630, 630));
   addSequentialCommand(new FlipperTo(Robot::flipper->bottomLimit));
-  addSequentialCommand(new DriveLinear(600, 600));
+  addSequentialCommand(new DriveLinear(800, 800));
   addSequentialCommand(new FlipperTo(0));
   addSequentialCommand(new DriveLinear(-920, 0));
   addSequentialCommand(new IndexerForwardTimed(500));

@@ -45,9 +45,11 @@ class Robot : public libIterativeRobot::RobotBase {
     libIterativeRobot::JoystickButton* collectorForwardsButton;
 
     static pros::Controller* mainController;
+    static pros::Controller* partnerController;
 
     // So that we don't leak memory
     libIterativeRobot::CommandGroup* autonGroup;
+    libIterativeRobot::Command* flipperMonitor;
 };
 
 
